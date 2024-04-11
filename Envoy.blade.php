@@ -18,7 +18,7 @@
     restart-services
 @endstory
 
-@task('clone-repository', ['on' => 'remote'])
+@task('setup-environment', ['on' => 'remote'])
     mkdir -p {{ $baseDir }}
     git clone --depth 1 {{ $repository }} {{ $baseDir }}
 @endtask

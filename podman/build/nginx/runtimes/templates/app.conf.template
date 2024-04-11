@@ -4,11 +4,11 @@ upstream reverb {
 }
 
 server {
-    listen 8080;
-    listen [::]:8080;
+    listen ${NGINX_PORT};
+    listen [::]:${NGINX_PORT};
     http2 on;
 
-    server_name ${APP_HOST};
+    server_name ${NGINX_HOST};
     set $base /app;
     root $base/public;
 
@@ -48,13 +48,11 @@ server {
 
 # WebSocket
 server {
-    listen 8080;
-    listen [::]:8080;
+    listen ${NGINX_PORT};
+    listen [::]:${NGINX_PORT};
     http2 on;
 
-    server_name ${APP_WSHOST};
-    set $base /app;
-    root $base/public;
+    server_name ws.${NGINX_HOST};
 
     # root
     location / {

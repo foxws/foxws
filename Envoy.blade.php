@@ -1,6 +1,6 @@
 @setup
     $repository = 'git@github.com:foxws/foxws.git';
-    $branch = 'devel'; // TODO: change to main
+    $branch = 'main';
     $baseDir = '/home/francois/foxws';
 @endsetup
 

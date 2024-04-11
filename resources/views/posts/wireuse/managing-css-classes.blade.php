@@ -1,4 +1,4 @@
-## Description
+## Usage
 
 > Note: Blade marcos are enabled by default, but can be disabled in `config/wireuse.php`.
 

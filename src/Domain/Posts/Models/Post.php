@@ -63,6 +63,15 @@ class Post extends Model
                 'created_at' => Carbon::make('2014-04-04 14:30'),
                 'updated_at' => Carbon::make('2014-04-11 17:30'),
             ],
+            [
+                'id' => 'blade-helpers-traits',
+                'project_id' => 'wireuse',
+                'name' => __('Blade Traits'),
+                'category' => __('Components'),
+                'order_column' => 5,
+                'created_at' => Carbon::make('2014-04-04 14:30'),
+                'updated_at' => Carbon::make('2014-04-11 17:30'),
+            ],
             // WireUi
             [
                 'id' => 'introduction-to-wireui',

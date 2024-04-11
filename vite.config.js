@@ -16,11 +16,11 @@ export default defineConfig(({ mode }) => {
 
   return {
     server: {
-      host: 'hub.lan',
+      host: 'foxws.lan',
       https,
       port: 5173,
       strictPort: true,
-      hmr: { host: 'hub.lan' },
+      hmr: { host: 'foxws.lan' },
     },
     resolve: {
       alias: {
@@ -50,11 +50,11 @@ export default defineConfig(({ mode }) => {
           navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],
         },
         manifest: {
-          name: 'Hub',
-          short_name: 'Hub',
-          description: 'Hub',
-          theme_color: '#030712',
-          background_color: '#030712',
+          name: 'Foxws',
+          short_name: 'Foxws',
+          description: 'Foxws',
+          theme_color: '#334155',
+          background_color: '#334155',
           orientation: 'portrait-primary',
           id: '/',
           scope: '/',

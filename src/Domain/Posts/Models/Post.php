@@ -64,9 +64,9 @@ class Post extends Model
                 'updated_at' => Carbon::make('2014-04-11 17:30'),
             ],
             [
-                'id' => 'blade-helpers-traits',
+                'id' => 'managing-components',
                 'project_id' => 'wireuse',
-                'name' => __('Blade Traits'),
+                'name' => __('Managing Components'),
                 'category' => __('Components'),
                 'order_column' => 5,
                 'created_at' => Carbon::make('2014-04-04 14:30'),

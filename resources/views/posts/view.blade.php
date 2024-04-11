@@ -26,7 +26,7 @@
 
         <hr class="my-0">
 
-        <nav class="flex flex-wrap justify-between items-center">
+        <nav class="flex flex-wrap justify-between items-center gap-3">
             <div>
                 @if ($this->prev_post)
                     <x-wireui::actions-link

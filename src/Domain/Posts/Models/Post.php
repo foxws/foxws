@@ -61,7 +61,7 @@ class Post extends Model
                 'category' => __('Components'),
                 'order_column' => 4,
                 'created_at' => Carbon::make('2014-04-04 14:30'),
-                'updated_at' => Carbon::make('2014-04-04 14:30'),
+                'updated_at' => Carbon::make('2014-04-11 17:30'),
             ],
             // WireUi
             [

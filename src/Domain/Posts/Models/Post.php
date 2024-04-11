@@ -54,6 +54,15 @@ class Post extends Model
                 'created_at' => Carbon::make('2014-04-04 14:30'),
                 'updated_at' => Carbon::make('2014-04-04 14:30'),
             ],
+            [
+                'id' => 'managing-css-classes',
+                'project_id' => 'wireuse',
+                'name' => __('Manging CSS Classes'),
+                'category' => __('Components'),
+                'order_column' => 4,
+                'created_at' => Carbon::make('2014-04-04 14:30'),
+                'updated_at' => Carbon::make('2014-04-04 14:30'),
+            ],
             // WireUi
             [
                 'id' => 'introduction-to-wireui',

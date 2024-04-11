@@ -7,7 +7,7 @@ Our property synthesizers try to prevent this.
 
 > Tip: It is recommended to also apply [Enforcing Morph Maps](https://livewire.laravel.com/docs/properties#properties-expose-system-information-to-the-browser).
 
-By default he dehydrated value of model properties sent over Livewire might look something like this:
+By default the dehydrated value of model properties sent over Livewire might look something like this:
 
 ```json
 {

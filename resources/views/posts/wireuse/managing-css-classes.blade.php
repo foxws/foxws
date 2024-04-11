@@ -1,0 +1,61 @@
+## Description
+
+> Note: Blade marcos are enabled by default, but can be disabled in `config/wireuse.php`.
+
+The following macros are inspired by [twMerge](https://github.com/gehrisandro/tailwind-merge-laravel), and may be valuable for managing inline classes.
+
+Take `button.blade.php` as an example:
+
+@verbatim
+```php
+<button {{ $attributes
+    ->cssClass([
+        'layer' => 'inline-flex shrink-0 cursor-pointer select-none items-center',
+        'disabled' => '!bg-gray-300 pointer-events-none opacity-50',
+    ])
+    ->classMerge([
+        'layer',
+        'disabled' => $attributes->has('disabled'),
+    ])
+    ->merge([
+        'type' => 'button',
+    ])
+}}>
+    {{ $slot }}
+</button>
+```
+@endverbatim
+
+With the `cssClass` helper you define all CSS classes that a component may have.
+Our approach is to use `layer` or `base` as a bare minimum style, and then it can be influenced depending on the parameters given.
+
+Calling `classMerge` merges the classes, possibly with a condition.<br>
+But you can also call `classMerge()` without parameters, then all classes will be merged.
+
+### Rendering component
+
+To render the component:
+
+@verbatim
+```php
+<x-button>Submit</x-button>
+```
+@endverbatim
+
+To overrule classes:
+
+@verbatim
+```php
+<x-button
+    class:layer="block"
+    class:disabled="!bg-purple-600 pointer-events-none opacity-50"
+>
+    Submit
+</x-button>
+```
+@endverbatim
+
+This is a very powerful way to reuse classes.
+Especially combined with Tailwind, since you can drop `@apply` CSS rules.
+
+> Note: Compared to twMerge, we do not check for conflicts or sort classes.

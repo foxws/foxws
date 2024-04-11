@@ -1,0 +1,21 @@
+[Unit]
+Description=App container
+Requires=foxws-redis.service foxws-mariadb.service foxws-meilisearch.service foxws-mailpit.service
+After=foxws-redis.service foxws-mariadb.service foxws-meilisearch.service foxws-mailpit.service
+
+[Service]
+EnvironmentFile=%h/.config/containers/systemd/foxws/app.env
+TimeoutStartSec=900
+Restart=always
+
+[Container]
+Image=localhost/foxws-app
+Volume=${APP_PATH}:/app:rw,z,U
+User=${APP_UID}
+Group=${APP_GID}
+UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
+Network=internal.network
+ExposeHostPort=9000
+
+[Install]
+WantedBy=multi-user.target default.target

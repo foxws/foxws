@@ -1,0 +1,28 @@
+[Unit]
+Description=Proxy container
+
+[Service]
+EnvironmentFile=%h/.config/containers/systemd/traefik/proxy.env
+Restart=always
+
+[Container]
+Image=docker.io/library/traefik:latest
+Volume=${PODMAN_SOCKET}:/var/run/docker.sock:ro,z
+Volume=./traefik/traefik.yml:/etc/traefik/traefik.yml:ro,Z
+Volume=./traefik/dynamic.yml:/etc/traefik/dynamic.yml:ro,Z
+Volume=./traefik/acme:/etc/traefik/acme:rw,Z
+SecurityLabelType=container_runtime_t
+Network=foxws.network
+PublishPort=80:80
+PublishPort=443:443
+Label=traefik.enable=true
+Label=traefik.http.routers.mydashboard.entrypoints=websecure
+Label=traefik.http.routers.mydashboard.rule=Host'(`traefik.foxws.nl`)'
+Label=traefik.http.routers.mydashboard.tls=true
+Label=traefik.http.routers.mydashboard.tls.certresolver=myresolver
+Label=traefik.http.routers.mydashboard.service=api@internal
+Label=traefik.http.routers.mydashboard.middlewares=myauth
+Label=traefik.http.middlewares.myauth.basicauth.users=test:$$apr1$$H6uskkkW$$IgXLP6ewTrSuBkTrqE8wj/
+
+[Install]
+WantedBy=multi-user.target default.target

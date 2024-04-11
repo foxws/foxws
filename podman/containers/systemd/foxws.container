@@ -1,0 +1,23 @@
+[Unit]
+Description=Foxws container
+Requires=foxws-app.service
+After=foxws-app.service
+
+[Service]
+EnvironmentFile=%h/.config/containers/systemd/foxws/app.env
+Restart=always
+
+[Container]
+Image=localhost/foxws-nginx:latest
+Volume=${APP_PATH}:/app:ro,z
+User=${APP_UID}
+Group=${APP_GID}
+UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
+Network=foxws.network
+Network=internal.network
+Label=traefik.enable=true
+Label=traefik.http.routers.foxws.rule=Host'(`foxws.nl`,`ws.foxws.nl`)'
+Label=traefik.http.services.foxws.loadbalancer.server.port="8080"
+
+[Install]
+WantedBy=multi-user.target default.target

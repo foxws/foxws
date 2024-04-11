@@ -1,6 +1,47 @@
 ## Description
 
-WireUse offers traits that you can include on your [Component](https://laravel.com/docs/11.x/blade#components).
+WireUse offers a set of traits that you can include on your [Component](https://laravel.com/docs/11.x/blade#components) and [Livewire components](https://livewire.laravel.com/docs/components).
+
+### Classes
+
+In order not to include every trait separately each time, we have made a selection based on the type of component.
+
+The `Foxws\WireUse\Views\Page` class can be used for Livewire controllers:
+
+@verbatim
+```php
+use Foxws\WireUse\Views\Components\Page;
+use Livewire\Attributes\Layout;
+
+#[Layout('components.layouts.app')]
+class PostViewController extends Page
+{
+    use WithPost;
+
+    protected function authorizeAccess(): void
+    {
+        $this->canView($this->getPost());
+    }
+}
+```
+@endverbatim
+
+The `Foxws\WireUse\Views\Components` class can be used for Livewire components:
+
+@verbatim
+```php
+use Foxws\WireUse\Views\Components\Component;
+use Illuminate\Contracts\Support\Htmlable;
+
+class Button extends Component
+{
+    public function __construct(
+        public string|Htmlable|null $label = '',
+    ) {
+    }
+}
+```
+@endverbatim
 
 ### WithLivewire
 
@@ -55,14 +96,17 @@ This is an example of using it with a Livewire `wire:key`:
 
 Located at `Foxws\WireUse\Views\Concerns\WithSeo`, this trait can be to handle SEO in your Laravel application.
 
-This trait only works with [ralphjsmit/laravel-seo](https://github.com/ralphjsmit/laravel-seo).
+This trait only works with [ralphjsmit/laravel-seo](https://github.com/ralphjsmit/laravel-seo), and is included with WireUse.
 
 @verbatim
 ```php
+use Foxws\WireUse\Views\Concerns\WithSeo;
 use Livewire\Component;
 
 class PostViewController extends Component
 {
+    use WithSeo;
+
     public Post $post;
 
     public function mount(): void
@@ -82,4 +126,3 @@ class PostViewController extends Component
 }
 ```
 @endverbatim
-

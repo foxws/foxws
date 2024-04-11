@@ -57,7 +57,7 @@ class Post extends Model
             [
                 'id' => 'managing-css-classes',
                 'project_id' => 'wireuse',
-                'name' => __('Manging CSS Classes'),
+                'name' => __('Managing CSS Classes'),
                 'category' => __('Components'),
                 'order_column' => 4,
                 'created_at' => Carbon::make('2014-04-04 14:30'),

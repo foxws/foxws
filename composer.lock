@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be40851f892b8a873d3c5bb011e74316",
+    "content-hash": "48947cab7f42003b11f2bae99d46b603",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1448,21 +1448,21 @@
         },
         {
             "name": "daverandom/libdns",
-            "version": "v2.0.3",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DaveRandom/LibDNS.git",
-                "reference": "42c2d700d1178c9f9e78664793463f7f1aea248c"
+                "reference": "b84c94e8fe6b7ee4aecfe121bfe3b6177d303c8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DaveRandom/LibDNS/zipball/42c2d700d1178c9f9e78664793463f7f1aea248c",
-                "reference": "42c2d700d1178c9f9e78664793463f7f1aea248c",
+                "url": "https://api.github.com/repos/DaveRandom/LibDNS/zipball/b84c94e8fe6b7ee4aecfe121bfe3b6177d303c8a",
+                "reference": "b84c94e8fe6b7ee4aecfe121bfe3b6177d303c8a",
                 "shasum": ""
             },
             "require": {
                 "ext-ctype": "*",
-                "php": ">=7.0"
+                "php": ">=7.1"
             },
             "suggest": {
                 "ext-intl": "Required for IDN support"
@@ -1486,9 +1486,9 @@
             ],
             "support": {
                 "issues": "https://github.com/DaveRandom/LibDNS/issues",
-                "source": "https://github.com/DaveRandom/LibDNS/tree/v2.0.3"
+                "source": "https://github.com/DaveRandom/LibDNS/tree/v2.1.0"
             },
-            "time": "2022-09-20T18:15:38+00:00"
+            "time": "2024-04-12T12:12:48+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -1963,20 +1963,20 @@
         },
         {
             "name": "foxws/wireui",
-            "version": "v0.0.2",
+            "version": "v0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireui.git",
-                "reference": "a617581192e94366ce2a7f6de5bb8bb656bbd990"
+                "reference": "c44ccf6319262f7d62c886a804af483672788111"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireui/zipball/a617581192e94366ce2a7f6de5bb8bb656bbd990",
-                "reference": "a617581192e94366ce2a7f6de5bb8bb656bbd990",
+                "url": "https://api.github.com/repos/foxws/wireui/zipball/c44ccf6319262f7d62c886a804af483672788111",
+                "reference": "c44ccf6319262f7d62c886a804af483672788111",
                 "shasum": ""
             },
             "require": {
-                "foxws/wireuse": "^0.0.1",
+                "foxws/wireuse": "^0.0.2",
                 "illuminate/contracts": "^10.0|^11.0",
                 "livewire/livewire": "^3.4",
                 "php": "^8.2",
@@ -2032,7 +2032,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireui/issues",
-                "source": "https://github.com/foxws/wireui/tree/v0.0.2"
+                "source": "https://github.com/foxws/wireui/tree/v0.0.3"
             },
             "funding": [
                 {
@@ -2040,20 +2040,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-10T16:23:18+00:00"
+            "time": "2024-04-14T10:45:45+00:00"
         },
         {
             "name": "foxws/wireuse",
-            "version": "v0.0.1",
+            "version": "v0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "2d28182afe5d03ea318e3f1c6b29492e477dea10"
+                "reference": "0c6c8986b914d9a59129b435e51f106c453123ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/2d28182afe5d03ea318e3f1c6b29492e477dea10",
-                "reference": "2d28182afe5d03ea318e3f1c6b29492e477dea10",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/0c6c8986b914d9a59129b435e51f106c453123ab",
+                "reference": "0c6c8986b914d9a59129b435e51f106c453123ab",
                 "shasum": ""
             },
             "require": {
@@ -2115,7 +2115,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v0.0.1"
+                "source": "https://github.com/foxws/wireuse/tree/v0.0.2"
             },
             "funding": [
                 {
@@ -2123,7 +2123,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-06T19:04:46+00:00"
+            "time": "2024-04-14T10:27:48+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -4270,16 +4270,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "3.5.0",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c915e2634718dbc8a4a15c61b0e62e7a44e14448"
+                "reference": "4b18b21a5527a3d5ffdac2fd35d3ab25a9597654"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c915e2634718dbc8a4a15c61b0e62e7a44e14448",
-                "reference": "c915e2634718dbc8a4a15c61b0e62e7a44e14448",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/4b18b21a5527a3d5ffdac2fd35d3ab25a9597654",
+                "reference": "4b18b21a5527a3d5ffdac2fd35d3ab25a9597654",
                 "shasum": ""
             },
             "require": {
@@ -4302,7 +4302,7 @@
                 "phpstan/phpstan": "^1.9",
                 "phpstan/phpstan-deprecation-rules": "^1.0",
                 "phpstan/phpstan-strict-rules": "^1.4",
-                "phpunit/phpunit": "^10.1",
+                "phpunit/phpunit": "^10.5.17",
                 "predis/predis": "^1.1 || ^2",
                 "ruflin/elastica": "^7",
                 "symfony/mailer": "^5.4 || ^6",
@@ -4355,7 +4355,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/3.5.0"
+                "source": "https://github.com/Seldaek/monolog/tree/3.6.0"
             },
             "funding": [
                 {
@@ -4367,7 +4367,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-27T15:32:31+00:00"
+            "time": "2024-04-12T21:02:21+00:00"
         },
         {
             "name": "nesbot/carbon",

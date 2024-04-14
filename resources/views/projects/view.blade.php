@@ -9,6 +9,8 @@
                 </p>
             @endif
 
+            @includeIf("projects.{$project->getKey()}.notice")
+
             <table class="table-auto">
                 <thead>
                     <tr>

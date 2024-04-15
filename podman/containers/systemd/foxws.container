@@ -10,6 +10,7 @@ Restart=always
 
 [Container]
 Image=localhost/foxws-nginx:latest
+AutoUpdate=local
 Volume=${APP_PATH}:/app:ro,z
 EnvironmentFile=%h/.config/containers/systemd/foxws/nginx.env
 User=${APP_UID}

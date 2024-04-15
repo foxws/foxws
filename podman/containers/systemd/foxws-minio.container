@@ -6,6 +6,7 @@ Restart=always
 
 [Container]
 Image=docker.io/minio:latest
+AutoUpdate=registry
 Volume=foxws-minio:/data/minio:rw,Z,U
 EnvironmentFile=%h/.config/containers/systemd/foxws/minio.env
 Exec=minio server /data/minio --console-address ":8900"

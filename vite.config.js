@@ -16,11 +16,11 @@ export default defineConfig(({ mode }) => {
 
   return {
     server: {
-      host: 'foxws.lan',
+      host: '0.0.0.0',
       https,
-      port: 5173,
+      port: 5174,
       strictPort: true,
-      hmr: { host: 'foxws.lan' },
+      hmr: { host: 'foxws.lan', clientPort: 5174 },
     },
     resolve: {
       alias: {

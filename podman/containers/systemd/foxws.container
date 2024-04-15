@@ -5,6 +5,7 @@ After=foxws-app.service
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/foxws/app.env
+TimeoutStartSec=900
 Restart=always
 
 [Container]

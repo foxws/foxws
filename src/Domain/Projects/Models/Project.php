@@ -32,8 +32,8 @@ class Project extends Model
                 'summary' => __('Collection of essential Livewire utilities.'),
                 'description' => __('Collection of essential Livewire utilities.'),
                 'github' => 'https://github.com/foxws/wireuse',
-                'created_at' => Carbon::make('2014-04-04 14:30'),
-                'updated_at' => Carbon::make('2014-04-04 14:30'),
+                'created_at' => Carbon::make('2024-04-04 14:30'),
+                'updated_at' => Carbon::make('2024-04-04 14:30'),
             ],
             [
                 'id' => 'wireui',
@@ -41,8 +41,8 @@ class Project extends Model
                 'summary' => __('Collection of essential Livewire components and views.'),
                 'description' => __('Collection of essential Livewire components and views.'),
                 'github' => 'https://github.com/foxws/wireui',
-                'created_at' => Carbon::make('2014-04-04 14:30'),
-                'updated_at' => Carbon::make('2014-04-04 14:30'),
+                'created_at' => Carbon::make('2024-04-04 14:30'),
+                'updated_at' => Carbon::make('2024-04-04 14:30'),
             ],
         ];
     }

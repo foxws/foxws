@@ -7,7 +7,6 @@ use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
-use Meilisearch\Search\SearchResult;
 use Spatie\SiteSearch\Search;
 use Spatie\SiteSearch\SearchResults\SearchResults;
 

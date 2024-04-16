@@ -15,7 +15,6 @@ class HomeController extends Page
     public function mount(): void
     {
         $this->seo()->setTitle(__('Home'));
-        $this->seo()->setDescription(__('Home'));
     }
 
     public function render(): View

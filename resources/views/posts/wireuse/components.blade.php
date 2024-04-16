@@ -4,11 +4,11 @@ WireUse offers a set of traits that you can include on your [Component](https://
 
 In order not to include every trait separately each time, we have made a selection based on the type of component.
 
-The `Foxws\WireUse\Views\Page` class can be used for Livewire controllers:
+The `Foxws\WireUse\Views\Support\Page` class can be used for Livewire controllers:
 
 @verbatim
 ```php
-use Foxws\WireUse\Views\Components\Page;
+use Foxws\WireUse\Views\Support\Page;
 use Livewire\Attributes\Layout;
 
 #[Layout('components.layouts.app')]
@@ -24,11 +24,11 @@ class PostViewController extends Page
 ```
 @endverbatim
 
-The `Foxws\WireUse\Views\Components` class can be used for Livewire components:
+The `Foxws\WireUse\Views\Support\Component` class can be used for Livewire components:
 
 @verbatim
 ```php
-use Foxws\WireUse\Views\Components\Component;
+use Foxws\WireUse\Views\Support\Component;
 use Illuminate\Contracts\Support\Htmlable;
 
 class Button extends Component

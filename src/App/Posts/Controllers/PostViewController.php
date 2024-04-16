@@ -4,7 +4,7 @@ namespace App\Posts\Controllers;
 
 use App\Posts\Concerns\WithPost;
 use Domain\Posts\Models\Post;
-use Foxws\WireUse\Views\Components\Page;
+use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;

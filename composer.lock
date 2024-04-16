@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "48947cab7f42003b11f2bae99d46b603",
+    "content-hash": "a68959eb11e2080868f730c48c68e6ad",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1963,20 +1963,20 @@
         },
         {
             "name": "foxws/wireui",
-            "version": "v0.0.3",
+            "version": "v0.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireui.git",
-                "reference": "c44ccf6319262f7d62c886a804af483672788111"
+                "reference": "2756733b919a8ed69f1001402315a772d2a0c433"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireui/zipball/c44ccf6319262f7d62c886a804af483672788111",
-                "reference": "c44ccf6319262f7d62c886a804af483672788111",
+                "url": "https://api.github.com/repos/foxws/wireui/zipball/2756733b919a8ed69f1001402315a772d2a0c433",
+                "reference": "2756733b919a8ed69f1001402315a772d2a0c433",
                 "shasum": ""
             },
             "require": {
-                "foxws/wireuse": "^0.0.2",
+                "foxws/wireuse": "^0.0.3",
                 "illuminate/contracts": "^10.0|^11.0",
                 "livewire/livewire": "^3.4",
                 "php": "^8.2",
@@ -2032,7 +2032,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireui/issues",
-                "source": "https://github.com/foxws/wireui/tree/v0.0.3"
+                "source": "https://github.com/foxws/wireui/tree/v0.0.5"
             },
             "funding": [
                 {
@@ -2040,20 +2040,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-14T10:45:45+00:00"
+            "time": "2024-04-16T12:52:49+00:00"
         },
         {
             "name": "foxws/wireuse",
-            "version": "v0.0.2",
+            "version": "v0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "0c6c8986b914d9a59129b435e51f106c453123ab"
+                "reference": "e7daa12e5400869f6b5289525df37783f6461a5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/0c6c8986b914d9a59129b435e51f106c453123ab",
-                "reference": "0c6c8986b914d9a59129b435e51f106c453123ab",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/e7daa12e5400869f6b5289525df37783f6461a5f",
+                "reference": "e7daa12e5400869f6b5289525df37783f6461a5f",
                 "shasum": ""
             },
             "require": {
@@ -2115,7 +2115,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v0.0.2"
+                "source": "https://github.com/foxws/wireuse/tree/v0.0.3"
             },
             "funding": [
                 {
@@ -2123,7 +2123,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-14T10:27:48+00:00"
+            "time": "2024-04-16T12:35:10+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -7005,16 +7005,16 @@
         },
         {
             "name": "spatie/image",
-            "version": "3.4.0",
+            "version": "3.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image.git",
-                "reference": "d4ca0851e2cb40535331e0057d2bb1fda57d57b7"
+                "reference": "ebee025f0262380fe17abf2bfa970d794431c387"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image/zipball/d4ca0851e2cb40535331e0057d2bb1fda57d57b7",
-                "reference": "d4ca0851e2cb40535331e0057d2bb1fda57d57b7",
+                "url": "https://api.github.com/repos/spatie/image/zipball/ebee025f0262380fe17abf2bfa970d794431c387",
+                "reference": "ebee025f0262380fe17abf2bfa970d794431c387",
                 "shasum": ""
             },
             "require": {
@@ -7061,7 +7061,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/image/tree/3.4.0"
+                "source": "https://github.com/spatie/image/tree/3.4.2"
             },
             "funding": [
                 {
@@ -7073,7 +7073,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-05T17:21:09+00:00"
+            "time": "2024-04-15T13:05:34+00:00"
         },
         {
             "name": "spatie/image-optimizer",
@@ -14372,16 +14372,16 @@
         },
         {
             "name": "spatie/ignition",
-            "version": "1.13.1",
+            "version": "1.13.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ignition.git",
-                "reference": "889bf1dfa59e161590f677728b47bf4a6893983b"
+                "reference": "952798e239d9969e4e694b124c2cc222798dbb28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ignition/zipball/889bf1dfa59e161590f677728b47bf4a6893983b",
-                "reference": "889bf1dfa59e161590f677728b47bf4a6893983b",
+                "url": "https://api.github.com/repos/spatie/ignition/zipball/952798e239d9969e4e694b124c2cc222798dbb28",
+                "reference": "952798e239d9969e4e694b124c2cc222798dbb28",
                 "shasum": ""
             },
             "require": {
@@ -14451,20 +14451,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-29T14:03:47+00:00"
+            "time": "2024-04-16T08:49:17+00:00"
         },
         {
             "name": "spatie/laravel-ignition",
-            "version": "2.5.1",
+            "version": "2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "0c864b3cbd66ce67a2096c5f743e07ce8f1d6ab9"
+                "reference": "c93fcadcc4629775c839ac9a90916f07a660266f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/0c864b3cbd66ce67a2096c5f743e07ce8f1d6ab9",
-                "reference": "0c864b3cbd66ce67a2096c5f743e07ce8f1d6ab9",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/c93fcadcc4629775c839ac9a90916f07a660266f",
+                "reference": "c93fcadcc4629775c839ac9a90916f07a660266f",
                 "shasum": ""
             },
             "require": {
@@ -14474,7 +14474,7 @@
                 "illuminate/support": "^10.0|^11.0",
                 "php": "^8.1",
                 "spatie/flare-client-php": "^1.3.5",
-                "spatie/ignition": "^1.13",
+                "spatie/ignition": "^1.13.2",
                 "symfony/console": "^6.2.3|^7.0",
                 "symfony/var-dumper": "^6.2.3|^7.0"
             },
@@ -14543,7 +14543,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-02T06:30:22+00:00"
+            "time": "2024-04-16T08:57:16+00:00"
         },
         {
             "name": "symfony/yaml",

@@ -3,7 +3,7 @@
 namespace App\Landing\Controllers;
 
 use Domain\Projects\Models\Project;
-use Foxws\WireUse\Views\Components\Page;
+use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;

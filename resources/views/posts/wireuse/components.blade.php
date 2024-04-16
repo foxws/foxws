@@ -43,6 +43,8 @@ class Button extends Component
 
 ## Concerns
 
+The following traits are included in the stated component classes, but can also be used individually.
+
 ### WithLivewire
 
 Located at `Foxws\WireUse\Views\Concerns\WithLivewire`, this trait can be used to call Livewire attributes.

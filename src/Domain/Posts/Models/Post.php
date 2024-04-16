@@ -101,7 +101,7 @@ class Post extends Model
                 'updated_at' => Carbon::make('2024-04-04 14:30'),
             ],
             [
-                'id' => 'usage',
+                'id' => 'using-wireui',
                 'project_id' => 'wireui',
                 'name' => __('Using WireUi'),
                 'category' => __('Getting Started'),

@@ -1,17 +1,17 @@
 ## Usage
 
-WireUi offers a set of components that you can include on your [Component](https://laravel.com/docs/11.x/blade#components).
+WireUi offers a set of components that you can include on your [Blade Component](https://laravel.com/docs/11.x/blade#components).
 
-Components can be included by prefixing with `x-wireui`:
+Our components are prefixed with `x-wireui`:
 
 @verbatim
 ```php
 <div class="container">
     <x-wireui::actions-link
         target="_blank"
-        href="https://github.com/foxws/foxws"
+        href="https://github.com/"
     >
-        Source
+        GitHub
     </x-wireui::actions-link>
 </div>
 ```

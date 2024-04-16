@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3af6574cc8b15c0d79813131ec971c2a",
+    "content-hash": "9427175b2067144dda2cde971bbdde48",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1963,20 +1963,20 @@
         },
         {
             "name": "foxws/wireui",
-            "version": "v0.0.5",
+            "version": "v0.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireui.git",
-                "reference": "2756733b919a8ed69f1001402315a772d2a0c433"
+                "reference": "96852c99627312c9539ff5514162b97776a3c136"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireui/zipball/2756733b919a8ed69f1001402315a772d2a0c433",
-                "reference": "2756733b919a8ed69f1001402315a772d2a0c433",
+                "url": "https://api.github.com/repos/foxws/wireui/zipball/96852c99627312c9539ff5514162b97776a3c136",
+                "reference": "96852c99627312c9539ff5514162b97776a3c136",
                 "shasum": ""
             },
             "require": {
-                "foxws/wireuse": "^0.0.3",
+                "foxws/wireuse": "^0.0.4",
                 "illuminate/contracts": "^10.0|^11.0",
                 "livewire/livewire": "^3.4",
                 "php": "^8.2",
@@ -2032,7 +2032,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireui/issues",
-                "source": "https://github.com/foxws/wireui/tree/v0.0.5"
+                "source": "https://github.com/foxws/wireui/tree/v0.0.6"
             },
             "funding": [
                 {
@@ -2040,20 +2040,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-16T12:52:49+00:00"
+            "time": "2024-04-16T16:46:42+00:00"
         },
         {
             "name": "foxws/wireuse",
-            "version": "v0.0.3",
+            "version": "v0.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "e7daa12e5400869f6b5289525df37783f6461a5f"
+                "reference": "414c6e93f4322fd82da10e783513ef5c14587662"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/e7daa12e5400869f6b5289525df37783f6461a5f",
-                "reference": "e7daa12e5400869f6b5289525df37783f6461a5f",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/414c6e93f4322fd82da10e783513ef5c14587662",
+                "reference": "414c6e93f4322fd82da10e783513ef5c14587662",
                 "shasum": ""
             },
             "require": {
@@ -2115,7 +2115,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v0.0.3"
+                "source": "https://github.com/foxws/wireuse/tree/v0.0.4"
             },
             "funding": [
                 {
@@ -2123,7 +2123,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-16T12:35:10+00:00"
+            "time": "2024-04-16T15:20:52+00:00"
         },
         {
             "name": "fruitcake/php-cors",

@@ -26,7 +26,7 @@
                         aria-label="{{ __('Search') }}"
                         title="{{ __('Search') }}"
                     >
-                        {{ __('Search' )}}
+                        <x-heroicon-m-magnifying-glass class="size-5" />
                     </x-wireui::actions-link>
                 </x-wireui::layout-join>
             </x-slot:end>

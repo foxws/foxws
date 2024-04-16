@@ -1,8 +1,6 @@
-## Description
+## Usage
 
 WireUse offers a set of traits that you can include on your [Component](https://laravel.com/docs/11.x/blade#components) and [Livewire components](https://livewire.laravel.com/docs/components).
-
-### Classes
 
 In order not to include every trait separately each time, we have made a selection based on the type of component.
 
@@ -42,6 +40,8 @@ class Button extends Component
 }
 ```
 @endverbatim
+
+## Concerns
 
 ### WithLivewire
 

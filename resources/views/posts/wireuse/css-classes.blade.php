@@ -32,6 +32,41 @@ Our approach is to use `layer` or `base` as a bare minimum style, and then it ca
 Calling `classMerge` merges the classes, possibly with a condition.<br>
 But you can also call `classMerge()` without parameters, then all classes will be merged.
 
+### Reuse classes
+
+It is also possible to apply classes on other tags within the same component:
+
+
+@verbatim
+```php
+<label {{ $attributes
+    ->cssClass([
+        'layer' => 'flex items-center cursor-pointer',
+        'error' => 'text-red-500',
+        'hint' => 'pt-1 text-red-500',
+        'required' => 'px-1 text-primary-400',
+    ])
+    ->classMerge([
+        'layer',
+        'error' => filled($error) || $errors->has($wireKey()),
+    ])
+}}>
+    {{ $slot }}
+
+    @if ($required)
+        <span {{ $attributes->classFor('required') }}>*</span>
+    @endif
+
+    @if ($hint)
+        <p {{ $attributes->classFor('hint') }}>
+            {{ $hint }}
+        </p>
+    @endif
+</label>
+```
+@endverbatim
+
+
 ### Rendering component
 
 To render the component:

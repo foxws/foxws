@@ -72,6 +72,15 @@ class Post extends Model
                 'created_at' => Carbon::make('2024-04-04 14:30'),
                 'updated_at' => Carbon::make('2024-04-11 17:30'),
             ],
+            [
+                'id' => 'forms',
+                'project_id' => 'wireuse',
+                'name' => __('Forms'),
+                'category' => __('Forms'),
+                'order_column' => 6,
+                'created_at' => Carbon::make('2024-04-15 14:30'),
+                'updated_at' => Carbon::make('2024-04-15 15:30'),
+            ],
             // WireUi
             [
                 'id' => 'introduction-to-wireui',
@@ -88,6 +97,15 @@ class Post extends Model
                 'name' => __('Installing WireUi'),
                 'category' => __('Getting Started'),
                 'order_column' => 2,
+                'created_at' => Carbon::make('2024-04-04 14:30'),
+                'updated_at' => Carbon::make('2024-04-04 14:30'),
+            ],
+            [
+                'id' => 'usage',
+                'project_id' => 'wireui',
+                'name' => __('Using WireUi'),
+                'category' => __('Getting Started'),
+                'order_column' => 3,
                 'created_at' => Carbon::make('2024-04-04 14:30'),
                 'updated_at' => Carbon::make('2024-04-04 14:30'),
             ],

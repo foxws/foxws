@@ -1,128 +1,99 @@
-## Description
+## Usage
 
-WireUse offers a set of traits that you can include on your [Livewire forms](https://livewire.laravel.com/docs/forms).
+WireUse offers a set of traits that you can include on your [Livewire Forms](https://livewire.laravel.com/docs/forms).
 
-### Classes
-
-In order not to include every trait separately each time, we have made a selection based on the type of component.
-
-The `Foxws\WireUse\Views\Page` class can be used for Livewire controllers:
+The `Foxws\WireUse\Forms\Support\Form` class can be used to create a Livewire form:
 
 @verbatim
 ```php
-use Foxws\WireUse\Views\Components\Page;
-use Livewire\Attributes\Layout;
+use Foxws\WireUse\Forms\Support\Form;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
+use Livewire\Attributes\Validate;
 
-#[Layout('components.layouts.app')]
-class PostViewController extends Page
+class LoginForm extends Form
 {
-    use WithPost;
+    protected static int $maxAttempts = 5;
 
-    protected function authorizeAccess(): void
+    #[Validate]
+    public string $email = '';
+
+    #[Validate]
+    public string $password = '';
+
+    #[Validate]
+    public bool $remember = false;
+
+    public function rules(): array
     {
-        $this->canView($this->getPost());
+        return [
+            'email' => 'required|email',
+            'remember' => 'nullable|boolean',
+            'password' => [
+                'required',
+                Password::defaults(),
+            ],
+        ];
+    }
+
+    protected function handle(): void
+    {
+        if (! Auth::attempt($this->only('email', 'password'), $this->remember)) {
+            $this->addError('email', __('These credentials do not match our records'));
+
+            return;
+        }
+
+        session()->regenerate();
+    }
+
+    protected function afterHandle(): mixed
+    {
+        return redirect()->intended();
     }
 }
 ```
 @endverbatim
 
-The `Foxws\WireUse\Views\Components` class can be used for Livewire components:
+## Concerns
+
+The following traits are included in `Foxws\WireUse\Forms\Support\Form`, but can also be used individually.
+
+### WithForm
+
+Located at `Foxws\WireUse\Forms\Concerns\WithForm`, this trait can be used to call and validate form attributes.
+
+It offers methods like `getType`, `toCollection`, `toFluent`, `keys`, `get` (with fallback), `has`, etc.
+
+### WithSession
+
+Located at `Foxws\WireUse\Forms\Concerns\WithSession`, this trait can be used to restore and store form input as session data.
+
+Depending on the usecase, one may use Livewire [session properties](https://livewire.laravel.com/docs/session-properties) instead.
+
+The main benefits of our trait are that it offers validation recovery, and it can be used to store multiple values at once.
+
+
+### WithThrottle
+
+Located at `Foxws\WireUse\Forms\Concerns\WithThrottle`, this trait can be used to rate-limit form requests.
 
 @verbatim
 ```php
-use Foxws\WireUse\Views\Components\Component;
-use Illuminate\Contracts\Support\Htmlable;
+use Foxws\WireUse\Forms\Concerns\WithThrottle;
 
-class Button extends Component
+class LoginForm extends Form
 {
-    public function __construct(
-        public string|Htmlable|null $label = '',
-    ) {
-    }
+    use WithThrottle;
+
+    protected static int $maxAttempts = 5;
 }
 ```
 @endverbatim
 
-### WithLivewire
+### WithValidation
 
-Located at `Foxws\WireUse\Views\Concerns\WithLivewire`, this trait can be used to call Livewire attributes.
+Located at `Foxws\WireUse\Forms\Concerns\WithValidation`, this trait can be used to validate form requests.
 
-The following methods are available:
-
-- `wireKey()` - Value of `id` or `wire:model` attribute. Or generate with `uuid()`.
-- `wireModel()` - Value of first `wire:model` attribute.
-- `uuid()` - Generates `uuid()`, mainly used as fallback.
-
-This is an example of using it with a Livewire `wire:key`:
-
-@verbatim
-```php
-<article {{ $attributes
-    ->merge([
-        'wire:key' => $wireKey(),
-    ])
-}}>
-    {{ $slot }}
-</article>
-```
-@endverbatim
-
-### WithHash
-
-Located at `Foxws\WireUse\Views\Concerns\WithHash`, this trait can be used to generate a hash for the given component, and be used as a key.
-
-The following methods are available:
-
-- `hash()` - The hash will be generated using the class itself.
-- `classHash()` - The hash will be generated using the class name.
-
-Always be careful with `hash` methods, as collisions can occur.
-
-This is an example of using it with a Livewire `wire:key`:
-
-@verbatim
-```php
-<article {{ $attributes
-    ->merge([
-        'wire:key' => $hash(),
-    ])
-}}>
-    {{ $slot }}
-</article>
-```
-@endverbatim
-
-### WithSeo
-
-Located at `Foxws\WireUse\Views\Concerns\WithSeo`, this trait can be to handle SEO in your Laravel application.
-
-This trait only works with [ralphjsmit/laravel-seo](https://github.com/ralphjsmit/laravel-seo), and is included with WireUse.
-
-@verbatim
-```php
-use Foxws\WireUse\Views\Concerns\WithSeo;
-use Livewire\Component;
-
-class PostViewController extends Component
-{
-    use WithSeo;
-
-    public Post $post;
-
-    public function mount(): void
-    {
-        // $this->seo()->setTitle('using mount hook');
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->post->name;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->post->description;
-    }
-}
-```
-@endverbatim
+By setting `protected static bool $recoverable = true`, it will try to reset the form on validation errors.
+This is useful on dynamic forms, which may change over time.

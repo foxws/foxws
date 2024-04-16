@@ -36,6 +36,7 @@ $app = Application::configure(basePath: $basePath)
         \Foundation\Console\Commands\AppUpdate::class,
         \Foundation\Console\Commands\AppOptimize::class,
         \Support\Scout\Commands\SyncIndexes::class,
+        \Support\Sitemap\Commands\GenerateSitemap::class,
     ])
     ->create();
 

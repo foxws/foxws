@@ -3,7 +3,7 @@
         <x-wireui::navigation-navbar class:padding="py-3">
             <x-slot:start>
                 <x-wireui::actions-link
-                    href="/"
+                    route="home"
                     class:layer="inline-flex text-2xl text-primary-400 font-semibold hover:text-primary-300"
                     class:active="text-inherit"
                 >
@@ -14,11 +14,19 @@
             <x-slot:end>
                 <x-wireui::layout-join class="gap-x-6 text-lg text-primary-300 hover:text-primary-100">
                     <x-wireui::actions-link
-                        href="{{ route('about') }}"
+                        route="about"
                         aria-label="{{ __('About') }}"
                         title="{{ __('About') }}"
                     >
                         {{ __('About' )}}
+                    </x-wireui::actions-link>
+
+                    <x-wireui::actions-link
+                        route="search"
+                        aria-label="{{ __('Search') }}"
+                        title="{{ __('Search') }}"
+                    >
+                        <x-heroicon-m-magnifying-glass class="size-5" />
                     </x-wireui::actions-link>
                 </x-wireui::layout-join>
             </x-slot:end>

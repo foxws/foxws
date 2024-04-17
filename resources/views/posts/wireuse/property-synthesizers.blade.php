@@ -29,7 +29,7 @@ Our property synthesizers try to hide the model IDs, by forcing the model [route
 }
 ```
 
-## Installation
+## Usage
 
 Create a custom service provider:
 

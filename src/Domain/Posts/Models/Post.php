@@ -81,6 +81,15 @@ class Post extends Model
                 'created_at' => Carbon::make('2024-04-15 14:30'),
                 'updated_at' => Carbon::make('2024-04-15 15:30'),
             ],
+            [
+                'id' => 'structure-scout',
+                'project_id' => 'wireuse',
+                'name' => __('Structure Scout'),
+                'category' => __('Advanced'),
+                'order_column' => 7,
+                'created_at' => Carbon::make('2024-04-16 17:30'),
+                'updated_at' => Carbon::make('2024-04-16 18:30'),
+            ],
             // WireUi
             [
                 'id' => 'introduction-to-wireui',

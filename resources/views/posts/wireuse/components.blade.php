@@ -14,11 +14,11 @@ use Livewire\Attributes\Layout;
 #[Layout('components.layouts.app')]
 class PostViewController extends Page
 {
-    use WithPost;
+    public Post $post;
 
     protected function authorizeAccess(): void
     {
-        $this->canView($this->getPost());
+        $this->canView($this->post);
     }
 }
 ```
@@ -55,7 +55,7 @@ The following methods are available:
 - `wireModel()` - Value of first `wire:model` attribute.
 - `uuid()` - Generates `uuid()`, mainly used as fallback.
 
-This is an example of using it with a Livewire `wire:key`:
+This is an example of using it with a Livewire [wire:key](https://livewire.laravel.com/docs/troubleshooting#adding-wirekey):
 
 @verbatim
 ```php
@@ -78,9 +78,9 @@ The following methods are available:
 - `hash()` - The hash will be generated using the class itself.
 - `classHash()` - The hash will be generated using the class name.
 
-Always be careful with `hash` methods, as collisions can occur.
+> Note: Always be careful with `hash` methods, as collisions may occur.
 
-This is an example of using it with a Livewire `wire:key`:
+This is an example of using it with a Livewire [wire:key](https://livewire.laravel.com/docs/troubleshooting#adding-wirekey):
 
 @verbatim
 ```php
@@ -111,9 +111,15 @@ class PostViewController extends Component
 
     public Post $post;
 
+    protected function authorizeAccess(): void
+    {
+        $this->canView($this->post);
+    }
+
     public function mount(): void
     {
-        // $this->seo()->setTitle('using mount hook');
+        // $this->seo()->setTitle('title using mount hook');
+        // $this->seo()->setDescription('description using mount hook');
     }
 
     public function getTitle(): ?string

@@ -24,7 +24,7 @@ class PostViewController extends Page
 ```
 @endverbatim
 
-The `Foxws\WireUse\Views\Support\Component` class can be used for Livewire components:
+The `Foxws\WireUse\Views\Support\Component` class can be used for Blade components:
 
 @verbatim
 ```php

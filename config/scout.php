@@ -1,6 +1,5 @@
 <?php
 
-use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 
 return [
@@ -157,70 +156,6 @@ return [
                     'state',
                     'created_at',
                     'updated_at',
-                ],
-            ],
-
-            Tag::class => [
-                'filterableAttributes' => [
-                    'id',
-                    'type',
-                    'adult',
-                    'created_at',
-                    'updated_at',
-                    '__soft_deleted',
-                ],
-
-                'searchableAttributes' => [
-                    'name',
-                    'description',
-                    'type',
-                ],
-
-                'sortableAttributes' => [
-                    'name',
-                    'type',
-                    'created_at',
-                    'updated_at',
-                ],
-
-                'synonyms' => [
-                    '1' => ['01'],
-                    '2' => ['02'],
-                    '3' => ['03'],
-                    '4' => ['04'],
-                    '5' => ['05'],
-                    '6' => ['06'],
-                    '7' => ['07'],
-                    '8' => ['08'],
-                    '9' => ['09'],
-                    '&' => ['and'],
-                    '@' => ['at'],
-                    '#' => ['hash', 'hashtag'],
-                ],
-
-                'stopWords' => [
-                    '.',
-                    ',',
-                    '-',
-                    '_',
-                    '-',
-                    '|',
-                    '/',
-                    '(',
-                    ')',
-                    '[',
-                    ']',
-                ],
-
-                'typoTolerance' => [
-                    'minWordSizeForTypos' => [
-                        'oneTypo' => 3,
-                        'twoTypos' => 5,
-                    ],
-                ],
-
-                'pagination' => [
-                    'maxTotalHits' => 10000,
                 ],
             ],
         ],

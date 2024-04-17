@@ -4,7 +4,6 @@ WireUse offers a set of traits that you can include on your [Livewire Forms](htt
 
 The `Foxws\WireUse\Forms\Support\Form` class can be used to create a Livewire form:
 
-@verbatim
 ```php
 use Foxws\WireUse\Forms\Support\Form;
 use Illuminate\Support\Facades\Auth;
@@ -53,7 +52,6 @@ class LoginForm extends Form
     }
 }
 ```
-@endverbatim
 
 ## Concerns
 
@@ -78,7 +76,6 @@ The main benefits of our trait are that it offers validation recovery, and it ca
 
 Located at `Foxws\WireUse\Forms\Concerns\WithThrottle`, this trait can be used to rate-limit form requests.
 
-@verbatim
 ```php
 use Foxws\WireUse\Forms\Concerns\WithThrottle;
 
@@ -89,7 +86,6 @@ class LoginForm extends Form
     protected static int $maxAttempts = 5;
 }
 ```
-@endverbatim
 
 ### WithValidation
 

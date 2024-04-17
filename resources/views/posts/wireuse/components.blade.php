@@ -6,7 +6,6 @@ In order not to include every trait separately each time, we have made a selecti
 
 The `Foxws\WireUse\Views\Support\Page` class can be used for Livewire controllers:
 
-@verbatim
 ```php
 use Foxws\WireUse\Views\Support\Page;
 use Livewire\Attributes\Layout;
@@ -22,11 +21,9 @@ class PostViewController extends Page
     }
 }
 ```
-@endverbatim
 
 The `Foxws\WireUse\Views\Support\Component` class can be used for Blade components:
 
-@verbatim
 ```php
 use Foxws\WireUse\Views\Support\Component;
 use Illuminate\Contracts\Support\Htmlable;
@@ -39,7 +36,6 @@ class Button extends Component
     }
 }
 ```
-@endverbatim
 
 ## Concerns
 
@@ -100,7 +96,6 @@ Located at `Foxws\WireUse\Views\Concerns\WithSeo`, this trait can be to handle S
 
 This trait only works with [ralphjsmit/laravel-seo](https://github.com/ralphjsmit/laravel-seo), and is included with WireUse.
 
-@verbatim
 ```php
 use Foxws\WireUse\Views\Concerns\WithSeo;
 use Livewire\Component;
@@ -133,4 +128,3 @@ class PostViewController extends Component
     }
 }
 ```
-@endverbatim

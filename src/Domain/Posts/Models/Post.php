@@ -90,6 +90,15 @@ class Post extends Model
                 'created_at' => Carbon::make('2024-04-16 17:30'),
                 'updated_at' => Carbon::make('2024-04-16 18:30'),
             ],
+            [
+                'id' => 'state-objects',
+                'project_id' => 'wireuse',
+                'name' => __('State Objects'),
+                'category' => __('Livewire'),
+                'order_column' => 8,
+                'created_at' => Carbon::make('2024-04-16 17:30'),
+                'updated_at' => Carbon::make('2024-04-16 18:30'),
+            ],
             // WireUi
             [
                 'id' => 'introduction-to-wireui',

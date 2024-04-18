@@ -8,7 +8,7 @@
                     <x-wireui::forms-input
                         class="border-0 bg-transparent px-0 py-2.5"
                         type="search"
-                        placeholder="{{ __('Search on title, actor or studio') }}"
+                        placeholder="{{ __('Search on article, term or creator') }}"
                         autocomplete
                         autofocus
                         wire:model.live.debounce.300ms="form.search"

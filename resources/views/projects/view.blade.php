@@ -22,7 +22,7 @@
                 @foreach ($this->posts as $post)
                     <tr>
                         <td>
-                            <x-wireui::actions-link href="{{ route('posts.view', $post) }}">
+                            <x-wireui::actions-link href="{{ $post->route_view }}">
                                 {{ $post->name }}
                             </x-wireui::actions-link>
                         </td>

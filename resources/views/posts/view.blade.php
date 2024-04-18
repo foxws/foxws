@@ -20,7 +20,7 @@
             </p>
         </section>
 
-        <x-markdown theme="github-dark">
+        <x-markdown>
             @includeIf($this->post->blade_view)
         </x-markdown>
 
@@ -30,7 +30,7 @@
             <div>
                 @if ($this->prev_post)
                     <x-wireui::actions-link
-                        href="{{ route('posts.view', $this->prev_post) }}"
+                        href="{{ $this->prev_post->route_view }}"
                         class="gap-2 h-9 px-2.5 border border-primary-600 no-underline"
                     >
                         <x-heroicon-o-chevron-left class="size-3" />
@@ -42,7 +42,7 @@
             <div>
                 @if ($this->next_post)
                     <x-wireui::actions-link
-                        href="{{ route('posts.view', $this->next_post) }}"
+                        href="{{ $this->next_post->route_view }}"
                         class="gap-2 h-9 px-2.5 border border-primary-600 no-underline"
                     >
                         {{ $this->next_post->name }}

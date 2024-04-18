@@ -33,8 +33,8 @@ class Post extends Model
                 'name' => __('Introduction to WireUse'),
                 'category' => __('Getting Started'),
                 'order_column' => 1,
-                'created_at' => Carbon::make('2024-04-04 14:30'),
-                'updated_at' => Carbon::make('2024-04-04 14:30'),
+                'created_at' => Carbon::make('2024-04-04 18:30'),
+                'updated_at' => Carbon::make('2024-04-04 18:30'),
             ],
             [
                 'id' => 'installing-wireuse',
@@ -42,8 +42,8 @@ class Post extends Model
                 'name' => __('Installing WireUse'),
                 'category' => __('Getting Started'),
                 'order_column' => 2,
-                'created_at' => Carbon::make('2024-04-04 14:30'),
-                'updated_at' => Carbon::make('2024-04-04 14:30'),
+                'created_at' => Carbon::make('2024-04-04 18:30'),
+                'updated_at' => Carbon::make('2024-04-04 18:30'),
             ],
             [
                 'id' => 'property-synthesizers',
@@ -51,8 +51,8 @@ class Post extends Model
                 'name' => __('Property Synthesizers'),
                 'category' => __('Properties'),
                 'order_column' => 3,
-                'created_at' => Carbon::make('2024-04-04 14:30'),
-                'updated_at' => Carbon::make('2024-04-04 14:30'),
+                'created_at' => Carbon::make('2024-04-04 18:30'),
+                'updated_at' => Carbon::make('2024-04-04 18:30'),
             ],
             [
                 'id' => 'components',
@@ -60,7 +60,7 @@ class Post extends Model
                 'name' => __('Components'),
                 'category' => __('Components'),
                 'order_column' => 4,
-                'created_at' => Carbon::make('2024-04-04 14:30'),
+                'created_at' => Carbon::make('2024-04-04 18:30'),
                 'updated_at' => Carbon::make('2024-04-11 17:30'),
             ],
             [
@@ -69,7 +69,7 @@ class Post extends Model
                 'name' => __('CSS Classes'),
                 'category' => __('Components'),
                 'order_column' => 5,
-                'created_at' => Carbon::make('2024-04-04 14:30'),
+                'created_at' => Carbon::make('2024-04-04 18:30'),
                 'updated_at' => Carbon::make('2024-04-11 17:30'),
             ],
             [
@@ -78,7 +78,7 @@ class Post extends Model
                 'name' => __('Forms'),
                 'category' => __('Forms'),
                 'order_column' => 6,
-                'created_at' => Carbon::make('2024-04-15 14:30'),
+                'created_at' => Carbon::make('2024-04-15 18:30'),
                 'updated_at' => Carbon::make('2024-04-15 15:30'),
             ],
             [
@@ -106,8 +106,8 @@ class Post extends Model
                 'name' => __('Introduction to WireUi'),
                 'category' => __('Getting Started'),
                 'order_column' => 1,
-                'created_at' => Carbon::make('2024-04-04 14:30'),
-                'updated_at' => Carbon::make('2024-04-04 14:30'),
+                'created_at' => Carbon::make('2024-04-04 18:30'),
+                'updated_at' => Carbon::make('2024-04-04 18:30'),
             ],
             [
                 'id' => 'installing-wireui',
@@ -115,17 +115,26 @@ class Post extends Model
                 'name' => __('Installing WireUi'),
                 'category' => __('Getting Started'),
                 'order_column' => 2,
-                'created_at' => Carbon::make('2024-04-04 14:30'),
-                'updated_at' => Carbon::make('2024-04-04 14:30'),
+                'created_at' => Carbon::make('2024-04-04 18:30'),
+                'updated_at' => Carbon::make('2024-04-04 18:30'),
             ],
             [
-                'id' => 'using-wireui',
+                'id' => 'components',
                 'project_id' => 'wireui',
-                'name' => __('Using WireUi'),
+                'name' => __('Components'),
                 'category' => __('Getting Started'),
                 'order_column' => 3,
-                'created_at' => Carbon::make('2024-04-04 14:30'),
-                'updated_at' => Carbon::make('2024-04-04 14:30'),
+                'created_at' => Carbon::make('2024-04-04 18:30'),
+                'updated_at' => Carbon::make('2024-04-04 18:30'),
+            ],
+            [
+                'id' => 'customizing',
+                'project_id' => 'wireui',
+                'name' => __('Customizing'),
+                'category' => __('Advanced'),
+                'order_column' => 4,
+                'created_at' => Carbon::make('2024-04-17 18:30'),
+                'updated_at' => Carbon::make('2024-04-17 19:30'),
             ],
         ];
     }
@@ -133,6 +142,13 @@ class Post extends Model
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function routeView(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => route('posts.view', ['project' => $this->project_id, 'post' => $this->id])
+        )->shouldCache();
     }
 
     public function bladeView(): Attribute

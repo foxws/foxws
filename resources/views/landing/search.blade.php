@@ -16,7 +16,7 @@
 
                     @if ($this->form->filled('search'))
                         <x-wireui::actions-button wire:click.prevent="$set('form.search', '')">
-                            <x-heroicon-o-x-mark class="h-5 w-5" />
+                            <x-heroicon-o-x-mark class="size-5" />
                         </x-wireui::actions-button>
                     @endif
                 </x-wireui::layout-join>

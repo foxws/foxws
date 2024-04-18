@@ -7,6 +7,7 @@ use Laravel\Sanctum\Console\Commands\PruneExpired;
 use Spatie\Activitylog\CleanActivitylogCommand;
 use Spatie\DbSnapshots\Commands\Cleanup as DbCleanupCommand;
 use Spatie\DbSnapshots\Commands\Create as DbSnapshotCommand;
+use Spatie\SiteSearch\Commands\CrawlCommand;
 use Support\Sitemap\Commands\GenerateSitemap;
 
 Schedule::command(ClearResetsCommand::class)
@@ -22,6 +23,11 @@ Schedule::command(SnapshotCommand::class)
 Schedule::command(GenerateSitemap::class)
     ->withoutOverlapping(600)
     ->everySixHours()
+    ->runInBackground();
+
+Schedule::command(CrawlCommand::class)
+    ->withoutOverlapping(600)
+    ->everyThreeHours()
     ->runInBackground();
 
 Schedule::command(PruneExpired::class, ['--hours=24'])

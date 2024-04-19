@@ -21,11 +21,13 @@ Schedule::command(SnapshotCommand::class)
     ->runInBackground();
 
 Schedule::command(GenerateSitemap::class)
+    ->environments(['production'])
     ->withoutOverlapping(600)
     ->everySixHours()
     ->runInBackground();
 
 Schedule::command(CrawlCommand::class)
+    ->environments(['production'])
     ->withoutOverlapping(600)
     ->everyThreeHours()
     ->runInBackground();

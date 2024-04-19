@@ -4,9 +4,11 @@
 podman build \
     -t foxws-nginx \
     --file=build/nginx/Dockerfile \
-    --env=../../.env
+    --env=../../.env \
+    --no-cache
 
 podman build \
     -t foxws-app \
     --file=build/app/Dockerfile \
-    --env=../../.env
+    --env=../../.env \
+    --no-cache

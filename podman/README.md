@@ -1,16 +1,11 @@
 # Podman Quadlet
 
-The given instructions are tested on Fedora 40 with Podman 5.0 (rootless).
+The given instructions are tested on Fedora 40 with Podman 5.0.2 (rootless).
 
 We recommend running containers rootless:
 
 - <https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md>
 - <https://wiki.archlinux.org/title/Podman#Rootless_Podman>
-
-The following workarounds have been applied to the host, which should hopefully be resolved soon:
-
-- <https://github.com/fedora-silverblue/issue-tracker/issues/547>
-- <https://github.com/containers/podman/issues/22044#issuecomment-2009255504>
 
 ## Installation
 

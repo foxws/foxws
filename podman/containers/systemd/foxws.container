@@ -19,7 +19,7 @@ UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
 Network=foxws.network
 Network=internal.network
 Label=traefik.enable=true
-Label=traefik.http.routers.foxws.rule=Host'(`foxws.nl`,`ws.foxws.nl`)'
+Label=traefik.http.routers.foxws.rule="Host(`foxws.nl`) || Host(`ws.foxws.nl`)"
 Label=traefik.http.services.foxws.loadbalancer.server.port="8080"
 
 [Install]

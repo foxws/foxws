@@ -20,7 +20,7 @@ PublishPort=80:80
 PublishPort=443:443
 Label=traefik.enable=true
 Label=traefik.http.routers.mydashboard.entrypoints=websecure
-Label=traefik.http.routers.mydashboard.rule=Host'(`traefik.foxws.nl`)'
+Label=traefik.http.routers.mydashboard.rule="Host(`traefik.foxws.nl`)"
 Label=traefik.http.routers.mydashboard.tls=true
 Label=traefik.http.routers.mydashboard.tls.certresolver=myresolver
 Label=traefik.http.routers.mydashboard.service=api@internal

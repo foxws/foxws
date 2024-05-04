@@ -1,7 +1,7 @@
 [Unit]
 Description=Foxws container
-Requires=foxws-app.service
-After=foxws-app.service
+Requires=traefik.service foxws-app.service
+After=traefik.service foxws-app-service
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/foxws/app.env

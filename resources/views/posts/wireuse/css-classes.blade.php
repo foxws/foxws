@@ -54,11 +54,11 @@ It is also possible to apply classes on other tags within the same component:
     {{ $slot }}
 
     @if ($required)
-        <span {{ $attributes->classFor('required') }}>*</span>
+        <span class="{{ $attributes->classFor('required') }}">*</span>
     @endif
 
     @if ($hint)
-        <p {{ $attributes->classFor('hint') }}>
+        <p class="{{ $attributes->classFor('hint') }}">
             {{ $hint }}
         </p>
     @endif

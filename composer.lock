@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "75ae42b5cad5579fcc7ec3055cf6d2c6",
+    "content-hash": "2ed799232b939d2247ba5167f88f4392",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1969,16 +1969,16 @@
         },
         {
             "name": "foxws/wireui",
-            "version": "v0.0.7",
+            "version": "v0.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireui.git",
-                "reference": "05315ed007fd521e14e35f5c31589ff2c063614d"
+                "reference": "5ddc963d844a9cab7e268c3fdf2407f670580779"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireui/zipball/05315ed007fd521e14e35f5c31589ff2c063614d",
-                "reference": "05315ed007fd521e14e35f5c31589ff2c063614d",
+                "url": "https://api.github.com/repos/foxws/wireui/zipball/5ddc963d844a9cab7e268c3fdf2407f670580779",
+                "reference": "5ddc963d844a9cab7e268c3fdf2407f670580779",
                 "shasum": ""
             },
             "require": {
@@ -2038,7 +2038,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireui/issues",
-                "source": "https://github.com/foxws/wireui/tree/v0.0.7"
+                "source": "https://github.com/foxws/wireui/tree/v0.0.8"
             },
             "funding": [
                 {
@@ -2046,7 +2046,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-17T07:00:58+00:00"
+            "time": "2024-05-04T08:59:26+00:00"
         },
         {
             "name": "foxws/wireuse",

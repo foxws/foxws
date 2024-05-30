@@ -12,7 +12,7 @@ Environment=MP_MAX_MESSAGES=5000
 Environment=MP_DATA_FILE=/data/mailpit.db
 Environment=MP_SMTP_AUTH_ACCEPT_ANY=1
 Environment=MP_SMTP_AUTH_ALLOW_INSECURE=1
-Network=internal.network
+Network=foxws.network
 PublishPort=8025:8025
 PublishPort=1025:1025
 

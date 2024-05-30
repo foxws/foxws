@@ -15,7 +15,7 @@ Volume=./traefik/traefik.yml:/etc/traefik/traefik.yml:ro,Z
 Volume=./traefik/dynamic.yml:/etc/traefik/dynamic.yml:ro,Z
 Volume=./traefik/acme:/etc/traefik/acme:rw,Z
 SecurityLabelType=container_runtime_t
-Network=foxws.network
+Network=traefik.network
 PublishPort=80:80
 PublishPort=443:443
 Label=traefik.enable=true

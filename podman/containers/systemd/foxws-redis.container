@@ -8,7 +8,7 @@ Restart=always
 Image=docker.io/redis:latest
 AutoUpdate=registry
 Volume=foxws-redis:/data:rw,Z,U
-Network=internal.network
+Network=foxws.network
 PublishPort=6379:6379
 
 [Install]

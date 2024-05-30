@@ -9,7 +9,7 @@ Image=docker.io/mariadb:latest
 AutoUpdate=registry
 Volume=foxws-mariadb:/var/lib/mysql:rw,Z,U
 EnvironmentFile=%h/.config/containers/systemd/foxws/mariadb.env
-Network=internal.network
+Network=foxws.network
 PublishPort=3306:3306
 
 [Install]

@@ -10,7 +10,7 @@ AutoUpdate=registry
 Volume=foxws-minio:/data/minio:rw,Z,U
 EnvironmentFile=%h/.config/containers/systemd/foxws/minio.env
 Exec=minio server /data/minio --console-address ":8900"
-Network=internal.network
+Network=foxws.network
 PublishPort=9000:9000
 PublishPort=8900:8900
 

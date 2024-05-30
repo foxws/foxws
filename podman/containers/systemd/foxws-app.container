@@ -15,7 +15,7 @@ Volume=${APP_PATH}:/app:rw,z,U
 User=${APP_UID}
 Group=${APP_GID}
 UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
-Network=internal.network
+Network=foxws.network
 ExposeHostPort=6001
 ExposeHostPort=9000
 PublishPort=5174:5174

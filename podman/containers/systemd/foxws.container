@@ -1,7 +1,7 @@
 [Unit]
 Description=Foxws container
-Requires=traefik.service foxws-app.service
-After=traefik.service foxws-app-service
+Requires=foxws-app.service
+After=foxws-app-service
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/foxws/app.env
@@ -17,7 +17,7 @@ User=${APP_UID}
 Group=${APP_GID}
 UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
 Network=foxws.network
-Network=internal.network
+Network=traefik.network
 Label=traefik.enable=true
 Label=traefik.http.routers.foxws.rule="Host(`foxws.nl`) || Host(`ws.foxws.nl`)"
 Label=traefik.http.services.foxws.loadbalancer.server.port="8080"

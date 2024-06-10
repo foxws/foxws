@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     'code_highlighting' => [
         /*
          * To highlight code, we'll use Shiki under the hood. Make sure it's installed.

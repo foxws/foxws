@@ -38,6 +38,7 @@ return [
      * You may use `*` as a wildcard.
      */
     'do_not_crawl_urls' => [
+        '/livewire/*',
         '/build/*',
         '/storage/*',
         '/assets/*',

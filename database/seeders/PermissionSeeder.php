@@ -15,19 +15,14 @@ class PermissionSeeder extends Seeder
         app(PermissionRegistrar::class)->forgetCachedPermissions();
 
         // Create permissions
-        Permission::firstOrCreate(['name' => 'edit tags']);
-        Permission::firstOrCreate(['name' => 'delete tags']);
-        Permission::firstOrCreate(['name' => 'publish tags']);
-        Permission::firstOrCreate(['name' => 'unpublish tags']);
-
-        Permission::firstOrCreate(['name' => 'edit videos']);
-        Permission::firstOrCreate(['name' => 'delete videos']);
-        Permission::firstOrCreate(['name' => 'publish videos']);
-        Permission::firstOrCreate(['name' => 'unpublish videos']);
+        Permission::firstOrCreate(['name' => 'edit posts']);
+        Permission::firstOrCreate(['name' => 'delete posts']);
+        Permission::firstOrCreate(['name' => 'publish posts']);
+        Permission::firstOrCreate(['name' => 'unpublish posts']);
 
         // Create roles and assign created permissions
         $role = Role::firstOrCreate(['name' => 'moderator'])
-            ->syncPermissions(['publish videos', 'unpublish videos']);
+            ->syncPermissions(['publish posts', 'unpublish posts']);
 
         $role = Role::firstOrCreate(['name' => 'super-admin']);
         $role->syncPermissions(Permission::all());

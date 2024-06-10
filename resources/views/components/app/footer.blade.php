@@ -4,11 +4,11 @@
         <span> • </span>
         <span>© 2024</span>
         <span> • </span>
-        <x-wireui::actions-link
+        <a
             target="_blank"
             href="https://github.com/foxws/foxws"
         >
             Source
-        </x-wireui::actions-link>
+        </a>
     </div>
 </footer>

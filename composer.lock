@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b8541adec4b46a1ac00a04add2d9d3e0",
+    "content-hash": "74223151ae65737edf53ba1a333a8f25",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2050,16 +2050,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v1.0.5",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "b607f83a23cf9438513c1551240a52560db5e74b"
+                "reference": "2b99115d45e6bb26df002af50d494f4c9e2e0f44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/b607f83a23cf9438513c1551240a52560db5e74b",
-                "reference": "b607f83a23cf9438513c1551240a52560db5e74b",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/2b99115d45e6bb26df002af50d494f4c9e2e0f44",
+                "reference": "2b99115d45e6bb26df002af50d494f4c9e2e0f44",
                 "shasum": ""
             },
             "require": {
@@ -2124,7 +2124,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v1.0.5"
+                "source": "https://github.com/foxws/wireuse/tree/v1.0.6"
             },
             "funding": [
                 {
@@ -2132,7 +2132,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-29T12:26:27+00:00"
+            "time": "2024-06-20T14:28:46+00:00"
         },
         {
             "name": "fruitcake/php-cors",

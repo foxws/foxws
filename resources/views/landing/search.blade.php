@@ -1,11 +1,11 @@
-<x-wireui::layout-container>
+<x-wireuse::layout.container>
     <main class="flex flex-col py-6 gap-y-6 prose prose-invert max-w-none prose-headings:my-0 prose-h1:mb-2 prose-h1:font-semibold prose-h1:text-3xl prose-p:my-1 prose-thead:text-left prose-a:text-primary-300">
         <section>
             <h1>{{ __('Search') }}</h1>
 
-            <x-wireui::forms-schema class:layout="flex flex-col py-2 gap-y-2">
-                <x-wireui::layout-join class="flex-nowrap gap-x-4 rounded bg-primary-700/40 px-3">
-                    <x-wireui::forms-input
+            <x-wireuse::forms-schema class:layout="flex flex-col py-2 gap-y-2">
+                <x-wireuse::layout.join class="flex-nowrap gap-x-4 rounded bg-primary-700/40 px-3">
+                    <x-wireuse::forms-input
                         class="border-0 bg-transparent px-0 py-2.5"
                         type="search"
                         placeholder="{{ __('Search on article, term or creator') }}"
@@ -15,12 +15,12 @@
                     />
 
                     @if ($this->form->filled('search'))
-                        <x-wireui::actions-button wire:click.prevent="$set('form.search', '')">
+                        <x-wireuse::actions-button wire:click.prevent="$set('form.search', '')">
                             <x-heroicon-o-x-mark class="size-5" />
-                        </x-wireui::actions-button>
+                        </x-wireuse::actions-button>
                     @endif
-                </x-wireui::layout-join>
-            </x-wireui::forms-schema>
+                </x-wireuse::layout.join>
+            </x-wireuse::forms-schema>
         </section>
 
         @if ($this->form->filled('search'))
@@ -41,9 +41,9 @@
                             </p>
                         </div>
 
-                        <x-wireui::actions-button class:layer="block">
+                        <x-wireuse::actions-button class:layer="block">
                             <x-heroicon-o-chevron-right class="size-5" />
-                        </x-wireui::actions-button>
+                        </x-wireuse::actions-button>
                     </a>
                 @empty
                     <div class="flex items-center justify-center p-2 text-primary-400">
@@ -54,4 +54,4 @@
         </section>
         @endif
     </main>
-</x-wireui::layout-container>
+</x-wireuse::layout.container>

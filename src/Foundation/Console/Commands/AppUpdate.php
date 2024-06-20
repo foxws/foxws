@@ -22,7 +22,7 @@ class AppUpdate extends Command implements Isolatable
         throw_if(! $this->option('force') && ! $this->confirm('Are you sure to update the application?'));
 
         // Optimize app
-        $this->call('app:optimize');
+        $this->call('app:optimize', ['--force' => 'yes']);
 
         // Fetch assets
         $this->call('google-fonts:fetch');
@@ -32,19 +32,5 @@ class AppUpdate extends Command implements Isolatable
 
         // Sync indexes
         $this->call('scout:sync');
-
-        // Generate ide-helpers
-        $this->generateIdeHelpers();
-    }
-
-    protected function generateIdeHelpers(): void
-    {
-        if (! app()->environment('local')) {
-            return;
-        }
-
-        $this->call('ide-helper:generate');
-        $this->call('ide-helper:meta');
-        $this->call('ide-helper:models', ['--nowrite' => 'yes']);
     }
 }

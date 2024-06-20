@@ -10,7 +10,7 @@ class AppOptimize extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'app:optimize {--force=true}';
+    protected $signature = 'app:optimize {--force}';
 
     /**
      * @var string
@@ -31,7 +31,7 @@ class AppOptimize extends Command implements Isolatable
         $this->call('view:cache');
         $this->call('event:cache');
 
-        // Create caches
+        // Optimize assets
         $this->call('icons:cache');
         $this->call('structure-scouts:cache');
 

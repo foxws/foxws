@@ -1,4 +1,4 @@
-<x-wireui::layout-container>
+<x-wireuse::layout.container>
     <main class="flex flex-col py-6 gap-y-6 prose prose-invert max-w-none prose-headings:my-0 prose-h1:font-semibold prose-h1:text-3xl prose-p:my-1 prose-thead:text-left prose-a:text-primary-300">
         <section>
             <h1>{{ __('Our Projects') }}</h1>
@@ -14,9 +14,12 @@
                 @foreach ($this->projects as $project)
                     <tr>
                         <td>
-                            <x-wireui::actions-link href="{{ route('projects.view', $project) }}">
+                            <a
+                                href="{{ route('projects.view', $project) }}"
+                                wire:navigate
+                            >
                                 {{ $project->name }}
-                            </x-wireui::actions-link>
+                            </a>
                         </td>
                         <td>{{ $project->summary }}</td>
                         <td class="inline-flex gap-3">
@@ -44,15 +47,16 @@
                 @endif
 
                 <p class="flex gap-3 py-1">
-                    <x-wireui::actions-link
+                    <a
                         href="{{ route('projects.view', $project) }}"
+                        wire:navigate
                         class="gap-2 h-9 px-2.5 border border-primary-600 no-underline"
                     >
                         <x-heroicon-o-document class="size-5" />
                         {{ __('Documentation') }}
-                    </x-wireui::actions-link>
+                    </a>
                 </p>
             </section>
         @endforeach
     </main>
-</x-wireui::layout-container>
+</x-wireuse::layout.container>

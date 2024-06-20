@@ -11,20 +11,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($this->projects as $project)
+                @foreach ($items as $item)
                     <tr>
-                        <td>
-                            <a
-                                href="{{ route('projects.view', $project) }}"
-                                wire:navigate
-                            >
-                                {{ $project->name }}
-                            </a>
-                        </td>
-                        <td>{{ $project->summary }}</td>
+                        <td><x-wireuse::actions-link :action="$item->action" /></td>
+                        <td>{{ $item->summary }}</td>
                         <td class="inline-flex gap-3">
-                        @if ($project->github)
-                            <a href="{{ $project->github }}" target="_blank">
+                        @if ($item->github)
+                            <a href="{{ $item->github }}" target="_blank">
                                 GitHub
                             </a>
                         @endif
@@ -35,26 +28,19 @@
             </table>
         </section>
 
-        @foreach ($this->projects as $project)
-            <a id="{{ $project->getKey() }}"></a>
+        @foreach ($items as $item)
+            <a id="{{ $item->id }}"></a>
             <section>
-                <h2>{{ $project->name }}</h2>
-                <p>{{ $project->description }}</p>
-                @if ($project->github)
+                <h2>{{ $item->name }}</h2>
+                <p>{{ $item->description }}</p>
+                @if ($item->github)
                     <p>
-                        {{ __('Source code is available at') }} <a href="{{ $project->github }}" target="_blank">GitHub</a>.
+                        {{ __('Source code is available at') }} <a href="{{ $item->github }}" target="_blank">GitHub</a>.
                     </p>
                 @endif
 
                 <p class="flex gap-3 py-1">
-                    <a
-                        href="{{ route('projects.view', $project) }}"
-                        wire:navigate
-                        class="gap-2 h-9 px-2.5 border border-primary-600 no-underline"
-                    >
-                        <x-heroicon-o-document class="size-5" />
-                        {{ __('Documentation') }}
-                    </a>
+                    <x-wireuse::actions-button :action="$item->view" />
                 </p>
             </section>
         @endforeach

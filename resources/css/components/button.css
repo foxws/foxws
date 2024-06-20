@@ -1,0 +1,5 @@
+@layer components {
+    .btn {
+        @apply h-9 gap-2 border border-primary-600 px-2.5 no-underline;
+    }
+}

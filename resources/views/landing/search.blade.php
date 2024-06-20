@@ -3,9 +3,9 @@
         <section>
             <h1>{{ __('Search') }}</h1>
 
-            <x-wireuse::forms-schema class:layout="flex flex-col py-2 gap-y-2">
+            <form class:layout="flex flex-col py-2 gap-y-2">
                 <x-wireuse::layout.join class="flex-nowrap gap-x-4 rounded bg-primary-700/40 px-3">
-                    <x-wireuse::forms-input
+                    <x-wireuse::forms.input
                         class="border-0 bg-transparent px-0 py-2.5"
                         type="search"
                         placeholder="{{ __('Search on article, term or creator') }}"
@@ -20,7 +20,7 @@
                         </x-wireuse::actions-button>
                     @endif
                 </x-wireuse::layout.join>
-            </x-wireuse::forms-schema>
+            </form>
         </section>
 
         @if ($this->form->filled('search'))

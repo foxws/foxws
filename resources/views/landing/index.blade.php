@@ -39,9 +39,7 @@
                     </p>
                 @endif
 
-                {{-- <p class="flex gap-3 py-1"> --}}
-                    <x-wireuse::actions-link :action="$item->view" :button="true" />
-                {{-- </p> --}}
+                <x-wireuse::actions-link :action="$item->view" :button="true" />
             </section>
         @endforeach
     </main>

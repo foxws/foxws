@@ -6,6 +6,7 @@ We recommend running containers rootless:
 
 - <https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md>
 - <https://wiki.archlinux.org/title/Podman#Rootless_Podman>
+- <<https://doc.traefik.io/traefik/middlewares/http/basicauth/>
 
 ## Installation
 

@@ -37,7 +37,7 @@ class PostViewController extends Page
 
         return Action::make('next')
             ->icon('heroicon-o-chevron-left')
-            ->label($model?->name)
+            ->label($model->name)
             ->url($model->route_view)
             ->componentAttributes([
                 'class' => 'gap-2 h-9 px-2.5 border border-primary-600 no-underline',
@@ -55,7 +55,7 @@ class PostViewController extends Page
 
         return Action::make('next')
             ->icon('heroicon-o-chevron-right')
-            ->label($model?->name)
+            ->label($model->name)
             ->url($model->route_view)
             ->componentAttributes([
                 'class' => 'gap-2 h-9 px-2.5 border border-primary-600 no-underline',

@@ -1,7 +1,7 @@
 @setup
     $repository = 'git@github.com:foxws/foxws.git';
     $branch = 'main';
-    $baseDir = '/home/francois/foxws';
+    $baseDir = '/home/foxws/foxws';
 @endsetup
 
 @servers(['remote' => 'foxws'])

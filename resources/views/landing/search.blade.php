@@ -15,9 +15,9 @@
                     />
 
                     @if ($this->form->filled('search'))
-                        <x-wireuse::actions-button wire:click.prevent="$set('form.search', '')">
+                        <a wire:click.prevent="$set('form.search', '')">
                             <x-heroicon-o-x-mark class="size-5" />
-                        </x-wireuse::actions-button>
+                        </a>
                     @endif
                 </x-wireuse::layout.join>
             </form>
@@ -32,6 +32,7 @@
                 @forelse ($this->results->hits as $item)
                     <a
                         href="{{ $item->url }}"
+                        wire:navigate
                         class="flex flex-nowrap gap-2.5 justify-between bg-primary-600/50 hover:bg-primary-600/70 py-2 px-4 rounded w-full no-underline"
                     >
                         <div class="flex flex-col">
@@ -41,9 +42,9 @@
                             </p>
                         </div>
 
-                        <x-wireuse::actions-button class:layer="block">
+                        <div class="flex items-center">
                             <x-heroicon-o-chevron-right class="size-5" />
-                        </x-wireuse::actions-button>
+                        </div>
                     </a>
                 @empty
                     <div class="flex items-center justify-center p-2 text-primary-400">

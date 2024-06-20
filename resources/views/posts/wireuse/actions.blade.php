@@ -65,7 +65,7 @@ To use the actions in your `edit.blade.php` view:
 @verbatim
 ```blade
 <div>
-    <x-wireuse::navigation.tabs wire:model.live="tab" :$tabs />
+    <x-wireuse::navigation-tabs wire:model.live="tab" :$tabs />
 
     @if ($current)
         <livewire:dynamic-component :is="$current->getComponent()" :key="$this->hash" :$state />

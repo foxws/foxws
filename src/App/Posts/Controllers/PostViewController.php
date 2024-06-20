@@ -7,7 +7,6 @@ use Domain\Posts\Models\Post;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 
 #[Layout('components.layouts.app')]

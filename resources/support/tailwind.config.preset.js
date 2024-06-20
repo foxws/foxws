@@ -12,10 +12,10 @@ export default {
       colors: {
         primary: colors.slate,
       },
+      container: {
+        center: true,
+        padding: '2rem',
+      },
     },
-    container: {
-      center: true,
-      padding: '2rem',
-    }
   },
 };

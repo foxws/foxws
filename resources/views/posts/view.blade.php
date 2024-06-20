@@ -29,28 +29,14 @@
 
         <nav class="flex flex-wrap justify-between items-center gap-3">
             <div>
-                @if ($this->prev_post)
-                    <a
-                        href="{{ $this->prev_post->route_view }}"
-                        wire:navigate
-                        class="gap-2 h-9 px-2.5 border border-primary-600 no-underline"
-                    >
-                        <x-heroicon-o-chevron-left class="size-3" />
-                        {{ $this->prev_post->name }}
-                    </a>
+                @if ($previous)
+                    <x-wireuse::actions-link :button="true" :action="$previous" />
                 @endif
             </div>
 
             <div>
-                @if ($this->next_post)
-                    <a
-                        href="{{ $this->next_post->route_view }}"
-                        wire:navigate
-                        class="gap-2 h-9 px-2.5 border border-primary-600 no-underline"
-                    >
-                        {{ $this->next_post->name }}
-                        <x-heroicon-o-chevron-right class="size-3" />
-                    </a>
+                @if ($next)
+                    <x-wireuse::actions-link :button="true" :action="$next" />
                 @endif
             </div>
         </nav>

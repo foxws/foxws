@@ -12,6 +12,7 @@
     build-containers
     restart-containers
     install-dependencies
+    clear-caches
     update-application
     build-assets
     restart-services
@@ -48,9 +49,15 @@
     ";
 @endtask
 
+@task('clear-caches', ['on' => 'remote'])
+    podman exec -it systemd-foxws-app sh -c "
+        php artisan optimize:clear;
+    ";
+@endtask
+
 @task('update-application', ['on' => 'remote'])
     podman exec -it systemd-foxws-app sh -c "
-        php artisan app:update --force
+        php artisan app:update --force;
     ";
 @endtask
 

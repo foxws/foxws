@@ -1,4 +1,24 @@
 {
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on"
+    },
+    "eslint.experimental.useFlatConfig": true,
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
     "intelephense.format.enable": false,
-    "search.useIgnoreFiles": false,
+    "tailwindCSS.emmetCompletions": true,
+    "tailwindCSS.experimental.classRegex": ["class:(.*?)"],
+    "tailwindCSS.includeLanguages": {
+        "blade": "html",
+        "blade.php": "html",
+        "php": "html",
+        "plaintext": "html",
+        "vue": "html",
+        "vue-html": "html"
+    },
+    "search.exclude": {
+        "**/storage/app": true
+    }
 }

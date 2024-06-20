@@ -43,11 +43,13 @@ Schedule::command(CleanActivitylogCommand::class)
     ->runInBackground();
 
 Schedule::command(DbSnapshotCommand::class)
+    ->environments(['production'])
     ->withoutOverlapping(1440)
     ->dailyAt('03:30')
     ->runInBackground();
 
 Schedule::command(DbCleanupCommand::class, ['--keep=15'])
+    ->environments(['production'])
     ->withoutOverlapping(1440)
     ->dailyAt('04:00')
     ->runInBackground();

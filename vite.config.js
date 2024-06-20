@@ -21,6 +21,9 @@ export default defineConfig(({ mode }) => {
       port: 5174,
       strictPort: true,
       hmr: { host: 'foxws.lan', clientPort: 5174 },
+      watch: {
+        ignored: ["**/storage/**"],
+      },
     },
     resolve: {
       alias: {
@@ -35,19 +38,19 @@ export default defineConfig(({ mode }) => {
         refresh: [...refreshPaths, 'resources/**', 'src/**'],
       }),
       VitePWA({
-        registerType: 'autoUpdate',
-        injectRegister: 'script-defer',
-        outDir: 'public/build',
-        base: 'public',
-        buildBase: '/build/',
-        scope: '/',
+        outDir: "public/build",
+        base: "public",
+        buildBase: "/build/",
+        scope: "/",
+        registerType: "autoUpdate",
+        injectRegister: "script-defer",
         workbox: {
           cleanupOutdatedCaches: true,
           directoryIndex: null,
-          globPatterns: ['**/*.{js,css,html,svg,jpg,png,ico,txt,woff,woff2}'],
+          globPatterns: ["**/*.{js,css,html,svg,jpg,png,webp,ico,txt,woff,woff2}"],
           maximumFileSizeToCacheInBytes: 4194304,
           navigateFallback: null,
-          navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],
+          navigateFallbackDenylist: [/\/[api,livewire]+\/.*/],
         },
         manifest: {
           name: 'Foxws',
@@ -55,7 +58,9 @@ export default defineConfig(({ mode }) => {
           description: 'Foxws',
           theme_color: '#334155',
           background_color: '#334155',
-          orientation: 'portrait-primary',
+          display_override: ["fullscreen", "minimal-ui"],
+          display: "fullscreen",
+          orientation: "portrait-primary",
           id: '/',
           scope: '/',
           start_url: '/',
@@ -82,6 +87,7 @@ export default defineConfig(({ mode }) => {
           manualChunks: {
             utils: ['axios'],
             ws: ['laravel-echo', 'pusher-js'],
+            pwa: ["virtual:pwa-register"],
           },
         },
       },

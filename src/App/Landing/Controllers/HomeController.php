@@ -36,10 +36,7 @@ class HomeController extends Page
         return Action::make($model->getKey())
             ->label(__('Documentation'))
             ->icon('heroicon-o-document')
-            ->route('projects.view', $model)
-            ->componentAttributes([
-                'class' => 'btn',
-            ]);
+            ->route('projects.view', $model);
     }
 
     protected function viewAction(Project $model): Action

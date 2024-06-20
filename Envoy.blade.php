@@ -12,9 +12,8 @@
     build-containers
     restart-containers
     install-dependencies
-    clear-caches
+    update-application
     build-assets
-    optimize
     restart-services
 @endstory
 
@@ -49,36 +48,20 @@
     ";
 @endtask
 
-@task('clear-caches', ['on' => 'remote'])
+@task('update-application', ['on' => 'remote'])
     podman exec -it systemd-foxws-app sh -c "
-        php artisan permission:cache-reset;
-        php artisan structure-scouts:clear;
-        php artisan optimize:clear;
-        php artisan cache:clear;
-        php artisan storage:link;
+        php artisan app:update --force
     ";
 @endtask
 
 @task('build-assets', ['on' => 'remote'])
     podman exec -it systemd-foxws-app sh -c "
-        php artisan google-fonts:fetch &&
-        php artisan icons:cache &&
         yarn run build;
-    ";
-@endtask
-
-@task('optimize', ['on' => 'remote'])
-    podman exec -it systemd-foxws-app sh -c "
-        php artisan structure-scouts:cache;
-        php artisan route:cache;
-        php artisan view:cache;
-        php artisan event:cache;
     ";
 @endtask
 
 @task('restart-services', ['on' => 'remote'])
     podman exec -it systemd-foxws-app sh -c "
-        php artisan horizon:terminate;
         php artisan up;
     ";
 @endtask

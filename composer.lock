@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "74223151ae65737edf53ba1a333a8f25",
+    "content-hash": "3e199b0e2a3aa2341ce34c074b83da2b",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2050,16 +2050,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "2b99115d45e6bb26df002af50d494f4c9e2e0f44"
+                "reference": "c479668d941ab181639309483529022c760e427d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/2b99115d45e6bb26df002af50d494f4c9e2e0f44",
-                "reference": "2b99115d45e6bb26df002af50d494f4c9e2e0f44",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/c479668d941ab181639309483529022c760e427d",
+                "reference": "c479668d941ab181639309483529022c760e427d",
                 "shasum": ""
             },
             "require": {
@@ -2124,7 +2124,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v1.0.6"
+                "source": "https://github.com/foxws/wireuse/tree/v1.0.7"
             },
             "funding": [
                 {
@@ -2132,7 +2132,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-06-20T14:28:46+00:00"
+            "time": "2024-06-21T08:49:12+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -4431,16 +4431,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.5.0",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "415782b7e48223342f1a616c16c45a95b15b2318"
+                "reference": "39c8ef752db6865717cc3fba63970c16f057982c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/415782b7e48223342f1a616c16c45a95b15b2318",
-                "reference": "415782b7e48223342f1a616c16c45a95b15b2318",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/39c8ef752db6865717cc3fba63970c16f057982c",
+                "reference": "39c8ef752db6865717cc3fba63970c16f057982c",
                 "shasum": ""
             },
             "require": {
@@ -4533,7 +4533,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-06-03T17:25:54+00:00"
+            "time": "2024-06-20T15:52:59+00:00"
         },
         {
             "name": "nette/schema",
@@ -7709,16 +7709,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "11.7.1",
+            "version": "11.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "a60867de07ec110e8443a1deae04b3b65fe3eda5"
+                "reference": "2e08d90043df40a9c7b274bbd677997c54826b86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/a60867de07ec110e8443a1deae04b3b65fe3eda5",
-                "reference": "a60867de07ec110e8443a1deae04b3b65fe3eda5",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/2e08d90043df40a9c7b274bbd677997c54826b86",
+                "reference": "2e08d90043df40a9c7b274bbd677997c54826b86",
                 "shasum": ""
             },
             "require": {
@@ -7802,7 +7802,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/11.7.1"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/11.7.2"
             },
             "funding": [
                 {
@@ -7814,7 +7814,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-06-20T08:14:20+00:00"
+            "time": "2024-06-21T08:18:41+00:00"
         },
         {
             "name": "spatie/laravel-model-states",

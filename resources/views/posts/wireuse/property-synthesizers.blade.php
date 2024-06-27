@@ -12,7 +12,7 @@ By default the dehydrated value of model properties sent over Livewire might loo
 ```json
 {
     "type": "model",
-    "class": "post",
+    "class": "user",
     "key": 1,
     "relationships": []
 }
@@ -23,8 +23,8 @@ Our property synthesizers try to hide the model IDs, by forcing the model [route
 ```json
 {
     "type": "model",
-    "class": "post",
-    "key": "what-a-great-slug",
+    "class": "user",
+    "key": "91e0df48-a06e-4376-b273-73d97de96352",
     "relationships": []
 }
 ```

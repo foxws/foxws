@@ -47,9 +47,9 @@ Located at `Foxws\WireUse\Views\Concerns\WithLivewire`, this trait can be used t
 
 The following methods are available:
 
-- `wireKey()` - Value of `id` or `wire:model` attribute. Or generate with `uuid()`.
+- `wireKey()` - Value of `id` or `wire:model` attribute - or generate with `uuid()`.
 - `wireModel()` - Value of first `wire:model` attribute.
-- `uuid()` - Generates `uuid()`, mainly used as fallback.
+- `uuid()` - Generates an UUID, mainly used as fallback.
 
 This is an example of using it with a Livewire [wire:key](https://livewire.laravel.com/docs/troubleshooting#adding-wirekey):
 

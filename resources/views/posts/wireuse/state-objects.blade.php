@@ -22,7 +22,8 @@ class PostState extends State
 
     public function tags(): array
     {
-        return $this->getComponent()->post
+        return $this->getComponent()
+            ->post
             ->tags
             ->pluck('name')
             ->toArray();

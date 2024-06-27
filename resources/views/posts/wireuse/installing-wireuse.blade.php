@@ -20,7 +20,7 @@ Optionally, you can publish the views using:
 php artisan vendor:publish --tag="wireuse-views"
 ```
 
-> NOTE: It is recommended to build or extend views instead.
+> NOTE: It is recommended to build your own views or extend views instead.
 
 ### Tailwind
 

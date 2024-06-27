@@ -50,4 +50,9 @@ class HomeController extends Page
     {
         return __('Home');
     }
+
+    protected function getDescription(): string
+    {
+        return __('Homepage');
+    }
 }

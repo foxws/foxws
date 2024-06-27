@@ -12,6 +12,7 @@ class AboutController extends Page
     public function mount(): void
     {
         $this->seo()->setTitle(__('About'));
+        $this->seo()->setDescription(__('About us'));
     }
 
     public function render(): View

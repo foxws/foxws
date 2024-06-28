@@ -3138,16 +3138,16 @@
         },
         {
             "name": "laravel/reverb",
-            "version": "v1.0.0-beta13",
+            "version": "v1.0.0-beta14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/reverb.git",
-                "reference": "363d7398b6e6fdfa7f19efeee1b88618db745ef9"
+                "reference": "472c37df7cc61abab31f246ac10bb94c9ebcb352"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/reverb/zipball/363d7398b6e6fdfa7f19efeee1b88618db745ef9",
-                "reference": "363d7398b6e6fdfa7f19efeee1b88618db745ef9",
+                "url": "https://api.github.com/repos/laravel/reverb/zipball/472c37df7cc61abab31f246ac10bb94c9ebcb352",
+                "reference": "472c37df7cc61abab31f246ac10bb94c9ebcb352",
                 "shasum": ""
             },
             "require": {
@@ -3214,9 +3214,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/reverb/issues",
-                "source": "https://github.com/laravel/reverb/tree/v1.0.0-beta13"
+                "source": "https://github.com/laravel/reverb/tree/v1.0.0-beta14"
             },
-            "time": "2024-05-31T16:22:08+00:00"
+            "time": "2024-06-27T07:58:53+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -4330,16 +4330,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "3.6.0",
+            "version": "3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "4b18b21a5527a3d5ffdac2fd35d3ab25a9597654"
+                "reference": "f4393b648b78a5408747de94fca38beb5f7e9ef8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/4b18b21a5527a3d5ffdac2fd35d3ab25a9597654",
-                "reference": "4b18b21a5527a3d5ffdac2fd35d3ab25a9597654",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/f4393b648b78a5408747de94fca38beb5f7e9ef8",
+                "reference": "f4393b648b78a5408747de94fca38beb5f7e9ef8",
                 "shasum": ""
             },
             "require": {
@@ -4415,7 +4415,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/3.6.0"
+                "source": "https://github.com/Seldaek/monolog/tree/3.7.0"
             },
             "funding": [
                 {
@@ -4427,7 +4427,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-12T21:02:21+00:00"
+            "time": "2024-06-28T09:40:51+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -14751,9 +14751,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "laravel/reverb": 10
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

@@ -8,6 +8,7 @@ Restart=always
 Image=docker.io/redis:latest
 AutoUpdate=registry
 Volume=foxws-redis:/data:rw,Z,U
+Exec=redis-server --save 60 1 --loglevel warning
 Network=foxws.network
 PublishPort=6379:6379
 

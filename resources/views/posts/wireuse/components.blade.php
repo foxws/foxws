@@ -136,18 +136,18 @@ class PostViewController extends Component
 
     public function mount(): void
     {
-        // $this->seo()->setTitle('title using mount hook');
-        // $this->seo()->setDescription('description using mount hook');
+        // $this->seo()->setTitle('Title using mount hook');
+        // $this->seo()->setDescription('Description using mount hook');
     }
 
     public function getTitle(): ?string
     {
-        return $this->post->name;
+        return (string) $this->post->name;
     }
 
     public function getDescription(): ?string
     {
-        return $this->post->description;
+        return (string) $this->post->description;
     }
 }
 ```

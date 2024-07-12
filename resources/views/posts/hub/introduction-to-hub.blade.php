@@ -12,7 +12,7 @@ You can fork the project and make your own adjustments based on my changes.
 It uses the following stack:
 
 - Laravel 11.x with Pulse, Scout, Horizon and Reverb
-- Livewire 3.x with latest [WireUse](https://foxws.lan/projects/wireuse)
+- Livewire 3.x with latest [WireUse](https://foxws.nl/projects/wireuse)
 - TailwindCSS
 - AlpineJS
 - Meilisearch

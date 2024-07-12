@@ -3,10 +3,6 @@
 By default, Livewire shows the model location and model key in requests.<br>
 Our property synthesizers try to prevent this.
 
-> Warning: This will replace parts of the Livewire model binding property synthesizers. Be careful and test the adjustments!
-
-> Tip: It is recommended to also apply [Enforcing Morph Maps](https://livewire.laravel.com/docs/properties#properties-expose-system-information-to-the-browser).
-
 By default the dehydrated value of model properties sent over Livewire might look something like this:
 
 ```json
@@ -24,14 +20,18 @@ Our property synthesizers try to hide the model IDs, by forcing the model [route
 {
     "type": "model",
     "class": "user",
-    "key": "91e0df48-a06e-4376-b273-73d97de96352",
+    "key": "91e0df48-a06e-4376-b273-73d97de96352", // notice the UUID
     "relationships": []
 }
 ```
 
+> Warning: This will replace parts of the Livewire model binding property synthesizers. Be careful and test the adjustments!
+
+> Tip: It is recommended to also apply [Enforcing Morph Maps](https://livewire.laravel.com/docs/properties#properties-expose-system-information-to-the-browser).
+
 ## Usage
 
-Create a custom service provider:
+To use our property synthesizers, create a custom service provider:
 
 ```bash
 php artisan make:provider LivewireServiceProvider
@@ -61,4 +61,4 @@ protected function configureSynthesizers(): void
 }
 ```
 
-If you need to use model keys in your blade, it is recommended to use `$model->getRouteKey()` instead of `$model->getKey()`.
+If you need to use model keys in your views, it is recommended to use `$model->getRouteKey()` instead of `$model->getKey()`/`$model->id`.

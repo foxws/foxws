@@ -75,8 +75,8 @@ class Post extends Model
             [
                 'id' => 'laravel-html',
                 'project_id' => 'wireuse',
-                'name' => __('Views (Laravel HTML)'),
-                'category' => __('Components'),
+                'name' => __('Views - Laravel HTML'),
+                'category' => __('Views'),
                 'order_column' => 6,
                 'created_at' => Carbon::make('2024-07-12 18:30'),
                 'updated_at' => Carbon::make('2024-07-12 18:30'),

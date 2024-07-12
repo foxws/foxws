@@ -32,9 +32,9 @@ class PostViewController extends Page
 }
 ```
 
-The `Page` class extends the `Livewire\Component` class and includes the following traits:
+The `Page` class extends `Livewire\Component` and includes the following traits:
 
-- `WithAuthentication` - Can be used to retieve the current user.
+- `WithAuthentication` - Can be used to retrieve the current user.
 - `WithAuthorization` - Can be used to authorize the current user.
 - `WithHash` - Can be used to generate a hash for the given component.
 - `WithSeo` - Can be used to generate SEO contents.
@@ -56,7 +56,7 @@ class Button extends Component
 }
 ```
 
-The `Component` class extends the `Illuminate\View\Component` class and includes the following traits:
+The `Component` class extends `Illuminate\View\Component` and includes the following traits:
 
 - `WithHash`
 - `WithLivewire`

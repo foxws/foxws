@@ -3,7 +3,7 @@
 The [laravel-html](https://spatie.be/docs/laravel-html/v3/introduction) package of Spatie helps you generate HTML using a clean, simple and easy to read API.
 All elements can be dynamically generated and put together.
 
-WireUse offers mixins to make the package compatible with Livewire.
+WireUse offers mixins to make the package compatible and more usable with Livewire.
 
 ## Installation
 

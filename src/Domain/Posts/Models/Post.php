@@ -100,9 +100,9 @@ class Post extends Model
                 'updated_at' => Carbon::make('2024-04-16 18:30'),
             ],
             [
-                'id' => 'css-classes',
+                'id' => 'blade-macros',
                 'project_id' => 'wireuse',
-                'name' => __('CSS Classes'),
+                'name' => __('Blade Macros'),
                 'category' => __('Components'),
                 'order_column' => 9,
                 'created_at' => Carbon::make('2024-04-04 18:30'),

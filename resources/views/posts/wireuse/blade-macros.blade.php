@@ -1,12 +1,13 @@
 ## Installation
 
-Blade marcos are not used by default, to register our Blade macros:
+To register the provided Blade macros, create and register a [service provider](https://laravel.com/docs/11.x/providers):
 
 @verbatim
 ```php
+use Illuminate\Support\ServiceProvider;
 use Foxws\WireUse\Support\Blade\Concerns\WithBladeMacros;
 
-class AppServiceProvider extends ServiceProvider
+class ViewServiceProvider extends ServiceProvider
 {
     use WithBladeMacros;
 

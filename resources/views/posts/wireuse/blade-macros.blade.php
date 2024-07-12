@@ -2,6 +2,10 @@
 
 To register the provided Blade macros, create and register a [service provider](https://laravel.com/docs/11.x/providers):
 
+```bash
+php artisan make:provider ViewServiceProvider
+```
+
 @verbatim
 ```php
 use Illuminate\Support\ServiceProvider;

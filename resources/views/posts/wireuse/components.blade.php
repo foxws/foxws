@@ -2,7 +2,7 @@
 
 WireUse offers a set of traits that you can include on your [Component](https://laravel.com/docs/11.x/blade#components) and [Livewire components](https://livewire.laravel.com/docs/components).
 
-In order not to include every trait separately each time, we have made a selection based on the type of component.
+### Page
 
 The `Foxws\WireUse\Views\Support\Page` class can be used for Livewire controllers:
 
@@ -19,8 +19,27 @@ class PostViewController extends Page
     {
         $this->canView($this->post);
     }
+
+    protected function getTitle(): ?string
+    {
+        return (string) $this->post->name;
+    }
+
+    protected function getDescription(): ?string
+    {
+        return (string) $this->post->summary;
+    }
 }
 ```
+
+The `Page` class extends the `Livewire\Component` class and includes the following traits:
+
+- `WithAuthentication`
+- `WithAuthorization`
+- `WithHash`
+- `WithSeo`
+
+### Component
 
 The `Foxws\WireUse\Views\Support\Component` class can be used for Blade components:
 
@@ -36,6 +55,13 @@ class Button extends Component
     }
 }
 ```
+
+The `Component` class extends the `Illuminate\View\Component` class and includes the following traits:
+
+- `Conditionable`
+- `Tappable`
+- `WithHash`
+- `WithLivewire`
 
 ## Concerns
 

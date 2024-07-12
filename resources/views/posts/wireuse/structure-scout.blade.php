@@ -55,8 +55,6 @@ To discover Livewire components, create a custom service provider:
 php artisan make:provider LivewireServiceProvider
 ```
 
-Adjust the `boot` method:
-
 ```php
 use Illuminate\Support\ServiceProvider;
 

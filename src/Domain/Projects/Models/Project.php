@@ -29,8 +29,8 @@ class Project extends Model
             [
                 'id' => 'wireuse',
                 'name' => __('WireUse'),
-                'summary' => __('Collection of essential Livewire utilities.'),
-                'description' => __('Collection of essential Livewire utilities.'),
+                'summary' => __('A collection of essential Livewire utilities.'),
+                'description' => __('Offers a collection of useful Livewire utilities and components.'),
                 'github' => 'https://github.com/foxws/wireuse',
                 'created_at' => Carbon::make('2024-04-04 18:30'),
                 'updated_at' => Carbon::make('2024-04-04 18:30'),

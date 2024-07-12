@@ -3,6 +3,9 @@ upstream reverb {
     keepalive 32;
 }
 
+# Resolver
+resolver ${NGINX_LOCAL_RESOLVERS} valid=300s;
+
 server {
     listen ${NGINX_PORT};
     listen [::]:${NGINX_PORT};

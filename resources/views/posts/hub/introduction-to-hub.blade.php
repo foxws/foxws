@@ -21,4 +21,4 @@ It uses the following stack:
 For streaming, the [nginx-vod-module](https://github.com/kaltura/nginx-vod-module) is being used.
 It is a very flexible nginx module, which can also be used to dynamically retrieve content of videos and streaming them to end-users.
 
-To learn more, please visit the [GitHub repository](https://github.com/francoism90/hub>).
+To learn more, please visit the [GitHub repository](https://github.com/francoism90/hub).

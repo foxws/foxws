@@ -34,14 +34,14 @@ class PostViewController extends Page
 
 The `Page` class extends the `Livewire\Component` class and includes the following traits:
 
-- `WithAuthentication`
-- `WithAuthorization`
-- `WithHash`
-- `WithSeo`
+- `WithAuthentication` - Can be used to retieve the current user.
+- `WithAuthorization` - Can be used to authorize the current user.
+- `WithHash` - Can be used to generate a hash for the given component.
+- `WithSeo` - Can be used to generate SEO contents.
 
 ### Component
 
-The `Foxws\WireUse\Views\Support\Component` class can be used for Blade components:
+The `Foxws\WireUse\Views\Support\Component` class may useful for Blade components:
 
 ```php
 use Foxws\WireUse\Views\Support\Component;
@@ -58,16 +58,14 @@ class Button extends Component
 
 The `Component` class extends the `Illuminate\View\Component` class and includes the following traits:
 
-- `Conditionable`
-- `Tappable`
 - `WithHash`
 - `WithLivewire`
+- `Illuminate/Support/Traits/Conditionable`
+- `Illuminate/Support/Traits/Tappable`
 
 ### Concerns
 
-The following traits are included in our component classes, but can also be used individually.
-
-A selection of some of the traits available:
+A selection of some traits that are available:
 
 #### WithLivewire
 

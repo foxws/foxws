@@ -1,6 +1,9 @@
 ## Usage
 
-WireUse offers a set of traits that you can include on your [Livewire Forms](https://livewire.laravel.com/docs/forms).
+WireUse offers a component and a set of traits that you can include on your [Livewire Forms](https://livewire.laravel.com/docs/forms).
+
+
+### Form
 
 The `Foxws\WireUse\Forms\Support\Form` class can be used to create a Livewire form:
 
@@ -53,17 +56,13 @@ class LoginForm extends Form
 }
 ```
 
-## Concerns
+It also offers methods like `getType`, `toCollection`, `toFluent`, `keys`, `get` (with fallback), `has`, etc.
 
-The following traits are included in `Foxws\WireUse\Forms\Support\Form`, but can also be used individually.
+### Concerns
 
-### WithForm
+A selection of some traits that are available:
 
-Located at `Foxws\WireUse\Forms\Concerns\WithForm`, this trait can be used to call and validate form attributes.
-
-It offers methods like `getType`, `toCollection`, `toFluent`, `keys`, `get` (with fallback), `has`, etc.
-
-### WithSession
+#### WithSession
 
 Located at `Foxws\WireUse\Forms\Concerns\WithSession`, this trait can be used to restore and store form input as session data.
 
@@ -71,8 +70,7 @@ Depending on the usecase, one may use Livewire [session properties](https://live
 
 The main benefits of our trait are that it offers validation recovery, and it can be used to store multiple values at once.
 
-
-### WithThrottle
+#### WithThrottle
 
 Located at `Foxws\WireUse\Forms\Concerns\WithThrottle`, this trait can be used to rate-limit form requests.
 
@@ -87,7 +85,7 @@ class LoginForm extends Form
 }
 ```
 
-### WithValidation
+#### WithValidation
 
 Located at `Foxws\WireUse\Forms\Concerns\WithValidation`, this trait can be used to validate form requests.
 

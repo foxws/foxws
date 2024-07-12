@@ -64,9 +64,9 @@ class Post extends Model
                 'updated_at' => Carbon::make('2024-07-12 18:30'),
             ],
             [
-                'id' => 'html',
+                'id' => 'laravel-html',
                 'project_id' => 'wireuse',
-                'name' => __('Laravel HTML'),
+                'name' => __('Views - Laravel HTML'),
                 'category' => __('Components'),
                 'order_column' => 5,
                 'created_at' => Carbon::make('2024-07-12 18:30'),

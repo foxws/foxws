@@ -11,6 +11,7 @@
 
             @includeIf("projects.{$project->getKey()}.notice")
 
+            @if ($this->posts->isNotEmpty())
             <table class="table-auto">
                 <thead>
                     <tr>
@@ -34,6 +35,7 @@
                 @endforeach
                 </tbody>
             </table>
+            @endif
         </section>
     </main>
 </x-wireuse::layout.container>

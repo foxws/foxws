@@ -63,11 +63,13 @@ The `Component` class extends the `Illuminate\View\Component` class and includes
 - `WithHash`
 - `WithLivewire`
 
-## Concerns
+### Concerns
 
-The following traits are included in the stated component classes, but can also be used individually.
+The following traits are included in our component classes, but can also be used individually.
 
-### WithLivewire
+A selection of some of the traits available:
+
+#### WithLivewire
 
 Located at `Foxws\WireUse\Views\Concerns\WithLivewire`, this trait can be used to call Livewire attributes.
 
@@ -91,9 +93,9 @@ This is an example of using it with a Livewire [wire:key](https://livewire.larav
 ```
 @endverbatim
 
-### WithHash
+#### WithHash
 
-Located at `Foxws\WireUse\Views\Concerns\WithHash`, this trait can be used to generate a hash for the given component, and be used as a key.
+Located at `Foxws\WireUse\Views\Concerns\WithHash`, this trait can be used to generate a hash for the given component, and be used as a wire key.
 
 The following methods are available:
 
@@ -116,11 +118,11 @@ This is an example of using it with a Livewire [wire:key](https://livewire.larav
 ```
 @endverbatim
 
-### WithSeo
+#### WithSeo
 
 Located at `Foxws\WireUse\Views\Concerns\WithSeo`, this trait can be to handle SEO in your Laravel application.
 
-This trait only works with [ralphjsmit/laravel-seo](https://github.com/ralphjsmit/laravel-seo), and is included with WireUse.
+This trait only works with [ralphjsmit/laravel-seo](https://github.com/ralphjsmit/laravel-seo), and is a package requirement of WireUse.
 
 ```php
 use Foxws\WireUse\Views\Concerns\WithSeo;
@@ -131,11 +133,6 @@ class PostViewController extends Component
     use WithSeo;
 
     public Post $post;
-
-    protected function authorizeAccess(): void
-    {
-        $this->canView($this->post);
-    }
 
     public function mount(): void
     {

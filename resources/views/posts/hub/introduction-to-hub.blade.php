@@ -11,14 +11,14 @@ You can fork the project and make your own adjustments based on my changes.
 
 It uses the following stack:
 
-- Laravel 11.x
+- Laravel 11.x with Pulse, Scout, Horizon and Reverb
 - Livewire 3.x with latest [WireUse](https://foxws.lan/projects/wireuse)
-- TailwindCSS 3.x
+- TailwindCSS
 - AlpineJS
+- Meilisearch
 - Podman 5.1
 
 For streaming, the [nginx-vod-module](https://github.com/kaltura/nginx-vod-module) is being used.
+It is a very flexible nginx module, which can also be used to dynamically retrieve content of videos and streaming them to end-users.
 
-It is a very flexible nginx module, which can also be used to dynamically retrieve content of video and streaming.
-
-To learn more, please visit our GitHub repository at <https://github.com/francoism90/hub>.
+To learn more, please visit the [GitHub repository](https://github.com/francoism90/hub>).

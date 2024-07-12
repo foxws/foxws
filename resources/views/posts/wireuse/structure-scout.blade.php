@@ -49,7 +49,7 @@ To call a registered Blade component:
 
 ### Livewire Components
 
-To discover Livewire components, create a custom service provider:
+To discover Livewire components, create and register a [service provider](https://laravel.com/docs/11.x/providers):
 
 ```bash
 php artisan make:provider LivewireServiceProvider

@@ -34,7 +34,7 @@ class Post extends Model
                 'category' => __('Getting Started'),
                 'order_column' => 1,
                 'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-04-04 18:30'),
+                'updated_at' => Carbon::make('2024-07-12 18:30'),
             ],
             [
                 'id' => 'installing-wireuse',
@@ -43,7 +43,7 @@ class Post extends Model
                 'category' => __('Getting Started'),
                 'order_column' => 2,
                 'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-04-04 18:30'),
+                'updated_at' => Carbon::make('2024-07-12 18:30'),
             ],
             [
                 'id' => 'property-synthesizers',
@@ -52,7 +52,7 @@ class Post extends Model
                 'category' => __('Properties'),
                 'order_column' => 3,
                 'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-04-04 18:30'),
+                'updated_at' => Carbon::make('2024-07-12 18:30'),
             ],
             [
                 'id' => 'components',
@@ -61,7 +61,7 @@ class Post extends Model
                 'category' => __('Components'),
                 'order_column' => 4,
                 'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-04-11 17:30'),
+                'updated_at' => Carbon::make('2024-07-12 18:30'),
             ],
             [
                 'id' => 'html',
@@ -69,8 +69,8 @@ class Post extends Model
                 'name' => __('Laravel HTML'),
                 'category' => __('Components'),
                 'order_column' => 5,
-                'created_at' => Carbon::make('2024-04-15 18:30'),
-                'updated_at' => Carbon::make('2024-04-15 15:30'),
+                'created_at' => Carbon::make('2024-07-12 18:30'),
+                'updated_at' => Carbon::make('2024-07-12 18:30'),
             ],
             [
                 'id' => 'forms',
@@ -79,7 +79,7 @@ class Post extends Model
                 'category' => __('Forms'),
                 'order_column' => 6,
                 'created_at' => Carbon::make('2024-04-15 18:30'),
-                'updated_at' => Carbon::make('2024-04-15 15:30'),
+                'updated_at' => Carbon::make('2024-07-12 18:30'),
             ],
             [
                 'id' => 'state-objects',
@@ -106,7 +106,7 @@ class Post extends Model
                 'category' => __('Components'),
                 'order_column' => 9,
                 'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-05-04 11:30'),
+                'updated_at' => Carbon::make('2024-07-12 18:30'),
             ],
             // WireUi
             // [
@@ -116,7 +116,7 @@ class Post extends Model
             //     'category' => __('Getting Started'),
             //     'order_column' => 1,
             //     'created_at' => Carbon::make('2024-04-04 18:30'),
-            //     'updated_at' => Carbon::make('2024-04-04 18:30'),
+            //     'updated_at' => Carbon::make('2024-07-12 18:30'),
             // ],
         ];
     }
@@ -143,14 +143,14 @@ class Post extends Model
     public function dateCreated(): Attribute
     {
         return Attribute::make(
-            get: fn () => Carbon::make($this->created_at)->toDateTimeString()
+            get: fn () => Carbon::make($this->created_at)->toDateString()
         )->shouldCache();
     }
 
     public function dateUpdated(): Attribute
     {
         return Attribute::make(
-            get: fn () => Carbon::make($this->updated_at)->toDateTimeString()
+            get: fn () => Carbon::make($this->updated_at)->toDateString()
         )->shouldCache();
     }
 

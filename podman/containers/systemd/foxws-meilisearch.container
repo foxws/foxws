@@ -7,8 +7,8 @@ Restart=always
 [Container]
 Image=docker.io/getmeili/meilisearch:latest
 AutoUpdate=registry
-Volume=foxws-meilisearch:/meili_data:rw,Z,U
 EnvironmentFile=%h/.config/containers/systemd/foxws/meilisearch.env
+Volume=foxws-meilisearch:/meili_data:rw,Z,U
 Network=foxws.network
 PublishPort=7700:7700
 

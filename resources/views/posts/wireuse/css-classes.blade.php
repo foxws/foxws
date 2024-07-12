@@ -1,6 +1,24 @@
-## Usage
+## Installation
 
-> Note: Blade marcos are enabled by default, but can be disabled in `config/wireuse.php`.
+Blade marcos are not used by default, to register our Blade macros:
+
+@verbatim
+```php
+use Foxws\WireUse\Support\Blade\Concerns\WithBladeMacros;
+
+class AppServiceProvider extends ServiceProvider
+{
+    use WithBladeMacros;
+
+    public function boot()
+    {
+        $this->registerBladeMacros();
+    }
+}
+```
+@endverbatim
+
+## Usage
 
 The following macros are inspired by [twMerge](https://github.com/gehrisandro/tailwind-merge-laravel), and may be valuable for managing inline classes.
 
@@ -66,7 +84,6 @@ It is also possible to apply classes on other tags within the same component:
 ```
 @endverbatim
 
-
 ### Rendering component
 
 To render the component:
@@ -91,6 +108,5 @@ To overrule classes:
 @endverbatim
 
 This is a very powerful way to reuse classes.
-Especially combined with Tailwind, since you can drop `@apply` CSS rules.
+Combined with Tailwind, you could opt-in to drop `@apply` CSS rules.
 
-> Note: Compared to twMerge, we do not check for conflicts or sort classes.

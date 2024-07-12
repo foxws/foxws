@@ -3,11 +3,17 @@
         <section>
             <h1>About Foxws</h1>
             <p>
-                Foxws is a side project of <a href="https://www.linkedin.com/in/francoismenning/">François Menning</a>.
-                It's nothing commercial, just to develop myself as a developer.
+                Foxws is a side project of François Menning.
             </p>
             <p>
-                I'm mainly active over at <a href="https://github.com/francoism90/">GitHub</a>, watch sports on various streaming services, or busy with work.
+                On this website I want to showcase some of my projects and offer documentation for them when needed.
+            </p>
+        </section>
+
+        <section>
+            <h2>Contact</h2>
+            <p>
+                If you would like to send me a message, you can do so on <a href="https://github.com/francoism90/">GitHub</a> or via my <a href="https://www.linkedin.com/in/francoismenning/">LinkedIn</a>.
             </p>
         </section>
     </main>

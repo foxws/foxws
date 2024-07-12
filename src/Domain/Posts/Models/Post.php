@@ -108,6 +108,16 @@ class Post extends Model
                 'created_at' => Carbon::make('2024-04-04 18:30'),
                 'updated_at' => Carbon::make('2024-07-12 18:30'),
             ],
+            // Hub
+            [
+                'id' => 'introduction-to-hub',
+                'project_id' => 'hub',
+                'name' => __('Introduction to Hub'),
+                'category' => __('Getting Started'),
+                'order_column' => 1,
+                'created_at' => Carbon::make('2024-07-12 18:30'),
+                'updated_at' => Carbon::make('2024-07-12 18:30'),
+            ],
             // WireUi
             // [
             //     'id' => 'introduction-to-wireui',

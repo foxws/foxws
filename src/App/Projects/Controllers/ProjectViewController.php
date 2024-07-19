@@ -43,7 +43,7 @@ class ProjectViewController extends Page
     public function getListeners(): array
     {
         return [
-            ...$this->getProjectListeners(),
+            // ...$this->getProjectListeners(),
         ];
     }
 }

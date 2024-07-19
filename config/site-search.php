@@ -39,6 +39,8 @@ return [
      */
     'do_not_crawl_urls' => [
         '/livewire/*',
+        '/horizon/*',
+        '/pulse/*',
         '/build/*',
         '/storage/*',
         '/assets/*',

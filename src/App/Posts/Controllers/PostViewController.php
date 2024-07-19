@@ -82,7 +82,7 @@ class PostViewController extends Page
     public function getListeners(): array
     {
         return [
-            ...$this->getPostListeners(),
+            // ...$this->getPostListeners(),
         ];
     }
 }

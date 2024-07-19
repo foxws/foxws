@@ -12,6 +12,12 @@ use Livewire\Attributes\Layout;
 #[Layout('components.layouts.app')]
 class HomeController extends Page
 {
+    public function mount(): void
+    {
+        $this->seo()->setTitle(__('Home'));
+        $this->seo()->setDescription(__('Our projects, documentation, and more.'));
+    }
+
     public function render(): View
     {
         return view('landing.index')->with([
@@ -44,15 +50,5 @@ class HomeController extends Page
         return Action::make($model->getKey())
             ->label($model->name)
             ->route('projects.view', $model);
-    }
-
-    protected function getTitle(): string
-    {
-        return __('Home');
-    }
-
-    protected function getDescription(): string
-    {
-        return __('Homepage');
     }
 }

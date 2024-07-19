@@ -17,6 +17,9 @@ class SearchController extends Page
 
     public function mount(): void
     {
+        $this->seo()->setTitle(__('Search'));
+        $this->seo()->setDescription(__('Search for articles, posts and projects.'));
+
         $this->form->restore();
     }
 
@@ -25,9 +28,18 @@ class SearchController extends Page
         return view('landing.search');
     }
 
-    public function updated(): void
+    public function updatedForm(): void
     {
         $this->submit();
+    }
+
+    #[Computed]
+    public function results(): SearchResults
+    {
+        return Search::onIndex('foxws')
+            ->query($this->form->getQuery() ?: '*')
+            ->limit(5)
+            ->get();
     }
 
     public function submit(): void
@@ -49,24 +61,5 @@ class SearchController extends Page
         unset($this->items);
 
         $this->dispatch('$refresh');
-    }
-
-    #[Computed]
-    public function results(): SearchResults
-    {
-        return Search::onIndex('foxws')
-            ->query($this->form->getQuery() ?: '*')
-            ->limit(5)
-            ->get();
-    }
-
-    public function getTitle(): string
-    {
-        return __('Search');
-    }
-
-    public function getDescription(): string
-    {
-        return __('Search for articles, posts and projects.');
     }
 }

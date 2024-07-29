@@ -60,8 +60,8 @@ class Post extends Model
                 'name' => __('Structure Scout'),
                 'category' => __('Advanced'),
                 'order_column' => 4,
-                'created_at' => Carbon::make('2024-04-16 17:30'),
-                'updated_at' => Carbon::make('2024-04-16 18:30'),
+                'created_at' => Carbon::make('2024-07-29 17:30'),
+                'updated_at' => Carbon::make('2024-07-29 18:30'),
             ],
             [
                 'id' => 'components',
@@ -118,16 +118,6 @@ class Post extends Model
                 'created_at' => Carbon::make('2024-07-12 18:30'),
                 'updated_at' => Carbon::make('2024-07-12 18:30'),
             ],
-            // WireUi
-            // [
-            //     'id' => 'introduction-to-wireui',
-            //     'project_id' => 'wireui',
-            //     'name' => __('Introduction to WireUi'),
-            //     'category' => __('Getting Started'),
-            //     'order_column' => 1,
-            //     'created_at' => Carbon::make('2024-04-04 18:30'),
-            //     'updated_at' => Carbon::make('2024-07-12 18:30'),
-            // ],
         ];
     }
 

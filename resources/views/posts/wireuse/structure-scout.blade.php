@@ -19,21 +19,21 @@ php artisan make:provider ViewServiceProvider
 
 @verbatim
 ```php
+use Foxws\WireUse\Scout\ComponentScout;
 use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
-        $this->configureComponents();
+        $this->registerComponents();
     }
 
-    protected function configureComponents(): void
+    protected function registerComponents(): static
     {
-        WireUse::registerComponents(
-            path: app_path(),
-            prefix: 'app'
-        );
+        ComponentScout::create(app_path('Web'), 'App\\')->register();
+
+        return $this;
     }
 }
 ```
@@ -43,7 +43,7 @@ To call a registered Blade component:
 
 @verbatim
 ```php
-<x-app::posts-card :$item />
+<x-web.posts.card :$item />
 ```
 @endverbatim
 
@@ -56,21 +56,21 @@ php artisan make:provider LivewireServiceProvider
 ```
 
 ```php
+use Foxws\WireUse\Scout\LivewireScout;
 use Illuminate\Support\ServiceProvider;
 
 class LivewireServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
-        $this->configureComponents();
+        $this->registerComponents();
     }
 
-    protected function configureComponents(): void
+    protected function registerComponents(): static
     {
-        WireUse::registerLivewireComponents(
-            path: app_path(),
-            prefix: 'app'
-        );
+        LivewireScout::create(app_path('Web'), 'App\\')->register();
+
+        return $this;
     }
 }
 ```
@@ -79,6 +79,6 @@ To call a registered Livewire component:
 
 @verbatim
 ```php
-<livewire:app::posts-tags />
+<livewire:web.posts.tags />
 ```
 @endverbatim

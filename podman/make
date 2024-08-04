@@ -1,12 +1,9 @@
 #!/bin/sh
 
-# Build images
 podman build \
     -t foxws-nginx \
-    --file=build/nginx/Dockerfile \
-    --env=../../.env
+    --file=build/nginx/Dockerfile
 
 podman build \
     -t foxws-app \
-    --file=build/app/Dockerfile \
-    --env=../../.env
+    --file=build/app/Dockerfile

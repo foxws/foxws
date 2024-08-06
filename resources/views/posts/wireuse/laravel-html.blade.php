@@ -1,13 +1,22 @@
 ## Description
 
-The [laravel-html](https://spatie.be/docs/laravel-html/v3/introduction) package of Spatie helps you generate HTML using a clean, simple and easy to read API.
-All elements can be dynamically generated and put together.
+The [laravel-html](https://spatie.be/docs/laravel-html/v3/introduction) package of Spatie helps you generate HTML using a simple and readable API.
 
-WireUse offers mixins to make the package compatible and more usable with Livewire.
+WireUse offers mixins to make the package compatible and usable with Livewire.
 
 ## Installation
 
-The Livewire mixins are enabled by default, but can be disabled individually in `config/wireuse.php`.
+HTML-mixins are disabled by default, and can be enabled in `config/wireuse.php`:
+
+```bash
+php artisan vendor:publish --tag="wireuse-config"
+```
+
+```php
+'html' => [
+    'mixins' => true,
+],
+```
 
 ## Usage
 
@@ -43,4 +52,4 @@ The following example shows how to use the `wireForm` helper to generate a form,
 ```
 @endverbatim
 
-Please checkout all mixins individually, because they are not all documented here.
+Please checkout all mixins individually, because they are not all documented.

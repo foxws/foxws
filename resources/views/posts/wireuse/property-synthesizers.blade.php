@@ -31,7 +31,7 @@ Our property synthesizers try to hide the model IDs, by forcing the model [route
 
 ## Usage
 
-To use our property synthesizers, create a custom service provider:
+To use the property synthesizers, create a custom service provider:
 
 ```bash
 php artisan make:provider LivewireServiceProvider

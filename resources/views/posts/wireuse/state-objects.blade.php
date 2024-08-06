@@ -5,6 +5,20 @@ State objects are based on states that you find, for example, in a VueJS Store.
 This can be used to make your Livewire component more lightweight, and to separate code.<br>
 It is also helpful to create a global state and use it in subcomponents (tabs, wizards, etc.).
 
+## Installation
+
+States are disabled by default, and can be enabled in `config/wireuse.php`:
+
+```bash
+php artisan vendor:publish --tag="wireuse-config"
+```
+
+```php
+'features' => [
+    \Foxws\WireUse\Support\Livewire\StateObjects\SupportStateObjects::class,
+],
+```
+
 ## Usage
 
 Create a State class:

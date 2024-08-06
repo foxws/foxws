@@ -7,6 +7,24 @@ Our component scout can help with this. It is supported by [spatie/php-structure
 We recommend using a domain-driven-design (DDD) pattern, such as `src/App/Posts/Components/Card.php`.<br>
 Spatie offers an excellent in dept course for this: <https://spatie.be/products/laravel-beyond-crud>
 
+## Installation
+
+Structure Scouts are disabled by default, and can be enabled in `config/wireuse.php`:
+
+```bash
+php artisan vendor:publish --tag="wireuse-config"
+```
+
+```php
+'scout' => [
+    'enabled' => true,
+
+    'cache_store' => null,
+
+    'cache_lifetime' => 60 * 60 * 24 * 7,
+],
+```
+
 ## Usage
 
 ### Blade Components

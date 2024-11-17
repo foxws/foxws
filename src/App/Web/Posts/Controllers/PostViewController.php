@@ -8,6 +8,7 @@ use App\Web\Posts\Concerns\WithPost;
 use Domain\Posts\Models\Post;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
 
 class PostViewController extends Page
 {
@@ -15,13 +16,11 @@ class PostViewController extends Page
 
     public function render(): View
     {
-        return view('posts.view')->with([
-            'previous' => $this->previous(),
-            'next' => $this->next(),
-        ]);
+        return view('posts.view');
     }
 
-    protected function previous(): ?Post
+    #[Computed()]
+    public function previous(): ?Post
     {
         return Post::query()
             ->where('project_id', $this->post->project_id)
@@ -29,6 +28,7 @@ class PostViewController extends Page
             ->first();
     }
 
+    #[Computed()]
     public function next(): ?Post
     {
         return Post::query()

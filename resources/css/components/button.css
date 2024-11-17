@@ -1,6 +1,6 @@
 @layer components {
     .btn {
-        @apply inline-flex h-9 w-fit shrink-0 cursor-pointer select-none items-center rounded px-3 font-medium focus:outline-none;
+        @apply inline-flex h-9 w-fit shrink-0 cursor-pointer select-none items-center gap-2 rounded-sm px-3 font-medium focus:outline-none;
 
         &-disabled,
         &[disabled],
@@ -27,7 +27,7 @@
         }
 
         &-secondary {
-            @apply bg-secondary-600/50 text-secondary-100 hover:bg-secondary-500/50 hover:text-secondary-50;
+            @apply bg-secondary-600/50 text-secondary-200 hover:bg-secondary-500/50 hover:text-secondary-50;
 
             &.link,
             &.link-active {
@@ -36,11 +36,11 @@
         }
 
         &-outlined {
-            @apply border border-secondary-600/50 bg-transparent text-primary-100 hover:bg-secondary-500/50 hover:text-secondary-300;
+            @apply border border-secondary-600/50 bg-transparent text-primary-300 hover:bg-secondary-500/50 hover:text-secondary-300;
 
             &.link,
             &.link-active {
-                @apply text-primary-100 hover:text-secondary-100;
+                @apply text-primary-300 hover:text-secondary-100;
             }
         }
 

@@ -103,7 +103,7 @@ Foxws provides the shell utility named `foxws`, and is based on [Laravel Sail](h
 
 To install, create a shell `alias`, e.g. using [fish-shell](https://fishshell.com/docs/current/cmds/alias.html):
 
-```bash
+```fish
 alias --save foxws '~/projects/foxws/bin/quadlet'
 ```
 

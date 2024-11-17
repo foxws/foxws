@@ -1,54 +1,35 @@
 <?php
 
-namespace App\Landing\Controllers;
+declare(strict_types=1);
+
+namespace App\Web\Landing\Controllers;
 
 use Domain\Projects\Models\Project;
-use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
-use Livewire\Attributes\Layout;
+use Livewire\Attributes\Computed;
 
-#[Layout('components.layouts.app')]
 class HomeController extends Page
 {
-    public function mount(): void
-    {
-        $this->seo()->setTitle(__('Home'));
-        $this->seo()->setDescription(__('Our projects, documentation, and more.'));
-    }
-
     public function render(): View
     {
-        return view('landing.index')->with([
-            'items' => $this->items(),
-        ]);
+        return view('landing.index');
     }
 
+    #[Computed(cache: true, key : 'projects')]
     protected function items(): Collection
     {
-        return Project::all()
-            ->map(fn (Project $item) => fluent([
-                ...$item->getAttributes(),
-                ...[
-                    'action' => $this->viewAction($item),
-                    'view' => $this->documentAction($item),
-                ],
-            ]));
+        return Project::all();
     }
 
-    protected function documentAction(Project $model): Action
+    protected function getTitle(): string
     {
-        return Action::make($model->getKey())
-            ->label(__('Documentation'))
-            ->icon('heroicon-o-document')
-            ->route('projects.view', $model);
+        return __('Home');
     }
 
-    protected function viewAction(Project $model): Action
+    protected function getDescription(): string
     {
-        return Action::make($model->getKey())
-            ->label($model->name)
-            ->route('projects.view', $model);
+        return __('Projects, documentation, and news.');
     }
 }

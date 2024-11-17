@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Auth\Console\ClearResetsCommand;
 use Illuminate\Support\Facades\Schedule;
+use Illuminate\Cache\Console\PruneStaleTagsCommand;
 use Laravel\Horizon\Console\SnapshotCommand;
 use Laravel\Sanctum\Console\Commands\PruneExpired;
 use Spatie\SiteSearch\Commands\CrawlCommand;
 use Support\Sitemap\Commands\GenerateSitemap;
+use Laravel\Telescope\Console\PruneCommand;
 
 
 Schedule::command(PruneStaleTagsCommand::class)

@@ -14,9 +14,7 @@ RUN apk update --no-cache \
 RUN apk add --no-cache --virtual .build-deps \
     shadow \
     alpine-sdk \
-    clang \
-    linux-headers \
-    python3
+    linux-headers
 
 RUN apk add --no-cache --virtual .run-deps \
     ca-certificates \
@@ -24,16 +22,7 @@ RUN apk add --no-cache --virtual .run-deps \
     brotli-dev \
     ffmpeg-dev \
     freetype \
-    fribidi \
     git \
-    gmp \
-    gnu-libiconv \
-    gsm \
-    jpeg \
-    lame \
-    libass \
-    libcrypto3 \
-    libogg \
     libpng \
     librsvg \
     libtheora \
@@ -42,20 +31,12 @@ RUN apk add --no-cache --virtual .run-deps \
     libvorbis \
     libvpx \
     libwebp \
-    libxml2-dev \
-    fdk-aac \
-    musl \
-    numactl \
-    opencore-amr \
     openjpeg \
     openssl-dev \
-    pcre2-dev \
-    speex \
     tzdata \
     unzip \
     x264 \
     x265 \
-    xvidcore \
     zlib
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -80,7 +61,7 @@ RUN cd /usr/local/src \
     && make \
     && make install
 
-RUN apk del .build-deps
+RUN apk del .build-deps && rm -rf /usr/local/src/*
 
 COPY --chown=$UID:$GID runtimes/. /etc/nginx
 

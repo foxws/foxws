@@ -1,14 +1,16 @@
-upstream reverb {
-    server systemd-foxws-app:6001;
-    keepalive 32;
+resolver ${NGINX_LOCAL_RESOLVERS} valid=30s;
+
+upstream octane {
+    server systemd-hub-app:8000 weight=5 max_fails=3 fail_timeout=30s;
 }
 
-# Resolver
-resolver ${NGINX_LOCAL_RESOLVERS} valid=300s;
+upstream reverb {
+    server systemd-hub-app:6001 weight=4 max_fails=3 fail_timeout=30s;
+}
 
 server {
-    listen ${NGINX_PORT};
-    listen [::]:${NGINX_PORT};
+    listen 8080;
+    listen [::]:8080;
     http2 on;
 
     server_name ${NGINX_HOST};
@@ -21,8 +23,24 @@ server {
     # index
     index index.php;
 
+    # error
+    error_page 404 /index.php;
+
     # service worker
     add_header Service-Worker-Allowed /;
+
+    # livewire
+    location ^~ /livewire {
+        try_files $uri $uri/ @octane;
+    }
+
+    # assets, media
+    location ~ ^/(build/assets|storage)/ {
+        expires 7d;
+        access_log off;
+        add_header Cache-Control public;
+        break;
+    }
 
     # pwa
     location /manifest.webmanifest {
@@ -30,32 +48,38 @@ server {
         return 301 $scheme://$http_host/build/manifest.webmanifest;
     }
 
-    # assets, media
-    location ~ ^/(build/assets|storage)/ {
-        expires 30d;
-        add_header Cache-Control public;
-        break;
+    # octane
+    location /index.php {
+        try_files /not_exists @octane;
     }
 
-    # root
     location / {
-        try_files $uri $uri/ /index.php?$query_string;
+        try_files $uri $uri/ @octane;
     }
 
-    error_page 404 /index.php;
+    location @octane {
+        set $suffix "";
+
+        if ($uri = /index.php) {
+            set $suffix ?$query_string;
+        }
+
+        proxy_pass http://octane$suffix;
+        proxy_set_header Host $http_host;
+        include /etc/nginx/config/proxy.conf;
+    }
 
     # additional config
     include /etc/nginx/config/general.conf;
-    include /etc/nginx/config/php_fastcgi.conf;
 }
 
-# WebSocket
+# websocket
 server {
-    listen ${NGINX_PORT};
-    listen [::]:${NGINX_PORT};
+    listen 8080;
+    listen [::]:8080;
     http2 on;
 
-    server_name ws.${NGINX_HOST};
+    server_name ${NGINX_WS_HOST};
 
     # root
     location / {

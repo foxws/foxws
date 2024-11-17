@@ -5,6 +5,7 @@
         html()->div()->children([
             html()->element('h1')->text($this->project->name),
             html()->element('p')->text($this->project->description),
+            html()->element('blockquote')->text('Note: The documentation always follows the latest release.'),
         ]),
 
         html()->element('table')->class('table-auto')->children([

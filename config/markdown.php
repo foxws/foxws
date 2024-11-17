@@ -52,7 +52,7 @@ return [
      * cache will never expire.
      *
      */
-    'cache_duration' => 604800,
+    'cache_duration' => 60 * 60 * 24 * 7,
 
     /*
      * This class will convert markdown to HTML

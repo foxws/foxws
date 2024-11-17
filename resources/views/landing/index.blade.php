@@ -21,7 +21,7 @@
                             html()->a()->link('projects.view', $item)->text($item->name),
                         ),
 
-                        html()->element('td')->text($item->description),
+                        html()->element('td')->text($item->summary),
                     ]),
                 ),
             ])

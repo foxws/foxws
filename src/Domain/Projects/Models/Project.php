@@ -42,8 +42,7 @@ class Project extends Model
             [
                 'id' => 'wireuse',
                 'name' => __('WireUse'),
-                'summary' => __('A collection of essential Livewire utilities.'),
-                'description' => __('Offers a collection of useful Livewire utilities and components.'),
+                'description' => __('Collection of useful Livewire utilities.'),
                 'github' => 'https://github.com/foxws/wireuse',
                 'type' => ProjectType::Package,
                 'created_at' => Carbon::make('2024-04-04 18:30'),
@@ -52,8 +51,7 @@ class Project extends Model
             [
                 'id' => 'laravel-algos',
                 'name' => __('Laravel Algos'),
-                'summary' => __('Create algorithms (algos) for your Laravel application.'),
-                'description' => __('Offers a collection of useful Livewire utilities and components.'),
+                'description' => __('Create algorithms (algos) for your Laravel application.'),
                 'github' => 'https://github.com/foxws/laravel-algos',
                 'type' => ProjectType::Package,
                 'created_at' => Carbon::make('2024-04-04 18:30'),
@@ -62,8 +60,7 @@ class Project extends Model
             [
                 'id' => ' laravel-modelcache',
                 'name' => __('Laravel Model Cache'),
-                'summary' => __('Cache helpers for Laravel Eloquent models.'),
-                'description' => __('Offers a collection of useful Livewire utilities and components.'),
+                'description' => __('Cache helpers for Laravel Eloquent models.'),
                 'github' => 'https://github.com/foxws/laravel-modelcache',
                 'type' => ProjectType::Package,
                 'created_at' => Carbon::make('2024-04-04 18:30'),
@@ -72,7 +69,6 @@ class Project extends Model
             [
                 'id' => 'hub',
                 'name' => __('Hub'),
-                'summary' => __('A personal project that offers a video-on-demand (VOD) platform.'),
                 'description' => __('A personal project that offers a video-on-demand (VOD) platform.'),
                 'github' => 'https://github.com/francoism90/hub',
                 'type' => ProjectType::Personal,

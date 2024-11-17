@@ -22,7 +22,7 @@
                             ->text($item->name),
                     ),
 
-                    html()->element('td')->text($item->summary),
+                    html()->element('td')->text($item->description),
                 ]),
         ),
         ]),

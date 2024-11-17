@@ -33,6 +33,7 @@ RUN apk add --no-cache --virtual .run-deps \
     libwebp \
     openjpeg \
     openssl-dev \
+    pcre2-dev \
     tzdata \
     unzip \
     x264 \

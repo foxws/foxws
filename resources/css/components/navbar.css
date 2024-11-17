@@ -1,0 +1,21 @@
+@layer components {
+    .navbar {
+        @apply flex items-center;
+    }
+
+    :where(.navbar > *:not(script, style)) {
+        @apply inline-flex items-center;
+    }
+
+    .navbar-start {
+        @apply w-2/4 justify-start;
+    }
+
+    .navbar-center {
+        @apply shrink-0;
+    }
+
+    .navbar-end {
+        @apply w-2/4 justify-end;
+    }
+}

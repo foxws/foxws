@@ -2,7 +2,6 @@
     {{ html()->div()->class('page-content')->open() }}
         {{ html()->div()->class('prose-h1:mb-0 prose-h1:text-3xl')->children([
             html()->element('h1')->text($post->name),
-
             html()->element('dl')->class('not-prose divider text-secondary-400')
                 ->childrenIf($post->project, [
                     html()->element('dt')->text('Project')->class('sr-only'),

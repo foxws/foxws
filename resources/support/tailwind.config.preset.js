@@ -10,8 +10,8 @@ export default {
         mono: ["IBM Plex Mono", fontFamily.mono],
       },
       colors: {
-        primary: colors.zinc,
-        secondary: colors.gray,
+        primary: colors.slate,
+        secondary: colors.zinc,
         info: colors.blue,
         success: colors.gray,
         error: colors.red,

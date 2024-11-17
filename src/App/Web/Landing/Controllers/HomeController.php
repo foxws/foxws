@@ -17,7 +17,7 @@ class HomeController extends Page
         return view('landing.index');
     }
 
-    #[Computed(cache: true, key : 'projects')]
+    #[Computed(cache: false, key : 'projects')]
     protected function items(): Collection
     {
         return Project::all();

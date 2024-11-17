@@ -3,6 +3,7 @@
 namespace Domain\Projects\Models;
 
 use Domain\Posts\Models\Post;
+use Domain\Projects\Enums\ProjectType;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,6 +24,18 @@ class Project extends Model
      */
     protected $keyType = 'string';
 
+    protected function casts(): array
+    {
+        return [
+            'type' => ProjectType::class,
+        ];
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function getRows(): array
     {
         return [
@@ -32,6 +45,27 @@ class Project extends Model
                 'summary' => __('A collection of essential Livewire utilities.'),
                 'description' => __('Offers a collection of useful Livewire utilities and components.'),
                 'github' => 'https://github.com/foxws/wireuse',
+                'type' => ProjectType::Package,
+                'created_at' => Carbon::make('2024-04-04 18:30'),
+                'updated_at' => Carbon::make('2024-04-04 18:30'),
+            ],
+            [
+                'id' => 'laravel-algos',
+                'name' => __('Laravel Algos'),
+                'summary' => __('Create algorithms (algos) for your Laravel application.'),
+                'description' => __('Offers a collection of useful Livewire utilities and components.'),
+                'github' => 'https://github.com/foxws/laravel-algos',
+                'type' => ProjectType::Package,
+                'created_at' => Carbon::make('2024-04-04 18:30'),
+                'updated_at' => Carbon::make('2024-04-04 18:30'),
+            ],
+            [
+                'id' => ' laravel-modelcache',
+                'name' => __('Laravel Model Cache'),
+                'summary' => __('Cache helpers for Laravel Eloquent models.'),
+                'description' => __('Offers a collection of useful Livewire utilities and components.'),
+                'github' => 'https://github.com/foxws/laravel-modelcache',
+                'type' => ProjectType::Package,
                 'created_at' => Carbon::make('2024-04-04 18:30'),
                 'updated_at' => Carbon::make('2024-04-04 18:30'),
             ],
@@ -41,15 +75,11 @@ class Project extends Model
                 'summary' => __('A personal project that offers a video-on-demand (VOD) platform.'),
                 'description' => __('A personal project that offers a video-on-demand (VOD) platform.'),
                 'github' => 'https://github.com/francoism90/hub',
+                'type' => ProjectType::Personal,
                 'created_at' => Carbon::make('2024-04-04 18:30'),
                 'updated_at' => Carbon::make('2024-04-04 18:30'),
             ],
         ];
-    }
-
-    public function posts(): HasMany
-    {
-        return $this->hasMany(Post::class);
     }
 
     public function dateCreated(): Attribute

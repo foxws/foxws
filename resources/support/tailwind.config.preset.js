@@ -1,6 +1,9 @@
 import { fontFamily } from "tailwindcss/defaultTheme";
 import colors from "tailwindcss/colors";
+import forms from "@tailwindcss/forms";
+import typography from "@tailwindcss/typography";
 
+/** @type {import('tailwindcss').Config} */
 export default {
   theme: {
     extend: {
@@ -19,7 +22,7 @@ export default {
       },
       container: {
         center: true,
-        padding: "1rem",
+        padding: "1.5rem",
       },
       brightness: {
         80: ".8",
@@ -27,4 +30,5 @@ export default {
       },
     },
   },
+  plugins: [forms, typography],
 };

@@ -154,6 +154,20 @@ class Post extends Model
         )->shouldCache();
     }
 
+    public function diffCreated(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Carbon::make($this->created_at)->diffForHumans()
+        )->shouldCache();
+    }
+
+    public function diffUpdated(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Carbon::make($this->updated_at)->diffForHumans()
+        )->shouldCache();
+    }
+
     protected function sushiShouldCache(): bool
     {
         return true;

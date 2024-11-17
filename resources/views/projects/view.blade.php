@@ -3,8 +3,8 @@
 {{ html()->div()->class('page')->children([
     html()->div()->class('page-content')->children([
         html()->div()->children([
-            html()->element('h1')->text($this->project->name),
-            html()->element('p')->text($this->project->description),
+            html()->element('h1')->text($project->name),
+            html()->element('p')->text($project->description),
             html()->element('blockquote')->text('Note: The documentation always follows the latest release.'),
         ]),
 

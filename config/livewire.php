@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'view_path' => resource_path('views/livewire'),
+    'view_path' => resource_path('views'),
 
     /*
     |---------------------------------------------------------------------------
@@ -74,6 +74,7 @@ return [
             'jpg', 'jpeg', 'mpga', 'webp', 'wma',
         ],
         'max_upload_time' => 5, // Max duration (in minutes) before an upload is invalidated...
+        'cleanup' => true, // Should cleanup temporary uploads older than 24 hrs...
     ],
 
     /*
@@ -128,7 +129,7 @@ return [
 
     'navigate' => [
         'show_progress_bar' => true,
-        'progress_bar_color' => '#334155',
+        'progress_bar_color' => '#ec4899',
     ],
 
     /*

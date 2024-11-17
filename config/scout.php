@@ -1,6 +1,9 @@
 <?php
 
+use Domain\Groups\Models\Group;
+use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
+use Domain\Videos\Models\Video;
 
 return [
 
@@ -156,6 +159,230 @@ return [
                     'state',
                     'created_at',
                     'updated_at',
+                ],
+            ],
+
+            Group::class => [
+                'filterableAttributes' => [
+                    'id',
+                    'kind',
+                    'type',
+                    'state',
+                    'created_at',
+                    'updated_at',
+                    '__soft_deleted',
+                ],
+
+                'searchableAttributes' => [
+                    'name',
+                    'content',
+                ],
+
+                'sortableAttributes' => [
+                    'id',
+                    'name',
+                    'kind',
+                    'type',
+                    'state',
+                    'created_at',
+                    'updated_at',
+                ],
+
+                'typoTolerance' => [
+                    'minWordSizeForTypos' => [
+                        'oneTypo' => 3,
+                        'twoTypos' => 5,
+                    ],
+                ],
+
+                'pagination' => [
+                    'maxTotalHits' => 32000,
+                ],
+            ],
+
+            Video::class => [
+                'filterableAttributes' => [
+                    'id',
+                    'identifier',
+                    'adult',
+                    'caption',
+                    'tagged',
+                    'state',
+                    'created_at',
+                    'updated_at',
+                    '__soft_deleted',
+                ],
+
+                'searchableAttributes' => [
+                    'name',
+                    'identifier',
+                    'released',
+                    'tags',
+                    'relatables',
+                    'content',
+                    'summary',
+                ],
+
+                'sortableAttributes' => [
+                    'id',
+                    'name',
+                    'identifier',
+                    'released',
+                    'duration',
+                    'state',
+                    'created_at',
+                    'updated_at',
+                ],
+
+                'synonyms' => [
+                    '1' => ['01'],
+                    '2' => ['02'],
+                    '3' => ['03'],
+                    '4' => ['04'],
+                    '5' => ['05'],
+                    '6' => ['06'],
+                    '7' => ['07'],
+                    '8' => ['08'],
+                    '9' => ['09'],
+                    '01' => ['1'],
+                    '02' => ['2'],
+                    '03' => ['3'],
+                    '04' => ['4'],
+                    '05' => ['5'],
+                    '06' => ['6'],
+                    '07' => ['7'],
+                    '08' => ['8'],
+                    '09' => ['9'],
+                    '&' => ['and'],
+                    'and' => ['&'],
+                    '@' => ['at'],
+                    'at' => ['@'],
+                    '#' => ['hash', 'hashtag', 'tag'],
+                ],
+
+                'stopWords' => [
+                    '.',
+                    ',',
+                    '-',
+                    '_',
+                    '-',
+                    '|',
+                    '&',
+                    '/',
+                    '(',
+                    ')',
+                    '[',
+                    ']',
+                ],
+
+                'rankingRules' => [
+                    'sort',
+                    'words',
+                    'typo',
+                    'attribute',
+                    'proximity',
+                    'exactness',
+                ],
+
+                'typoTolerance' => [
+                    'minWordSizeForTypos' => [
+                        'oneTypo' => 3,
+                        'twoTypos' => 5,
+                    ],
+                ],
+
+                'pagination' => [
+                    'maxTotalHits' => 32000,
+                ],
+            ],
+
+            Tag::class => [
+                'filterableAttributes' => [
+                    'id',
+                    'type',
+                    'adult',
+                    'related',
+                    'created_at',
+                    'updated_at',
+                    '__soft_deleted',
+                ],
+
+                'searchableAttributes' => [
+                    'name',
+                    'description',
+                    'synonyms',
+                    'type',
+                ],
+
+                'sortableAttributes' => [
+                    'id',
+                    'name',
+                    'type',
+                    'adult',
+                    'order',
+                    'created_at',
+                    'updated_at',
+                ],
+
+                'synonyms' => [
+                    '1' => ['01'],
+                    '2' => ['02'],
+                    '3' => ['03'],
+                    '4' => ['04'],
+                    '5' => ['05'],
+                    '6' => ['06'],
+                    '7' => ['07'],
+                    '8' => ['08'],
+                    '9' => ['09'],
+                    '01' => ['1'],
+                    '02' => ['2'],
+                    '03' => ['3'],
+                    '04' => ['4'],
+                    '05' => ['5'],
+                    '06' => ['6'],
+                    '07' => ['7'],
+                    '08' => ['8'],
+                    '09' => ['9'],
+                    '&' => ['and'],
+                    'and' => ['&'],
+                    '@' => ['at'],
+                    'at' => ['@'],
+                    '#' => ['hash', 'hashtag', 'tag'],
+                ],
+
+                'stopWords' => [
+                    '.',
+                    ',',
+                    '-',
+                    '_',
+                    '-',
+                    '|',
+                    '&',
+                    '/',
+                    '(',
+                    ')',
+                    '[',
+                    ']',
+                ],
+
+                'rankingRules' => [
+                    'sort',
+                    'words',
+                    'typo',
+                    'attribute',
+                    'proximity',
+                    'exactness',
+                ],
+
+                'typoTolerance' => [
+                    'minWordSizeForTypos' => [
+                        'oneTypo' => 3,
+                        'twoTypos' => 5,
+                    ],
+                ],
+
+                'pagination' => [
+                    'maxTotalHits' => 32000,
                 ],
             ],
         ],

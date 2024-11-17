@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://localhost:*', 'https://[::1]:*', 'https://foxws.nl', 'https://foxws.nl:5174'],
+    'allowed_origins' => ['http://localhost:*', 'http://[::1]:*', 'https://foxws.nl', 'https://foxws.nl:5173'],
 
     'allowed_origins_patterns' => [],
 

@@ -19,7 +19,7 @@ class ProjectViewController extends Page
         return view('projects.view');
     }
 
-    #[Computed]
+    #[Computed(cache: false)]
     public function items(): Collection
     {
         return $this

@@ -7,19 +7,19 @@ To learn more about MinIO, consider reading the following resources:
 
 ## Prerequisites
 
-- Hub up-and-running
+- Foxws up-and-running
 - MinIO Client (`mc`)
 
 ## Usage
 
 > **NOTE:** Append `--insecure` to each `mc` command when using a self signed certificate.
 
-1. Create an (temporary) access key (<https://mc.hub.lan/access-keys>).
+1. Create an (temporary) access key (<https://mc.foxws.nl/access-keys>).
 
 2. Setup connection:
 
 ```bash
-mc alias set myminio https://s3.hub.lan AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
+mc alias set myminio https://s3.foxws.nl AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
 mc admin info myminio
 ```
 
@@ -43,7 +43,7 @@ mc anonymous set download myminio/conversions
 To copy any local stored generated conversions to a backup:
 
 ```bash
-cd ~/projects/hub/storage/app
+cd ~/projects/foxws/storage/app
 mc cp --recursive conversions/ myminio/conversions/
 ```
 

@@ -18,11 +18,11 @@ export default defineConfig(({ mode }) => {
     server: {
       host: "0.0.0.0",
       https,
-      port: 5173,
+      port: 5174,
       strictPort: true,
       hmr: {
         host: "foxws.lan",
-        clientPort: 5173,
+        clientPort: 5174,
       },
       watch: {
         ignored: ["**/storage/**"],

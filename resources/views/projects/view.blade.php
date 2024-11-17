@@ -8,6 +8,10 @@
                 ->childrenIf($project->type, [
                     html()->element('dt')->text('Category')->class('sr-only'),
                     html()->element('dd')->text($project->type->label()),
+                ])
+                ->childrenIf($project->github, [
+                    html()->element('dt')->text('GitHub')->class('sr-only'),
+                    html()->element('dd')->child(html()->a()->href($project->github)->text('Source Code')),
                 ]),
 
             html()->element('p')->text($project->description),

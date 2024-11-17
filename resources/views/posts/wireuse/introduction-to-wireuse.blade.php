@@ -9,7 +9,7 @@ The goal is to be minimal, and to give you as a developer tools to build your ow
 
 ## Can I combine WireUse with other packages?
 
-In almost any cases, yes!<br>
+In almost most cases, yes!<br>
 It can be used as an extension in your own project, but also when developing packages.
 
 Keep in mind packages like [Filament](https://filamentphp.com/) implement their own route logic, set of utilities and components.<br>

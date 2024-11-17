@@ -11,7 +11,7 @@
         html()->element('table')->class('table-auto')->children([
             html()->element('thead')->child(
                 html()->element('tr')->children([
-                    html()->element('th')->text('Name'),
+                    html()->element('th')->text('Subject'),
                     html()->element('th')->text('Last Updated'),
                 ]),
             ),

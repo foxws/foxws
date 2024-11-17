@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Users\Models;
 
 use Database\Factories\UserFactory;
+use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Users\Collections\UserCollection;
+use Domain\Users\Concerns\InteractsWithCache;
 use Domain\Users\QueryBuilders\UserQueryBuilder;
 use Domain\Users\States\UserState;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -16,10 +20,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
@@ -32,8 +33,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use HasPrefixedId;
     use HasRoles;
     use HasStates;
+    use InteractsWithCache;
     use InteractsWithMedia;
-    use LogsActivity;
     use Notifiable;
     use Searchable;
     use SoftDeletes;
@@ -97,6 +98,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         $this
             ->addMediaCollection('avatar')
             ->useDisk('conversions')
+            ->storeConversionsOnDisk('conversions')
             ->singleFile()
             ->withResponsiveImages()
             ->acceptsMimeTypes([
@@ -111,8 +113,12 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     /**
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn($event): array
+    public function broadcastOn(string $event): array
     {
+        if ($event === 'deleted') {
+            return [];
+        }
+
         return [
             new PrivateChannel('user.'.$this->getRouteKey()),
         ];
@@ -146,28 +152,21 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         return 'user.'.$this->getRouteKey();
     }
 
-    public function searchableAs(): string
+    public function makeSearchableUsing(UserCollection $models): UserCollection
     {
-        return 'users';
+        return $models->loadMissing($this->with);
     }
 
     public function toSearchableArray(): array
     {
         return [
             'id' => (int) $this->getScoutKey(),
-            'name' => $this->name,
-            'email' => $this->email,
-            'created' => $this->created_at,
-            'updated' => $this->updated_at,
+            'name' => (string) $this->name,
+            'email' => (string) $this->email,
+            'state' => (string) $this->state,
+            'created' => (int) $this->created_at->getTimestamp(),
+            'updated' => (int) $this->updated_at->getTimestamp(),
         ];
-    }
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logAll()
-            ->logOnlyDirty()
-            ->dontSubmitEmptyLogs();
     }
 
     public function avatar(): Attribute

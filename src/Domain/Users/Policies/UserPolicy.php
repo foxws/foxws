@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Users\Policies;
 
 use Domain\Users\Models\User;
@@ -7,7 +9,7 @@ use Domain\Users\Models\User as UserModel;
 
 class UserPolicy
 {
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
         return $user->hasRole('super-admin');
     }

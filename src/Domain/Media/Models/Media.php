@@ -1,17 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Media\Models;
 
 use Domain\Media\Collections\MediaCollection;
 use Domain\Media\QueryBuilders\MediaQueryBuilder;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
 
 class Media extends BaseMedia
 {
-    use LogsActivity;
-
     /**
      * @var array<int, string>
      */
@@ -59,13 +57,5 @@ class Media extends BaseMedia
     public function getRouteKeyName(): string
     {
         return 'uuid';
-    }
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logAll()
-            ->logOnlyDirty()
-            ->dontSubmitEmptyLogs();
     }
 }

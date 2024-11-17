@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Providers;
 
 use Domain\Media\Models\Media;
@@ -36,7 +38,13 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting(): void
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(20)->by($request->user()?->getKey() ?: $request->ip());
+            return Limit::perMinute(120)->by(
+                $request->user()?->getKey() ?: $request->ip()
+            );
+        });
+
+        RateLimiter::for('none', function (Request $request) {
+            return Limit::none();
         });
     }
 }

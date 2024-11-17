@@ -1,0 +1,9 @@
+@layer components {
+    .page {
+        @apply container py-6;
+
+        &-content {
+            @apply prose prose-invert flex flex-col gap-y-3;
+        }
+    }
+}

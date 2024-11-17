@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Api\Authentication\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('api.')->prefix('v1')->group(function () {
-    // Home
-    Route::get('/', fn (Request $request) => abort(403))->name('home');
+    // Authentication
+    Route::get('/', HomeController::class)->name('home');
 });

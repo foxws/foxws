@@ -1,20 +1,29 @@
-import colors from 'tailwindcss/colors';
+import { fontFamily } from "tailwindcss/defaultTheme";
+import colors from "tailwindcss/colors";
 
 export default {
-  darkMode: 'selector',
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Jost, ui-sans-serif, system-ui, sans-serif'],
-        serif: ['Montserrat', 'ui-serif', 'serif'],
-        mono: ['IBM Plex Mono', 'ui-monospace', 'monospace'],
+        sans: ["Jost", fontFamily.sans],
+        serif: ["Montserrat", fontFamily.serif],
+        mono: ["IBM Plex Mono", fontFamily.mono],
       },
       colors: {
-        primary: colors.slate,
+        primary: colors.pink,
+        secondary: colors.gray,
+        info: colors.blue,
+        success: colors.gray,
+        error: colors.red,
+        warning: colors.yellow,
       },
       container: {
         center: true,
-        padding: '2rem',
+        padding: "1rem",
+      },
+      brightness: {
+        80: ".8",
+        85: ".85",
       },
     },
   },

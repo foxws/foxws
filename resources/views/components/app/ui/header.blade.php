@@ -6,9 +6,9 @@
             )
         ),
 
-        html()->div()->class('navbar-end gap-x-6 *:text-lg *:text-primary-300 *:hover:text-primary-300')->children([
-            html()->a()->link('home')->child(
-                html()->span('About')->class('text-primary-300 hover:text-primary-300')
+        html()->div()->class('navbar-end gap-x-6 *:text-base *:text-primary-300 *:hover:text-primary-300')->children([
+            html()->a()->href('https://github.com/foxws/')->child(
+                html()->span('Github')->class('text-primary-300 hover:text-primary-300')
             ),
 
             html()->a()->link('home')->attribute('aria-label', __('Search'))->child(

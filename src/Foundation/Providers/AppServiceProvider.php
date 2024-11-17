@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Providers;
 
 use Domain\Media\Models\Media;
@@ -9,6 +11,7 @@ use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -16,11 +19,6 @@ use Spatie\PrefixedIds\PrefixedIds;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function register(): void
-    {
-        //
-    }
-
     public function boot(): void
     {
         $this->configureUrlScheme();
@@ -28,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
         $this->configureMorphMap();
         $this->configurePrefixedIds();
         $this->configureJsonResource();
+        $this->configureMacros();
     }
 
     protected function configureUrlScheme(): void
@@ -63,5 +62,23 @@ class AppServiceProvider extends ServiceProvider
     protected function configureJsonResource(): void
     {
         JsonResource::withoutWrapping();
+    }
+
+    protected function configureMacros(): void
+    {
+        Collection::macro('options', function (string $label = 'name') {
+            /** @var Collection $this */
+            return $this->map(fn (Model $item) => [
+                'id' => $item->getRouteKey(),
+                'name' => $item->getAttribute($label),
+            ]);
+        });
+
+        Collection::macro('toModels', function () {
+            /** @var Collection $this */
+            return $this
+                ->map(fn (string $item) => PrefixedIds::find($item))
+                ->filter();
+        });
     }
 }

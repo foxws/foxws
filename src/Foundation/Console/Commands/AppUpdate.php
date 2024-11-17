@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -10,7 +12,7 @@ class AppUpdate extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'app:update {--force}';
+    protected $signature = 'app:update {--assets} {--regenerate}';
 
     /**
      * @var string
@@ -19,22 +21,31 @@ class AppUpdate extends Command implements Isolatable
 
     public function handle(): void
     {
-        throw_if(! $this->option('force') && ! $this->confirm('Are you sure to update the application?'));
+        // Clear package caches
+        $this->call('permission:cache-reset');
+        $this->call('structures:clear');
 
-        // Clear caches
+        // Clear application caches
         $this->call('cache:clear');
         $this->call('optimize:clear');
 
-        // Optimize app
-        $this->call('app:optimize', ['--force' => 'yes']);
-
-        // Fetch assets
-        $this->call('google-fonts:fetch');
-
         // Run migrations
-        $this->call('migrate', ['--seed', '--force' => 'yes']);
+        $this->call('migrate', ['--force' => true, '--seed' => true]);
 
-        // Sync indexes
-        $this->call('scout:sync');
+        // Update assets
+        if ($this->option('assets')) {
+            $this->call('google-fonts:fetch');
+        }
+
+        // Optimize application
+        $this->call('app:optimize');
+
+        // Sync settings
+        $this->call('scout:sync-index-settings');
+
+        // Regenerate models
+        if ($this->option('regenerate')) {
+            $this->call('users:regenerate');
+        }
     }
 }

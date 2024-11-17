@@ -1,5 +1,5 @@
 @layer components {
     .prose {
-        @apply prose-a:link hover:prose-a:link-hover prose-invert prose-h1:mb-6 prose-h1:text-4xl prose-h2:my-1 prose-h2:text-2xl;
+        @apply prose-a:link hover:prose-a:link-hover prose-invert max-w-3xl prose-h1:mb-6 prose-h1:text-4xl prose-h2:my-1 prose-h2:text-2xl;
     }
 }

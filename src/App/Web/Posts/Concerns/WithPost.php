@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Posts\Concerns;
+namespace App\Web\Posts\Concerns;
 
 use Domain\Posts\Models\Post;
 use Livewire\Attributes\Locked;
@@ -44,6 +44,10 @@ trait WithPost
 
     protected function getPostListeners(): array
     {
+        if (! auth()->check()) {
+            return [];
+        }
+
         return [
             "echo-private:posts.{$this->getPostId()},.post.deleted" => 'onPostDeleted',
             "echo-private:posts.{$this->getPostId()},.post.updated" => 'onPostUpdated',

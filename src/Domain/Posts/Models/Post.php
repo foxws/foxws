@@ -23,6 +23,18 @@ class Post extends Model
      */
     protected $keyType = 'string';
 
+    /**
+     * @var array<int, string>
+     */
+    protected $with = [
+        'project',
+    ];
+
+    public function project(): BelongsTo
+    {
+        return $this->belongsTo(Project::class);
+    }
+
     public function getRows(): array
     {
         return [
@@ -119,18 +131,6 @@ class Post extends Model
                 'updated_at' => Carbon::make('2024-07-12 18:30'),
             ],
         ];
-    }
-
-    public function project(): BelongsTo
-    {
-        return $this->belongsTo(Project::class);
-    }
-
-    public function routeView(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => route('posts.view', ['project' => $this->project_id, 'post' => $this->id])
-        )->shouldCache();
     }
 
     public function bladeView(): Attribute

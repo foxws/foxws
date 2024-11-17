@@ -19,18 +19,8 @@ class ProjectViewController extends Page
         return view('projects.view');
     }
 
-    public function getTitle(): string
-    {
-        return (string) $this->project->name;
-    }
-
-    public function getDescription(): string
-    {
-        return (string) $this->project->description;
-    }
-
     #[Computed]
-    public function posts(): Collection
+    public function items(): Collection
     {
         return $this
             ->project
@@ -38,6 +28,16 @@ class ProjectViewController extends Page
             ->orderBy('order_column')
             ->orderBy('created_at')
             ->get();
+    }
+
+    protected function getTitle(): string
+    {
+        return (string) $this->project->name;
+    }
+
+    protected function getDescription(): string
+    {
+        return (string) $this->project->description;
     }
 
     public function getListeners(): array

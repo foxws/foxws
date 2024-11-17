@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Posts\Controllers;
+declare(strict_types=1);
 
-use App\Posts\Concerns\WithPost;
+namespace App\Web\Posts\Controllers;
+
+use App\Web\Posts\Concerns\WithPost;
 use Domain\Posts\Models\Post;
-use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
-use Livewire\Attributes\Layout;
 
-#[Layout('components.layouts.app')]
 class PostViewController extends Page
 {
     use WithPost;
@@ -22,48 +21,7 @@ class PostViewController extends Page
         ]);
     }
 
-    public function getTitle(): string
-    {
-        return (string) $this->post->name;
-    }
-
-    protected function previous(): ?Action
-    {
-        $model = $this->previousPost();
-
-        if (! $model) {
-            return null;
-        }
-
-        return Action::make('next')
-            ->icon('heroicon-o-chevron-left')
-            ->label($model->name)
-            ->url($model->route_view)
-            ->componentAttributes([
-                'class' => 'gap-2 h-9 px-2.5 border border-primary-600 no-underline',
-                'class:icon' => 'size-3',
-            ]);
-    }
-
-    protected function next(): ?Action
-    {
-        $model = $this->nextPost();
-
-        if (! $model) {
-            return null;
-        }
-
-        return Action::make('next')
-            ->icon('heroicon-o-chevron-right')
-            ->label($model->name)
-            ->url($model->route_view)
-            ->componentAttributes([
-                'class' => 'gap-2 h-9 px-2.5 border border-primary-600 no-underline',
-                'class:icon' => 'size-3',
-            ]);
-    }
-
-    protected function previousPost(): ?Post
+    protected function previous(): ?Post
     {
         return Post::query()
             ->where('project_id', $this->post->project_id)
@@ -71,7 +29,7 @@ class PostViewController extends Page
             ->first();
     }
 
-    public function nextPost(): ?Post
+    public function next(): ?Post
     {
         return Post::query()
             ->where('project_id', $this->post->project_id)
@@ -79,10 +37,15 @@ class PostViewController extends Page
             ->first();
     }
 
+    protected function getTitle(): string
+    {
+        return (string) $this->post->name;
+    }
+
     public function getListeners(): array
     {
         return [
-            // ...$this->getPostListeners(),
+            ...$this->getPostListeners(),
         ];
     }
 }

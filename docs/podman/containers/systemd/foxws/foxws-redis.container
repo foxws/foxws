@@ -2,15 +2,17 @@
 Description=Redis container
 
 [Service]
+TimeoutStartSec=300
 Restart=always
 
 [Container]
-Image=docker.io/redis:latest
+Image=docker.io/valkey/valkey:latest
 AutoUpdate=registry
+Exec=valkey-server --save --loglevel warning
 Volume=foxws-redis:/data:rw,Z,U
-Exec=redis-server --save 60 1 --loglevel warning
+LogDriver=none
 Network=foxws.network
 ExposeHostPort=6379
 
 [Install]
-WantedBy=multi-user.target default.target
+WantedBy=multi-user.target

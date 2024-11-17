@@ -1,9 +1,0 @@
-#!/bin/sh
-
-podman build \
-    -t foxws-nginx \
-    --file=build/nginx/Dockerfile
-
-podman build \
-    -t foxws-app \
-    --file=build/app/Dockerfile

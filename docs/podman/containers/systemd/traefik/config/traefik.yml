@@ -34,4 +34,4 @@ certificatesResolvers:
     acme:
       email: email@example.com
       storage: /etc/traefik/acme/acme.json
-      tlschallenge: true
+      tlsChallenge: {}

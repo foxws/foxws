@@ -2,15 +2,17 @@
 Description=Meilisearch container
 
 [Service]
+TimeoutStartSec=300
 Restart=always
 
 [Container]
 Image=docker.io/getmeili/meilisearch:latest
 AutoUpdate=registry
-EnvironmentFile=%h/.config/containers/systemd/foxws/meilisearch.env
+EnvironmentFile=%h/.config/containers/systemd/foxws/config/meilisearch.env
 Volume=foxws-meilisearch:/meili_data:rw,Z,U
+LogDriver=none
 Network=foxws.network
-PublishPort=7700:7700
+ExposeHostPort=7700
 
 [Install]
-WantedBy=multi-user.target default.target
+WantedBy=multi-user.target

@@ -18,9 +18,7 @@
                     ->element('tr')
                     ->children([
                         html()->element('td')->child(
-                            html()->element('a')
-                                // ->href(route('projects.show', $item))
-                                ->text($item->name),
+                            html()->a()->link('projects.view', $item)->text($item->name),
                         ),
 
                         html()->element('td')->text($item->description),

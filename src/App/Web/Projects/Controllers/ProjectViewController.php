@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Projects\Controllers;
+declare(strict_types=1);
 
-use App\Projects\Concerns\WithProject;
+namespace App\Web\Projects\Controllers;
+
+use App\Web\Projects\Concerns\WithProject;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Layout;
 
-#[Layout('components.layouts.app')]
 class ProjectViewController extends Page
 {
     use WithProject;
@@ -43,7 +43,7 @@ class ProjectViewController extends Page
     public function getListeners(): array
     {
         return [
-            // ...$this->getProjectListeners(),
+            ...$this->getProjectListeners(),
         ];
     }
 }

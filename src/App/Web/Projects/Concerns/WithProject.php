@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Projects\Concerns;
+declare(strict_types=1);
+
+namespace App\Web\Projects\Concerns;
 
 use Domain\Projects\Models\Project;
 use Livewire\Attributes\Locked;
@@ -44,6 +46,10 @@ trait WithProject
 
     protected function getProjectListeners(): array
     {
+        if (! auth()->check()) {
+            return [];
+        }
+
         return [
             "echo-private:projects.{$this->getProjectId()},.project.deleted" => 'onProjectDeleted',
             "echo-private:projects.{$this->getProjectId()},.project.updated" => 'onProjectUpdated',

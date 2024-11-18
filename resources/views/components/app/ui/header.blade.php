@@ -6,7 +6,7 @@
             )
         ),
 
-        html()->div()->class('navbar-end gap-x-6 *:text-base *:text-primary-300 *:hover:text-primary-300')->children([
+        html()->div()->class('navbar-end gap-x-6 *:text-base ')->children([
             html()->a()->href('https://github.com/foxws/')->child(
                 html()->span('Github')->class('text-primary-300 hover:text-primary-300')
             ),

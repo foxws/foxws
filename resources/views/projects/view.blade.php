@@ -3,13 +3,13 @@
         {{ html()->div()->class('prose-h1:mb-0 prose-h1:text-3xl')->children([
             html()->element('h1')->text($project->name),
             html()->element('dl')->class('not-prose divider text-secondary-400')
-                // ->childrenIf($project->type, [
-                //     html()->element('dt')->text('Project')->class('sr-only'),
-                //     html()->element('dd')->child(html()->a()->link('projects.view', $post->project)->text($post->project->name)),
-                // ])
-                ->children([
-                    html()->element('dt')->text('Updated')->class('sr-only'),
-                    html()->element('dd')->text("Updated {$project->diff_updated}"),
+                ->childrenIf($project->type, [
+                    html()->element('dt')->text('Type')->class('sr-only'),
+                    html()->element('dd')->text($project->type?->label()),
+                ])
+                ->childrenIf($project->github, [
+                    html()->element('dt')->text('Github')->class('sr-only'),
+                    html()->element('dd')->child(html()->a()->href($project->github)->text('Source')),
                 ])
         ]) }}
 

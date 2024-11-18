@@ -3,6 +3,7 @@ title: WireUse
 summary: Collection of useful Livewire utilities.
 type: package
 order: 0
+github: https://github.com/foxws/wireuse
 tags:
   - laravel
   - livewire

@@ -1,6 +1,6 @@
 ---
+title: Installing WireUse
 project: wireuse
-title: I Love Markdown
 tags:
   - test
   - example

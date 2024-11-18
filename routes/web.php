@@ -18,5 +18,5 @@ Route::name('projects.')->prefix('projects')->group(function () {
 
 // Posts
 Route::name('posts.')->prefix('posts')->group(function () {
-    Route::get('/{project}/{post}', PostViewController::class)->scopeBindings()->name('view');
+    Route::get('/{post}', PostViewController::class)->name('view');
 });

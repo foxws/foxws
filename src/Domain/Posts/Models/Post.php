@@ -9,9 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Number;
-use League\CommonMark\Extension\FrontMatter\Input\MarkdownInputWithFrontMatter;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
+use League\CommonMark\Output\RenderedContent;
 use Sushi\Sushi;
 
 class Post extends Model
@@ -19,10 +18,20 @@ class Post extends Model
     use Sushi;
 
     /**
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
      * @var array<int, string>
      */
     protected $with = [
-        // 'project',
+        'project',
     ];
 
     public function project(): BelongsTo
@@ -37,8 +46,9 @@ class Post extends Model
             $meta = $html->getFrontMatter();
 
             return [
+                'id' => $this->generateSlug($html),
                 'project_id' => data_get($meta, 'project'),
-                'title' => data_get($meta, 'title'),
+                'name' => data_get($meta, 'title'),
                 'starts' => $document->getStartLine(),
                 'content' => $html->getContent(),
                 'created_at' => data_get($meta, 'created', now()),
@@ -73,6 +83,16 @@ class Post extends Model
         return Attribute::make(
             get: fn () => Carbon::make($this->updated_at)->diffForHumans()
         )->shouldCache();
+    }
+
+    protected function generateSlug(RenderedContent $html): string
+    {
+        /** @var RenderedContentWithFrontMatter $html */
+        $meta = $html->getFrontMatter();
+
+        $value = fn (string $key) => data_get($meta, $key, '');
+
+        return str("{$value('project')} {$value('title')}")->slug();
     }
 
     protected function getDocuments(): Collection

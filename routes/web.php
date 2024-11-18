@@ -13,10 +13,10 @@ Route::get('/', HomeController::class)->name('home');
 
 // Projects
 Route::name('projects.')->prefix('projects')->group(function () {
-    Route::get('/{project:slug}', ProjectViewController::class)->name('view');
+    Route::get('/{project}', ProjectViewController::class)->name('view');
 });
 
 // Posts
 Route::name('posts.')->prefix('posts')->group(function () {
-    Route::get('/{post:slug}', PostViewController::class)->name('view');
+    Route::get('/{post}', PostViewController::class)->name('view');
 });

@@ -20,6 +20,16 @@ class Post extends Model
     use Sushi;
 
     /**
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
      * @var array<int, string>
      */
     protected $with = [
@@ -29,7 +39,7 @@ class Post extends Model
     protected function casts(): array
     {
         return [
-            'slug' => 'string',
+            'id' => 'string',
             'project_id' => 'integer',
             'name' => 'string',
             'content' => 'string',
@@ -64,14 +74,14 @@ class Post extends Model
     public function next(): Attribute
     {
         return Attribute::make(
-            get: fn () => static::find($this->id + 1)
+            get: fn () => static::find($this->order + 1)
         )->shouldCache();
     }
 
     public function previous(): Attribute
     {
         return Attribute::make(
-            get: fn () => static::find($this->id - 1)
+            get: fn () => static::find($this->order - 1)
         )->shouldCache();
     }
 
@@ -122,7 +132,7 @@ class Post extends Model
             $meta = $item->getFrontMatter();
 
             return [
-                'slug' => $this->generateSlug($item),
+                'id' => $this->generateSlug($item),
                 'project_id' => data_get($meta, 'project'),
                 'name' => data_get($meta, 'title'),
                 'summary' => data_get($meta, 'summary'),

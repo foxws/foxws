@@ -17,11 +17,7 @@ class GetMarkdownDocuments
     {
         return collect($this->getDocuments())
             ->map(fn (SplFileInfo $file) => $this->parseMarkdown($file))
-            ->filter(fn (RenderedContentInterface $html) => $html instanceof RenderedContentWithFrontMatter)
-            ->sortBy([
-                fn (RenderedContentWithFrontMatter $html) => data_get($html->getFrontMatter(), 'weight'),
-                fn (RenderedContentWithFrontMatter $html) => data_get($html->getFrontMatter(), 'date'),
-            ]);
+            ->filter(fn (RenderedContentInterface $html) => $html instanceof RenderedContentWithFrontMatter);
     }
 
     protected function parseMarkdown(SplFileInfo $file): RenderedContentInterface

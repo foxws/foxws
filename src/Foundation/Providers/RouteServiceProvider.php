@@ -31,7 +31,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::bind('media', fn (string $value) => Media::findByUuidOrFail($value));
         Route::bind('post', fn (string $value) => Post::findBySlugOrFail($value));
-        Route::bind('project', fn (string $value) => Project::findOrFail($value));
+        Route::bind('project', fn (string $value) => Project::findBySlugOrFail($value));
         Route::bind('user', fn (string $value) => User::findByPrefixedIdOrFail($value));
     }
 

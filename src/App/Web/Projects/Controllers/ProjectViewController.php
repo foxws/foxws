@@ -33,7 +33,7 @@ class ProjectViewController extends Page
 
     protected function getDescription(): string
     {
-        return (string) $this->project->description;
+        return (string) $this->project->summary;
     }
 
     public function getListeners(): array

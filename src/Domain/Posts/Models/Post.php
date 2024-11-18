@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\Output\RenderedContent;
 use Sushi\Sushi;
@@ -25,6 +26,21 @@ class Post extends Model
         'project',
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'slug' => 'string',
+            'project_id' => 'integer',
+            'name' => 'string',
+            'content' => 'string',
+            'summary' => 'string',
+            'starts' => 'integer',
+            'order' => 'integer',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+    }
+
     public function newEloquentBuilder($query): PostQueryBuilder
     {
         return new PostQueryBuilder($query);
@@ -35,22 +51,14 @@ class Post extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function getRows(): array
+    public function getRows(): mixed
     {
-        return $this->getDocuments()->map(function (RenderedContentWithFrontMatter $html) {
-            $document = $html->getDocument();
-            $meta = $html->getFrontMatter();
+        // TODO: testing remove this
+        Cache::forget('posts');
 
-            return [
-                'slug' => $this->generateSlug($html),
-                'project_id' => data_get($meta, 'project'),
-                'name' => data_get($meta, 'title'),
-                'starts' => $document->getStartLine(),
-                'content' => $html->getContent(),
-                'created_at' => data_get($meta, 'created', now()),
-                'updated_at' => data_get($meta, 'updated', now()),
-            ];
-        })->values()->all();
+        return Cache::remember('posts', now()->addMinutes(5),
+            fn () => $this->getDocuments()->toArray()
+        );
     }
 
     public function next(): Attribute
@@ -107,11 +115,24 @@ class Post extends Model
 
     protected function getDocuments(): Collection
     {
-        return app(GetMarkdownDocuments::class)->execute();
-    }
+        $collect = app(GetMarkdownDocuments::class)->execute();
 
-    protected function sushiShouldCache(): bool
-    {
-        return true;
+        return $collect->map(function (RenderedContentWithFrontMatter $item) {
+            $document = $item->getDocument();
+            $meta = $item->getFrontMatter();
+
+            return [
+                'slug' => $this->generateSlug($item),
+                'project_id' => data_get($meta, 'project'),
+                'name' => data_get($meta, 'title'),
+                'summary' => data_get($meta, 'summary'),
+                'content' => $item->getContent(),
+                'type' => data_get($meta, 'type'),
+                'order' => data_get($meta, 'order', 0),
+                'starts' => $document->getStartLine(),
+                'created_at' => data_get($meta, 'created', now()),
+                'updated_at' => data_get($meta, 'updated', now()),
+            ];
+        })->values();
     }
 }

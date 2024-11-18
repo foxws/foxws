@@ -19,16 +19,17 @@ use Sushi\Sushi;
 
 class Project extends Model
 {
-    use InteractsWithModelCache;
     use Sushi;
 
     protected function casts(): array
     {
         return [
+            'slug' => 'string',
             'name' => 'string',
             'content' => 'string',
-            'starts' => 'integer',
             'summary' => 'string',
+            'github' => 'string',
+            'starts' => 'integer',
             'order' => 'integer',
             'type' => ProjectType::class,
             'created_at' => 'datetime',
@@ -91,7 +92,7 @@ class Project extends Model
 
         $value = fn (string $key) => data_get($meta, $key, '');
 
-        return str($value('id') ?: $value('name'))->slug();
+        return str($value('name') ?: $value('title'))->slug();
     }
 
     protected function getDocuments(): Collection
@@ -106,10 +107,11 @@ class Project extends Model
                 'slug' => $this->generateSlug($item),
                 'name' => data_get($meta, 'title'),
                 'summary' => data_get($meta, 'summary'),
-                'type' => data_get($meta, 'type'),
-                'order' => data_get($meta, 'order', 0),
-                'starts' => $document->getStartLine(),
                 'content' => $item->getContent(),
+                'github' => data_get($meta, 'github'),
+                'type' => data_get($meta, 'type'),
+                'starts' => $document->getStartLine(),
+                'order' => data_get($meta, 'order', 0),
                 'created_at' => data_get($meta, 'created', now()),
                 'updated_at' => data_get($meta, 'updated', now()),
             ];

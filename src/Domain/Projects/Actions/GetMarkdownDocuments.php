@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Posts\Actions;
+namespace Domain\Projects\Actions;
 
 use Illuminate\Support\Collection;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
@@ -11,17 +11,13 @@ use Spatie\LaravelMarkdown\MarkdownRenderer;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
-class GetMarkdownPosts
+class GetMarkdownDocuments
 {
     public function execute(): Collection
     {
-        return collect($this->getMarkdowns())
+        return collect($this->getDocuments())
             ->map(fn (SplFileInfo $file) => $this->parseMarkdown($file))
-            ->filter(fn (RenderedContentInterface $html) => $html instanceof RenderedContentWithFrontMatter)
-            ->sortBy([
-                fn (RenderedContentWithFrontMatter $html) => data_get($html->getFrontMatter(), 'weight'),
-                fn (RenderedContentWithFrontMatter $html) => data_get($html->getFrontMatter(), 'date'),
-            ]);
+            ->filter(fn (RenderedContentInterface $html) => $html instanceof RenderedContentWithFrontMatter);
     }
 
     protected function parseMarkdown(SplFileInfo $file): RenderedContentInterface
@@ -29,12 +25,12 @@ class GetMarkdownPosts
         return app(MarkdownRenderer::class)->convertToHtml($file->getContents());
     }
 
-    protected function getMarkdowns(): Finder
+    protected function getDocuments(): Finder
     {
         return (new Finder())
             ->files()
             ->depth('< 5')
-            ->in(config('settings.markdown_path', resource_path('markdown')))
+            ->in(config('settings.markdown.projects_path', resource_path('markdown/projects')))
             ->name('*.md')
             ->sortByName();
     }

@@ -20,7 +20,10 @@ class HomeController extends Page
     #[Computed(cache: false)]
     protected function items(): Collection
     {
-        return Project::all();
+        return Project::query()
+            ->orderBy('order')
+            ->orderByDesc('updated_at')
+            ->get();
     }
 
     protected function getTitle(): string

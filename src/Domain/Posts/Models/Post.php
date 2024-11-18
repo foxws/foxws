@@ -2,7 +2,7 @@
 
 namespace Domain\Posts\Models;
 
-use Domain\Posts\Actions\GetMarkdownPosts;
+use Domain\Posts\Actions\GetMarkdownDocuments;
 use Domain\Posts\QueryBuilders\PostQueryBuilder;
 use Domain\Projects\Models\Project;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -107,7 +107,7 @@ class Post extends Model
 
     protected function getDocuments(): Collection
     {
-        return app(GetMarkdownPosts::class)->execute();
+        return app(GetMarkdownDocuments::class)->execute();
     }
 
     protected function sushiShouldCache(): bool

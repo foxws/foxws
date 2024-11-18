@@ -3,32 +3,42 @@
 namespace Domain\Projects\Models;
 
 use Domain\Posts\Models\Post;
+use Domain\Projects\Actions\GetMarkdownDocuments;
 use Domain\Projects\Enums\ProjectType;
+use Domain\Projects\QueryBuilders\ProjectQueryBuilder;
+use Foxws\ModelCache\Concerns\InteractsWithModelCache;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
+use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
+use League\CommonMark\Output\RenderedContent;
 use Sushi\Sushi;
 
 class Project extends Model
 {
+    use InteractsWithModelCache;
     use Sushi;
-
-    /**
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * @var string
-     */
-    protected $keyType = 'string';
 
     protected function casts(): array
     {
         return [
+            'name' => 'string',
+            'content' => 'string',
+            'starts' => 'integer',
+            'summary' => 'string',
+            'order' => 'integer',
             'type' => ProjectType::class,
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
         ];
+    }
+
+    public function newEloquentBuilder($query): ProjectQueryBuilder
+    {
+        return new ProjectQueryBuilder($query);
     }
 
     public function posts(): HasMany
@@ -36,50 +46,14 @@ class Project extends Model
         return $this->hasMany(Post::class);
     }
 
-    public function getRows(): array
+    public function getRows(): mixed
     {
-        return [
-            [
-                'id' => 'wireuse',
-                'name' => __('WireUse'),
-                'description' => __('Collection of useful Livewire utilities.'),
-                'summary' => __('Collection of useful Livewire utilities.'),
-                'github' => 'https://github.com/foxws/wireuse',
-                'type' => ProjectType::Package,
-                'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-04-04 18:30'),
-            ],
-            [
-                'id' => 'laravel-algos',
-                'name' => __('Laravel Algos'),
-                'description' => __('Create algorithms (algos) for your Laravel application.'),
-                'summary' => __('Create algorithms (algos) for your Laravel application.'),
-                'github' => 'https://github.com/foxws/laravel-algos',
-                'type' => ProjectType::Package,
-                'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-04-04 18:30'),
-            ],
-            [
-                'id' => ' laravel-modelcache',
-                'name' => __('Laravel Model Cache'),
-                'description' => __('Cache helpers for Laravel Eloquent models.'),
-                'summary' => __('Cache helpers for Laravel Eloquent models.'),
-                'github' => 'https://github.com/foxws/laravel-modelcache',
-                'type' => ProjectType::Package,
-                'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-04-04 18:30'),
-            ],
-            [
-                'id' => 'hub',
-                'name' => __('Hub'),
-                'description' => __('A personal project that offers a video-on-demand (VOD) platform.'),
-                'summary' => __('A personal project that offers a video-on-demand (VOD) platform.'),
-                'github' => 'https://github.com/francoism90/hub',
-                'type' => ProjectType::Personal,
-                'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-04-04 18:30'),
-            ],
-        ];
+        // TODO: testing remove this
+        Cache::forget('projects');
+
+        return Cache::remember('projects', now()->addMinutes(5),
+            fn () => $this->getDocuments()->toArray()
+        );
     }
 
     public function dateCreated(): Attribute
@@ -110,8 +84,35 @@ class Project extends Model
         )->shouldCache();
     }
 
-    protected function sushiShouldCache(): bool
+    protected function generateSlug(RenderedContent $html): string
     {
-        return true;
+        /** @var RenderedContentWithFrontMatter $html */
+        $meta = $html->getFrontMatter();
+
+        $value = fn (string $key) => data_get($meta, $key, '');
+
+        return str($value('id') ?: $value('name'))->slug();
+    }
+
+    protected function getDocuments(): Collection
+    {
+        $collect = app(GetMarkdownDocuments::class)->execute();
+
+        return $collect->map(function (RenderedContentWithFrontMatter $item) {
+            $document = $item->getDocument();
+            $meta = $item->getFrontMatter();
+
+            return [
+                'slug' => $this->generateSlug($item),
+                'name' => data_get($meta, 'title'),
+                'summary' => data_get($meta, 'summary'),
+                'type' => data_get($meta, 'type'),
+                'order' => data_get($meta, 'order', 0),
+                'starts' => $document->getStartLine(),
+                'content' => $item->getContent(),
+                'created_at' => data_get($meta, 'created', now()),
+                'updated_at' => data_get($meta, 'updated', now()),
+            ];
+        })->values();
     }
 }

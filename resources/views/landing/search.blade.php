@@ -1,4 +1,4 @@
-@use('Domain\Projects\Models\Project')
+@use('Spatie\SiteSearch\SearchResults\Hit')
 
 {{ html()->div()->class('page')->children([
     html()->div()->class('page-content prose-h1:mb-0')->children([
@@ -11,7 +11,7 @@
                     ->textIf(flash()->message, flash()->message),
 
                 html()->div()->class('form-control')->children([
-                    html()->text()->wireModel('form.query')->placeholder('Search for posts, projects or term')->class('input'),
+                    html()->text()->wireModel('form.query', 'live.debounce.300ms')->placeholder('Search for posts, projects or term')->class('input'),
                     html()->error('form.query'),
                 ]),
             ]),
@@ -20,10 +20,21 @@
         html()
             ->element('main')
             ->attribute('wire:poll.900s')
-            ->class('grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')
-            ->children($this->items->hits, fn ($item) => html()
-                ->div()
-                ->text($item->title())
+            ->class('grid grid-cols-1 gap-4')
+            ->children($this->items->hits, fn (Hit $item) => html()
+                ->a()
+                ->href($item->url)
+                ->class('flex flex-nowrap gap-3 justify-between bg-primary-600/50 hover:bg-primary-600/70 py-2 px-4 rounded w-full no-underline')
+                ->children([
+                    html()->div()->children([
+                        html()->element('h2')->text($item->title()),
+                        html()->element('p')->class('not-prose')->text(strip_tags($item->highlightedSnippet())),
+                    ]),
+
+                    html()->div()->child(
+                        html()->icon()->svg('heroicon-o-chevron-right', 'size-5')
+                    ),
+                ])
             )
     ]),
 ]) }}

@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 
 class UpdateUserProfileInformation
 {
-    public function execute(User $user, array $attributes): void
+    public function execute(User $user, array $attributes): mixed
     {
         if (array_key_exists('email', $attributes) && ($user->email !== $attributes['email'] && $user instanceof MustVerifyEmail)) {
             return $this->updateVerifiedUser($user, $attributes);

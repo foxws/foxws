@@ -15,7 +15,7 @@
         "@tailwindcss/typography": "^0.5.15",
         "autoprefixer": "^10.4.20",
         "axios": "^1.7.3",
-        "eslint": "^9.10",
+        "eslint": "^9.15",
         "laravel-echo": "^1.16.1",
         "laravel-vite-plugin": "^1.0.5",
         "postcss": "^8.4.41",

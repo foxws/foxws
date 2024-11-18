@@ -1,23 +1,18 @@
-## Description
+---
+title: State Objects
+project: wireuse
+order: 5
+tags:
+  - livewire
+  - states
+  - components
+---
 
-State objects are based on states that you find, for example, in a VueJS Store.
+## Introduction
 
-This can be used to make your Livewire component more lightweight, and to separate code.<br>
-It is also helpful to create a global state and use it in subcomponents (tabs, wizards, etc.).
+State objects are based on the idea of states that you find, for example, in a VueJS Store.
 
-## Installation
-
-States are disabled by default, and can be enabled in `config/wireuse.php`:
-
-```bash
-php artisan vendor:publish --tag="wireuse-config"
-```
-
-```php
-'features' => [
-    \Foxws\WireUse\Support\Livewire\StateObjects\SupportStateObjects::class,
-],
-```
+This can be used to make your Livewire component more lightweight, and to separate code. It is also helpful to shared state and use it in sub-components (tabs, wizards, filtering, etc.).
 
 ## Usage
 
@@ -66,26 +61,21 @@ class PostViewController extends Page
 }
 ```
 
-You can call any state objects in your Blade components:
+You can call any state object in your Blade components:
 
-@verbatim
 ```php
 <div class="container">
     <p>{{ $this->state->tags() }}></p>
     <p>{{ $this->state->id }}></p>
 </div>
 ```
-@endverbatim
 
-The `Foxws\WireUse\States\Concerns\WithState` trait can be used to reactively inject a state object into a subcomponent.
+The `Foxws\WireUse\States\Concerns\WithState` trait can be used to reactively inject a state object into a sub-component.
 
-@verbatim
 ```php
 <livewire:post-edit-details :$state />
 ```
-@endverbatim
 
-@verbatim
 ```php
 use Foxws\WireUse\States\Concerns\WithState;
 use Livewire\Component;
@@ -103,6 +93,5 @@ class PostEditDetails extends Component
     }
 }
 ```
-@endverbatim
 
 > Note: At the moment it only works if the parent variable is named or injected as `$state`.

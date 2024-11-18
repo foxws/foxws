@@ -64,8 +64,6 @@ class ViewServiceProvider extends ServiceProvider
 
 To call a registered Blade component:
 
-@verbatim
-
 ```php
 <x-web.posts.card :$item />
 ```

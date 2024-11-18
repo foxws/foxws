@@ -21,10 +21,20 @@ class Project extends Model
 {
     use Sushi;
 
+    /**
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * @var string
+     */
+    protected $keyType = 'string';
+
     protected function casts(): array
     {
         return [
-            'slug' => 'string',
+            'id' => 'string',
             'name' => 'string',
             'content' => 'string',
             'summary' => 'string',
@@ -104,7 +114,7 @@ class Project extends Model
             $meta = $item->getFrontMatter();
 
             return [
-                'slug' => $this->generateSlug($item),
+                'id' => $this->generateSlug($item),
                 'name' => data_get($meta, 'title'),
                 'summary' => data_get($meta, 'summary'),
                 'content' => $item->getContent(),

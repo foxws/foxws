@@ -6,6 +6,7 @@ namespace App\Web\Landing\Controllers;
 
 use Domain\Projects\Models\Project;
 use Foxws\WireUse\Views\Support\Page;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;

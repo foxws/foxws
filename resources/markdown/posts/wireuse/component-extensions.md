@@ -3,8 +3,10 @@ title: Extending Components
 project: wireuse
 order: 2
 tags:
-  - eloquent
-  - collection
+  - blade
+  - controllers
+  - livewire
+  - views
 ---
 
 ## Introduction
@@ -13,7 +15,7 @@ WireUse offers a set of classes and traits that may be included on your [Blade C
 
 > Traits can also be used separately in their own component.
 
-### Page Controllers
+## Page Controllers
 
 The `Foxws\WireUse\Views\Support\Page` extends `Livewire\Component`, and can serve as a Livewire controller:
 
@@ -48,7 +50,7 @@ The `Page` class  and includes the following traits:
 - `WithHash` - Can be used to generate a hash for the given component.
 - `WithSeo` - Can be used to generate SEO using [ralphjsmit/laravel-seo](https://github.com/ralphjsmit/laravel-seo).
 
-### Blade Component
+## Blade Component
 
 The `Foxws\WireUse\Views\Support\Component` extends `Illuminate\View\Component`, and may be usable for Blade components:
 

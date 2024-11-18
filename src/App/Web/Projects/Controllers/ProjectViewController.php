@@ -22,7 +22,11 @@ class ProjectViewController extends Page
     #[Computed(cache: false)]
     public function items(): Collection
     {
-        return $this->project->posts;
+        return $this
+            ->project
+            ->posts()
+            ->ordered()
+            ->get();
     }
 
     protected function getTitle(): string

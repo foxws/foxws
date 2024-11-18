@@ -21,8 +21,7 @@ class HomeController extends Page
     protected function items(): Collection
     {
         return Project::query()
-            ->orderBy('order')
-            ->orderByDesc('updated_at')
+            ->ordered()
             ->get();
     }
 

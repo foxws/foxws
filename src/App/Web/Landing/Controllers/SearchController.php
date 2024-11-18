@@ -35,7 +35,7 @@ class SearchController extends Page
     {
         return Search::onIndex('foxws')
             ->query($this->form->getQuery() ?: '*')
-            ->limit(5)
+            ->limit(10)
             ->get();
     }
 

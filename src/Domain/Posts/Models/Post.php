@@ -40,7 +40,7 @@ class Post extends Model
     {
         return [
             'id' => 'string',
-            'project_id' => 'integer',
+            'project_id' => 'string',
             'name' => 'string',
             'content' => 'string',
             'summary' => 'string',

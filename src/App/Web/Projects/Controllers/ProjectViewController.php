@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Web\Projects\Controllers;
 
 use App\Web\Projects\Concerns\WithProject;
+use Domain\Posts\Actions\GetMarkdownPosts;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -22,12 +23,11 @@ class ProjectViewController extends Page
     #[Computed(cache: false)]
     public function items(): Collection
     {
+        dd(app(GetMarkdownPosts::class)->execute());
+
         return $this
             ->project
-            ->posts()
-            ->orderBy('order_column')
-            ->orderBy('created_at')
-            ->get();
+            ->posts();
     }
 
     protected function getTitle(): string

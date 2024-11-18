@@ -71,6 +71,7 @@ return [
      * More info: https://commonmark.thephpleague.com/2.4/extensions/overview/
      */
     'extensions' => [
+        League\CommonMark\Extension\FrontMatter\FrontMatterExtension::class,
         Spatie\CommonMarkWireNavigate\WireNavigateExtension::class,
     ],
 

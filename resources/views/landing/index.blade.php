@@ -4,7 +4,7 @@
     html()->div()->class('page-content')->children([
         html()->div()->children([
             html()->element('h1')->text('Current Projects'),
-            html()->element('p')->text('The following projects will receive updates and are documented:'),
+            html()->element('p')->text('The following projects are currently maintained and open source available:'),
 
             html()->element('table')->class('table-auto')->children([
                 html()->element('thead')->child(

@@ -29,6 +29,9 @@ class AppInstall extends Command implements Isolatable
         // Create symlinks
         $this->call('storage:link');
 
+        // Create site-index
+        $this->call('site-search:create-index');
+
         // Perform update
         $this->call('app:update', ['--assets' => true]);
     }

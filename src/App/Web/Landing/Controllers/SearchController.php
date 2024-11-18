@@ -31,7 +31,7 @@ class SearchController extends Page
     }
 
     #[Computed]
-    public function results(): SearchResults
+    public function items(): SearchResults
     {
         return Search::onIndex('foxws')
             ->query($this->form->getQuery() ?: '*')

@@ -70,7 +70,7 @@ You can call any state object in your Blade components:
 </div>
 ```
 
-The `Foxws\WireUse\States\Concerns\WithState` trait can be used to reactively inject a state object into a sub-component.
+The `Foxws\WireUse\States\Concerns\WithState` trait can be used to reactively inject a state object into a sub-component:
 
 ```php
 <livewire:post-edit-details :$state />

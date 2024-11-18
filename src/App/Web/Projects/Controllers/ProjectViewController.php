@@ -23,11 +23,7 @@ class ProjectViewController extends Page
     #[Computed(cache: false)]
     public function items(): Collection
     {
-        dd(app(GetMarkdownPosts::class)->execute());
-
-        return $this
-            ->project
-            ->posts();
+        return $this->project->posts;
     }
 
     protected function getTitle(): string

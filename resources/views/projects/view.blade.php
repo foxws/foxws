@@ -25,14 +25,14 @@
                 ]),
             ),
 
-            html()->element('tbody')->children($this->items, fn (Post $item) => html()
+            html()->element('tbody')->children($this->items, fn ($item) => html()
                 ->element('tr')
                 ->children([
-                    html()->element('td')->child(
-                        html()->a()->link('posts.view', ['project' => $item->project, 'post' => $item])->text($item->name),
-                    ),
+                    // html()->element('td')->child(
+                    //     html()->a()->link('posts.view', ['project' => $item->project, 'post' => $item])->text($item->name),
+                    // ),
 
-                    html()->element('td')->text($item->date_updated),
+                    // html()->element('td')->text($item->date_updated),
                 ]),
             ),
         ])

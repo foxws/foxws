@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Number;
+use League\CommonMark\Extension\FrontMatter\Input\MarkdownInputWithFrontMatter;
+use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use Sushi\Sushi;
 
 class Post extends Model
@@ -15,20 +19,10 @@ class Post extends Model
     use Sushi;
 
     /**
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * @var string
-     */
-    protected $keyType = 'string';
-
-    /**
      * @var array<int, string>
      */
     protected $with = [
-        'project',
+        // 'project',
     ];
 
     public function project(): BelongsTo
@@ -38,18 +32,19 @@ class Post extends Model
 
     public function getRows(): array
     {
-        $posts = app(GetMarkdownPosts::class)->execute();
+        return $this->getDocuments()->map(function (RenderedContentWithFrontMatter $html) {
+            $document = $html->getDocument();
+            $meta = $html->getFrontMatter();
 
-        dd($posts);
-
-        return [];
-    }
-
-    public function bladeView(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => implode('.', ['posts', $this->project_id, $this->id])
-        )->shouldCache();
+            return [
+                'project_id' => data_get($meta, 'project'),
+                'title' => data_get($meta, 'title'),
+                'starts' => $document->getStartLine(),
+                'content' => $html->getContent(),
+                'created_at' => data_get($meta, 'created', now()),
+                'updated_at' => data_get($meta, 'updated', now()),
+            ];
+        })->values()->all();
     }
 
     public function dateCreated(): Attribute
@@ -78,6 +73,11 @@ class Post extends Model
         return Attribute::make(
             get: fn () => Carbon::make($this->updated_at)->diffForHumans()
         )->shouldCache();
+    }
+
+    protected function getDocuments(): Collection
+    {
+        return app(GetMarkdownPosts::class)->execute();
     }
 
     protected function sushiShouldCache(): bool

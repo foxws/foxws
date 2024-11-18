@@ -1,5 +1,5 @@
 ---
-layout: post
+project: wireuse
 title: I Love Markdown
 tags:
   - test

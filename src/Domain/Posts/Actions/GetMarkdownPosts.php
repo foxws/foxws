@@ -15,7 +15,7 @@ class GetMarkdownPosts
 {
     public function execute(): Collection
     {
-        return collect($this->getMarkdowns()->getIterator())
+        return collect($this->getMarkdowns())
             ->map(fn (SplFileInfo $file) => $this->parseMarkdown($file))
             ->filter(fn (RenderedContentInterface $html) => $html instanceof RenderedContentWithFrontMatter)
             ->sortBy([

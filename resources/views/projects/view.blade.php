@@ -15,6 +15,8 @@
 
         <x-markdown>{!! $project->content !!}</x-markdown>
 
+        {{ html()->element('h4')->text('Documentation') }}
+
         {{ html()->element('table')->class('table-auto')->children([
             html()->element('thead')->child(
                 html()->element('tr')->children([

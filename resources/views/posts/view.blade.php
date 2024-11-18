@@ -17,7 +17,7 @@
                 ])
         ]) }}
 
-        @markdown($post->content)
+        <x-markdown>{!! $post->content !!}</x-markdown>
     {{ html()->div()->close() }}
 
     {{ html()->div()->class('pt-6 navbar gap-3 border-t border-primary-700/80')->children([

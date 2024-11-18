@@ -59,10 +59,8 @@ class Project extends Model
 
     public function getRows(): mixed
     {
-        // TODO: testing remove this
-        Cache::forget('projects');
-
-        return Cache::remember('projects', now()->addMinutes(5),
+        // TODO: increase cache time
+        return Cache::remember('projects', now()->addSecond(1),
             fn () => $this->getDocuments()->toArray()
         );
     }

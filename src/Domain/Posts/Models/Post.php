@@ -63,10 +63,8 @@ class Post extends Model
 
     public function getRows(): mixed
     {
-        // TODO: testing remove this
-        Cache::forget('posts');
-
-        return Cache::remember('posts', now()->addMinutes(5),
+        // TODO: increase cache time
+        return Cache::remember('posts', now()->addSecond(),
             fn () => $this->getDocuments()->toArray()
         );
     }
@@ -74,14 +72,14 @@ class Post extends Model
     public function next(): Attribute
     {
         return Attribute::make(
-            get: fn () => static::find($this->order + 1)
+            get: fn () => static::firstWhere('order', $this->order + 1)
         )->shouldCache();
     }
 
     public function previous(): Attribute
     {
         return Attribute::make(
-            get: fn () => static::find($this->order - 1)
+            get: fn () => static::firstWhere('order', $this->order - 1)
         )->shouldCache();
     }
 

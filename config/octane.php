@@ -189,7 +189,7 @@ return [
         'config/**/*.php',
         'database/**/*.php',
         'public/**/*.php',
-        'resources/**/*.php',
+        'resources',
         'routes',
         'src',
         'vendor',

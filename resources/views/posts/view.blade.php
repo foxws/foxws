@@ -9,14 +9,14 @@
                 ])
                 ->children([
                     html()->element('dt')->text('Updated')->class('sr-only'),
-                    html()->element('dd')->text("Updated {$post->diff_updated}"),
+                    html()->element('dd')->text("Last updated {$post->diff_updated}"),
                 ])
         ]) }}
 
         <x-markdown>{!! $post->content !!}</x-markdown>
     {{ html()->div()->close() }}
 
-    {{-- {{ html()->div()->class('pt-6 navbar gap-3 border-t border-primary-700/80')->children([
+    {{ html()->div()->class('pt-6 navbar gap-3 border-t border-primary-700/80')->children([
         html()->div()->class('navbar-center flex-wrap gap-3')
             ->childIf($post->previous, html()->a()->class('btn btn-outlined')->link('posts.view', $post->previous ?? $post)->children([
                 html()->icon()->svg('heroicon-o-chevron-left', 'size-3.5'),
@@ -26,5 +26,5 @@
                 html()->icon()->svg('heroicon-o-chevron-right', 'size-3.5'),
                 html()->span()->text($post->next?->name)
         ])),
-    ]) }} --}}
+    ]) }}
 {{ html()->div()->close() }}

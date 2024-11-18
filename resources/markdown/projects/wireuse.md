@@ -8,22 +8,19 @@ tags:
   - livewire
 ---
 
-## Installation
+## What is WireUse?
 
-> Note: This package requires PHP 8.2 or higher, and Laravel 10.x/11.x.
+WireUse is a collection of helpful utilities for [Livewire V3](https://livewire.laravel.com/).
 
-You can install the package using Composer:
+This package tries to rely on functionalities that both Livewire and Laravel already offer,
+and offer useful features and utilities on top of that.
 
-```bash
-composer require foxws/wireuse
-```
+The goal is to be minimal, and to give you as a developer tools to build your own set of Livewire and Blade components.
 
-Optionally, you can publish the config file with:
+## Can I combine WireUse with other packages?
 
-```bash
-php artisan vendor:publish --tag="wireuse-config"
-```
+In most cases, yes!<br>
+It can be used as an extension in your own projects, and also when developing packages.
 
-## Changelog
-
-Please see the [changelog](https://github.com/foxws/wireuse/blob/3.x/CHANGELOG.md) for more information on what has changed recently.
+Keep in mind packages like [Filament](https://filamentphp.com/) implement their own route logic, set of utilities and components.<br>
+This means some features of WireUse may not usable in Filament.

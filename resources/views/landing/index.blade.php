@@ -34,7 +34,7 @@
 
         html()->div()->children([
             html()->element('h2')->text('Get in touch'),
-            html()->element('p')->html('If you would like to send me a message, you can do so on <a href="https://github.com/francoism90/">GitHub</a> or my <a href="https://www.linkedin.com/in/francoismenning/">LinkedIn</a>.'),
+            html()->element('p')->html('If you would like to contribute or send me a message, you can do so on <a href="https://github.com/francoism90/">GitHub</a> or my <a href="https://www.linkedin.com/in/francoismenning/">LinkedIn</a>.'),
         ]),
     ]),
 ]) }}

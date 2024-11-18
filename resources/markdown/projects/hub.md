@@ -1,9 +1,11 @@
 ---
-title: Installing WireUse
-project: wireuse
-order: 0
+title: Hub
+summary: Collection of useful Livewire utilities.
+type: personal
+order: 4
 tags:
-  - setup
+  - laravel
+  - livewire
 ---
 
 ## Installation

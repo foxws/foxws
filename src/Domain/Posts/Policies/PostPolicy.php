@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Posts\Policies;
 
 use Domain\Posts\Models\Post;

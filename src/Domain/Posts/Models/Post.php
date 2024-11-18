@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Posts\Models;
 
 use Domain\Posts\Actions\GetMarkdownDocuments;
@@ -118,7 +120,7 @@ class Post extends Model
 
         $value = fn (string $key) => data_get($meta, $key, '');
 
-        return str("{$value('project')} {$value('title')}")->slug();
+        return str("{$value('project')} {$value('title')}")->slug()->value();
     }
 
     protected function getDocuments(): Collection

@@ -101,7 +101,7 @@ class Project extends Model
 
         $value = fn (string $key) => data_get($meta, $key, '');
 
-        return str($value('name') ?: $value('title'))->slug();
+        return str($value('name') ?: $value('title'))->slug()->value();
     }
 
     protected function getDocuments(): Collection

@@ -1,25 +1,22 @@
 <?php
 
-namespace App\Landing\Controllers;
+declare(strict_types=1);
 
-use App\Landing\Forms\SearchForm;
+namespace App\Web\Landing\Controllers;
+
+use App\Web\Landing\Forms\SearchForm;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Layout;
 use Spatie\SiteSearch\Search;
 use Spatie\SiteSearch\SearchResults\SearchResults;
 
-#[Layout('components.layouts.app')]
 class SearchController extends Page
 {
     public SearchForm $form;
 
     public function mount(): void
     {
-        $this->seo()->setTitle(__('Search'));
-        $this->seo()->setDescription(__('Search for articles, posts and projects.'));
-
         $this->form->restore();
     }
 
@@ -61,5 +58,15 @@ class SearchController extends Page
         unset($this->items);
 
         $this->dispatch('$refresh');
+    }
+
+    protected function getTitle(): string
+    {
+        return __('Search');
+    }
+
+    protected function getDesciption(): string
+    {
+        return __('Search for articles, posts and projects.');
     }
 }

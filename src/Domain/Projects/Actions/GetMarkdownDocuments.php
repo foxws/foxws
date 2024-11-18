@@ -27,7 +27,7 @@ class GetMarkdownDocuments
 
     protected function getDocuments(): Finder
     {
-        return (new Finder())
+        return (new Finder)
             ->files()
             ->depth('< 5')
             ->in(config('settings.markdown.projects_path', resource_path('markdown/projects')))

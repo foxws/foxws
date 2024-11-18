@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Projects\Models;
 
 use Domain\Posts\Models\Post;
 use Domain\Projects\Actions\GetMarkdownDocuments;
 use Domain\Projects\Enums\ProjectType;
 use Domain\Projects\QueryBuilders\ProjectQueryBuilder;
-use Foxws\ModelCache\Concerns\InteractsWithModelCache;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

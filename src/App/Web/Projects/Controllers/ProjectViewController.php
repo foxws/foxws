@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Web\Projects\Controllers;
 
 use App\Web\Projects\Concerns\WithProject;
-use Domain\Posts\Actions\GetMarkdownPosts;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;

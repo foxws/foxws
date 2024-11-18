@@ -11,7 +11,7 @@
                 html()->span('Github')->class('text-primary-300 hover:text-primary-300')
             ),
 
-            html()->a()->link('home')->attribute('aria-label', __('Search'))->child(
+            html()->a()->link('search')->attribute('aria-label', __('Search'))->child(
                 html()->icon()->svg('heroicon-o-magnifying-glass', 'size-6 text-inherit'),
             ),
         ]),

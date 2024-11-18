@@ -9,7 +9,9 @@ tags:
 
 ## Introduction
 
-By default the dehydrated value of Laravel Model properties sent over Livewire might look something like this:
+> See the following [GitHub Discussion](https://github.com/livewire/livewire/discussions/2627) for more details.
+
+By default the dehydrated value of model properties sent over Livewire might look something like this:
 
 ```json
 {
@@ -20,7 +22,7 @@ By default the dehydrated value of Laravel Model properties sent over Livewire m
 }
 ```
 
-The provided property synthesizers try to hide the model IDs, by forcing the model [route-key](https://laravel.com/docs/11.x/routing#customizing-the-key):
+The provided property synthesizers try to hide the model IDs, by forcing the model [route-key](https://laravel.com/docs/11.x/routing#customizing-the-key) instead of the `key`:
 
 ```json
 {
@@ -38,8 +40,6 @@ To use the property synthesizers, create a custom [Service Provider](https://lar
 ```bash
 php artisan make:provider LivewireServiceProvider
 ```
-
-> Tip: It is recommended to also apply [Enforcing Morph Maps](https://livewire.laravel.com/docs/properties#properties-expose-system-information-to-the-browser).
 
 Adjust the `boot` method:
 
@@ -70,5 +70,7 @@ class LivewireServiceProvider extends ServiceProvider
 ```
 
 > Warning: This will replace parts of the Livewire model binding property synthesizers. Be careful and test the adjustments!
+
+It is recommended to also apply [Enforcing Morph Maps](https://livewire.laravel.com/docs/properties#properties-expose-system-information-to-the-browser).
 
 If you need to use model keys in your views and collections, it is recommended to use `$model->getRouteKey()` instead of `$model->getKey()`/`$model->id`.

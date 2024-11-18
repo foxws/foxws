@@ -20,7 +20,7 @@
         html()
             ->element('main')
             ->attribute('wire:poll.900s')
-            ->class('grid grid-cols-1 gap-4')
+            ->class('grid grid-cols-1 py-3 gap-4')
             ->children($this->items->hits, fn (Hit $item) => html()
                 ->a()
                 ->href($item->url)

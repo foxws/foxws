@@ -3,6 +3,7 @@
 namespace Domain\Posts\Models;
 
 use Domain\Posts\Actions\GetMarkdownPosts;
+use Domain\Posts\QueryBuilders\PostQueryBuilder;
 use Domain\Projects\Models\Project;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -18,21 +19,16 @@ class Post extends Model
     use Sushi;
 
     /**
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * @var string
-     */
-    protected $keyType = 'string';
-
-    /**
      * @var array<int, string>
      */
     protected $with = [
         'project',
     ];
+
+    public function newEloquentBuilder($query): PostQueryBuilder
+    {
+        return new PostQueryBuilder($query);
+    }
 
     public function project(): BelongsTo
     {
@@ -46,7 +42,7 @@ class Post extends Model
             $meta = $html->getFrontMatter();
 
             return [
-                'id' => $this->generateSlug($html),
+                'slug' => $this->generateSlug($html),
                 'project_id' => data_get($meta, 'project'),
                 'name' => data_get($meta, 'title'),
                 'starts' => $document->getStartLine(),
@@ -55,6 +51,20 @@ class Post extends Model
                 'updated_at' => data_get($meta, 'updated', now()),
             ];
         })->values()->all();
+    }
+
+    public function next(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => static::find($this->id + 1)
+        )->shouldCache();
+    }
+
+    public function previous(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => static::find($this->id - 1)
+        )->shouldCache();
     }
 
     public function dateCreated(): Attribute

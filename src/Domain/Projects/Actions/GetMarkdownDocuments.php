@@ -6,32 +6,63 @@ namespace Domain\Projects\Actions;
 
 use Illuminate\Support\Collection;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
-use League\CommonMark\Output\RenderedContentInterface;
-use Spatie\LaravelMarkdown\MarkdownRenderer;
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\SplFileInfo;
+use League\CommonMark\Output\RenderedContent;
 
 class GetMarkdownDocuments
 {
     public function execute(): Collection
     {
-        return collect($this->getDocuments())
-            ->map(fn (SplFileInfo $file) => $this->parseMarkdown($file))
-            ->filter(fn (RenderedContentInterface $html) => $html instanceof RenderedContentWithFrontMatter);
+        $collect = app(FindMarkdownDocuments::class)->execute();
+
+        return $collect->map(function (RenderedContentWithFrontMatter $item) {
+            $document = $item->getDocument();
+            $meta = $item->getFrontMatter();
+
+            return [
+                'id' => $this->generateSlug($item),
+                'name' => data_get($meta, 'title'),
+                'summary' => data_get($meta, 'summary'),
+                'content' => $item->getContent(),
+                'github' => data_get($meta, 'github'),
+                'type' => data_get($meta, 'type'),
+                'starts' => $document->getStartLine(),
+                'order' => data_get($meta, 'order', 0),
+                'created_at' => data_get($meta, 'created', now()),
+                'updated_at' => data_get($meta, 'updated', now()),
+            ];
+        })->values();
     }
 
-    protected function parseMarkdown(SplFileInfo $file): RenderedContentInterface
+    protected function getDocuments(): Collection
     {
-        return app(MarkdownRenderer::class)->convertToHtml($file->getContents());
+        $collect = app(GetMarkdownDocuments::class)->execute();
+
+        return $collect->map(function (RenderedContentWithFrontMatter $item) {
+            $document = $item->getDocument();
+            $meta = $item->getFrontMatter();
+
+            return [
+                'id' => $this->generateSlug($item),
+                'name' => data_get($meta, 'title'),
+                'summary' => data_get($meta, 'summary'),
+                'content' => $item->getContent(),
+                'github' => data_get($meta, 'github'),
+                'type' => data_get($meta, 'type'),
+                'starts' => $document->getStartLine(),
+                'order' => data_get($meta, 'order', 0),
+                'created_at' => data_get($meta, 'created', now()),
+                'updated_at' => data_get($meta, 'updated', now()),
+            ];
+        })->values();
     }
 
-    protected function getDocuments(): Finder
+    protected function generateSlug(RenderedContent $html): string
     {
-        return (new Finder)
-            ->files()
-            ->depth('< 5')
-            ->in(config('settings.markdown.projects_path', resource_path('markdown/projects')))
-            ->name('*.md')
-            ->sortByName();
+        /** @var RenderedContentWithFrontMatter $html */
+        $meta = $html->getFrontMatter();
+
+        $value = fn (string $key) => data_get($meta, $key, '');
+
+        return str($value('name') ?: $value('title'))->slug()->value();
     }
 }

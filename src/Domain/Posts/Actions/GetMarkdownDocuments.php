@@ -6,32 +6,40 @@ namespace Domain\Posts\Actions;
 
 use Illuminate\Support\Collection;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
-use League\CommonMark\Output\RenderedContentInterface;
-use Spatie\LaravelMarkdown\MarkdownRenderer;
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\SplFileInfo;
+use League\CommonMark\Output\RenderedContent;
 
 class GetMarkdownDocuments
 {
     public function execute(): Collection
     {
-        return collect($this->getDocuments())
-            ->map(fn (SplFileInfo $file) => $this->parseMarkdown($file))
-            ->filter(fn (RenderedContentInterface $html) => $html instanceof RenderedContentWithFrontMatter);
+        $collect = app(FindMarkdownDocuments::class)->execute();
+
+        return $collect->map(function (RenderedContentWithFrontMatter $item) {
+            $document = $item->getDocument();
+            $meta = $item->getFrontMatter();
+
+            return [
+                'id' => $this->generateSlug($item),
+                'project_id' => data_get($meta, 'project'),
+                'name' => data_get($meta, 'title'),
+                'summary' => data_get($meta, 'summary'),
+                'content' => $item->getContent(),
+                'type' => data_get($meta, 'type'),
+                'order' => data_get($meta, 'order', 0),
+                'starts' => $document->getStartLine(),
+                'created_at' => data_get($meta, 'created', now()),
+                'updated_at' => data_get($meta, 'updated', now()),
+            ];
+        })->values();
     }
 
-    protected function parseMarkdown(SplFileInfo $file): RenderedContentInterface
+    protected function generateSlug(RenderedContent $html): string
     {
-        return app(MarkdownRenderer::class)->convertToHtml($file->getContents());
-    }
+        /** @var RenderedContentWithFrontMatter $html */
+        $meta = $html->getFrontMatter();
 
-    protected function getDocuments(): Finder
-    {
-        return (new Finder)
-            ->files()
-            ->depth('< 5')
-            ->in(config('settings.markdown.posts_path', resource_path('markdown/posts')))
-            ->name('*.md')
-            ->sortByName();
+        $value = fn (string $key) => data_get($meta, $key, '');
+
+        return str("{$value('project')} {$value('title')}")->slug()->value();
     }
 }

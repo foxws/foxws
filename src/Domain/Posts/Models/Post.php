@@ -65,8 +65,7 @@ class Post extends Model
 
     public function getRows(): mixed
     {
-        // TODO: increase cache time
-        return Cache::remember('posts', now()->addSecond(),
+        return Cache::remember('posts', config('settings.cache_duration', 60 * 60),
             fn () => $this->getDocuments()->toArray()
         );
     }

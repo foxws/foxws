@@ -13,7 +13,7 @@ tags:
 
 WireUse offers a set of classes and traits that may be included on your [Blade Component](https://laravel.com/docs/11.x/blade#components) and [Livewire Components](https://livewire.laravel.com/docs/components).
 
-> Traits can also be used separately in their own component.
+> Traits may also be used separately in own components.
 
 ## Page Controllers
 
@@ -52,7 +52,7 @@ The `Page` class  and includes the following traits:
 
 ## Blade Component
 
-The `Foxws\WireUse\Views\Support\Component` extends `Illuminate\View\Component`, and may be usable for Blade components:
+The `Foxws\WireUse\Views\Support\Component` class extends `Illuminate\View\Component`, and may be usable for Blade components:
 
 ```php
 use Foxws\WireUse\Views\Support\Component;

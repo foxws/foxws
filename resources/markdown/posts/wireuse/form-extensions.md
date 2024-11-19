@@ -80,7 +80,7 @@ When submitting a form using the `$form->submit()` method, the following steps w
 5. Call `store()` - This is used to store the form in current session when `$store` is set to `true`.
 6. Call hook `beforeHandle()` - Useful to transform values before given to the handle for processing.
 7. Call `handle()` - This should be used for the actually logic.
-8. Call hook `afterHandle()` - Useful to redirect users after all is processed.
+8. Call hook `afterHandle()` - Useful to redirect users or any other action after processing.
 
 ### Concerns
 

@@ -3,6 +3,7 @@ title: Installing WireUse
 project: wireuse
 order: 0
 tags:
+  - getting started
   - setup
 ---
 

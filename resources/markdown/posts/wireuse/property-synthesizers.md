@@ -22,7 +22,7 @@ By default the dehydrated value of model properties sent over Livewire might loo
 }
 ```
 
-When using our property synthesizers it try to hide the model IDs, by forcing the model [route-key](https://laravel.com/docs/11.x/routing#customizing-the-key) instead of the `key`:
+When using our property synthesizers it tries to hide the model IDs, by forcing the model [route-key](https://laravel.com/docs/11.x/routing#customizing-the-key) instead of the actual model `key`:
 
 ```json
 {

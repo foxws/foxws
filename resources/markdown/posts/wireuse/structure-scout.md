@@ -14,7 +14,7 @@ If you have a lot of Blade or Livewire components, it may take a lot of work to 
 
 The component scout can help with this. It is supported by [spatie/php-structure-discoverer](https://github.com/spatie/php-structure-discoverer) package, which also offers benefits such as caching.
 
-It is recommend to use a domain-driven-design (DDD) pattern, such as `src/App/Posts/Components/Card.php`. Spatie offers an excellent in [dept course](https://spatie.be/products/laravel-beyond-crud>) about DDD.
+It is recommend to use a domain-driven-design (DDD) pattern, such as `src/App/Posts/Components/Card.php`. Spatie offers an excellent in [dept course](https://spatie.be/products/laravel-beyond-crud) about DDD.
 
 ## Configuration
 

@@ -12,7 +12,7 @@ tags:
 
 State objects are based on the idea of states that you find, for example, in a VueJS Store.
 
-This can be used to make your Livewire component more lightweight, and to separate code. It is also helpful to shared state and use it in sub-components (tabs, wizards, filtering, etc.).
+This can be used to make your Livewire component more lightweight, and to separate code. It is also helpful to shared state and passing to sub-components (tabs, wizards, filtering, modals, etc.).
 
 ## Usage
 

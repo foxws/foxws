@@ -80,6 +80,7 @@ printf "dop_v1_TOKENSTRING" | podman secret create do_auth_token
 To passport protect the Traefik dashboard, generate an [user:password pair](https://doc.traefik.io/traefik/middlewares/http/basicauth/#usersfile):
 
 ```bash
+sudo dnf install httpd-tools
 echo -n $(htpasswd -nB user) > ./usersfile
 podman secret create usersfile ./usersfile
 ```

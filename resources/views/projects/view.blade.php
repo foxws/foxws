@@ -15,26 +15,28 @@
 
         <x-markdown>{!! $project->content !!}</x-markdown>
 
-        {{ html()->element('h4')->text('Documentation') }}
+        @if ($this->items->isNotEmpty())
+            {{ html()->element('h4')->text('Documentation') }}
 
-        {{ html()->element('table')->class('table-auto')->children([
-            html()->element('thead')->child(
-                html()->element('tr')->children([
-                    html()->element('th')->text('Subject'),
-                    html()->element('th')->text('Last Updated'),
-                ]),
-            ),
+            {{ html()->element('table')->class('table-auto')->children([
+                html()->element('thead')->child(
+                    html()->element('tr')->children([
+                        html()->element('th')->text('Subject'),
+                        html()->element('th')->text('Last Updated'),
+                    ]),
+                ),
 
-            html()->element('tbody')->children($this->items, fn ($item) => html()
-                ->element('tr')
-                ->children([
-                    html()->element('td')->child(
-                        html()->a()->link('posts.view', $item)->text($item->name),
-                    ),
+                html()->element('tbody')->children($this->items, fn ($item) => html()
+                    ->element('tr')
+                    ->children([
+                        html()->element('td')->child(
+                            html()->a()->link('posts.view', $item)->text($item->name),
+                        ),
 
-                    html()->element('td')->text($item->date_updated),
-                ]),
-            ),
-        ]) }}
+                        html()->element('td')->text($item->date_updated),
+                    ]),
+                ),
+            ]) }}
+        @endif
     {{ html()->div()->close() }}
 {{ html()->div()->close() }}

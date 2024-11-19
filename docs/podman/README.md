@@ -36,9 +36,19 @@ cd ~/projects/foxws
 
 ### Systemd units
 
-Copy the `systemd` directory to `~/.config/containers`, verify the path `~/.config/containers/systemd/foxws` exists.
+Copy the `systemd` directory to `~/.config/containers`, verify the path `~/.config/containers/systemd/foxws` exists:
 
-Adjust environment files in `~/.config/containers/systemd/foxws/config`, update `~/projects/foxws/.env` to reflect any systemd unit changes.
+```bash
+cd ~/projects/foxws
+cp -r docs/podman/containers/systemd ~/.config/containers/
+```
+
+Adjust environment files in `~/.config/containers/systemd/foxws/config`, update `~/projects/foxws/.env` to reflect any systemd unit changes:
+
+```bash
+cd ~/.config/containers/systemd/foxws/config
+vi app.env dev.env ..
+```
 
 ### Configure Proxy
 

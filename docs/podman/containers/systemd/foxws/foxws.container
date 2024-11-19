@@ -20,7 +20,7 @@ Network=foxws.network
 Network=traefik.network
 LogDriver=none
 Label=traefik.enable=true
-Label=traefik.http.routers.foxws.rule="Host(`foxws.lan`) || Host(`ws.foxws.lan`)"
+Label=traefik.http.routers.foxws.rule="Host(`foxws.nl`) || Host(`ws.foxws.nl`)"
 Label=traefik.http.routers.foxws.entrypoints=websecure
 Label=traefik.http.routers.foxws.tls=true
 Label=traefik.http.routers.foxws.service="foxws"

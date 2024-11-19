@@ -19,12 +19,12 @@ Network=traefik.network
 ExposeHostPort=8900
 ExposeHostPort=9000
 Label=traefik.enable=true
-Label=traefik.http.routers.minio.rule="Host(`mc.foxws.lan`)"
+Label=traefik.http.routers.minio.rule="Host(`mc.foxws.nl`)"
 Label=traefik.http.routers.minio.entrypoints=websecure
 Label=traefik.http.routers.minio.tls=true
 Label=traefik.http.routers.minio.service="minio"
 Label=traefik.http.services.minio.loadbalancer.server.port="8900"
-Label=traefik.http.routers.s3.rule="Host(`s3.foxws.lan`)"
+Label=traefik.http.routers.s3.rule="Host(`s3.foxws.nl`)"
 Label=traefik.http.routers.s3.entrypoints=websecure
 Label=traefik.http.routers.s3.tls=true
 Label=traefik.http.routers.s3.service="s3"

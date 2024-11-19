@@ -12,7 +12,7 @@ Run installer:
 foxws a app:install
 ```
 
-Update site-index with:
+Update site-index `extra` field with:
 
 ```json
 {"meilisearch":{"url":"http:\/\/systemd-foxws-meilisearch:7700","apiKey":"MELISEARCH_API_KEY"}}

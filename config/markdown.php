@@ -44,7 +44,7 @@ return [
      * the default cache store will be used. If you do not want to use
      * caching set this value to `false`.
      */
-    'cache_store' => null,
+    'cache_store' => env('app.env') === 'local' ? false : null,
 
     /*
      * When cache_store is enabled, this value will be used to determine
@@ -52,7 +52,7 @@ return [
      * cache will never expire.
      *
      */
-    'cache_duration' => 604800,
+    'cache_duration' => 60 * 60 * 24 * 7,
 
     /*
      * This class will convert markdown to HTML
@@ -71,6 +71,7 @@ return [
      * More info: https://commonmark.thephpleague.com/2.4/extensions/overview/
      */
     'extensions' => [
+        League\CommonMark\Extension\FrontMatter\FrontMatterExtension::class,
         Spatie\CommonMarkWireNavigate\WireNavigateExtension::class,
     ],
 

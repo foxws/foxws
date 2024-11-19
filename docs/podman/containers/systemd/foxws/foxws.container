@@ -1,0 +1,30 @@
+[Unit]
+Description=Nginx container
+Requires=foxws-app.service
+After=foxws-app.service
+
+[Service]
+EnvironmentFile=%h/.config/containers/systemd/foxws/config/app.env
+TimeoutStartSec=900
+Restart=always
+
+[Container]
+Image=localhost/foxws-nginx:latest
+AutoUpdate=local
+EnvironmentFile=%h/.config/containers/systemd/foxws/config/nginx.env
+Volume=${APP_PATH}:/app:ro,z
+User=${UID}
+Group=${GID}
+UserNS=keep-id:uid=${UID},gid=${GID}
+Network=foxws.network
+Network=traefik.network
+LogDriver=none
+Label=traefik.enable=true
+Label=traefik.http.routers.foxws.rule="Host(`foxws.lan`) || Host(`ws.foxws.lan`)"
+Label=traefik.http.routers.foxws.entrypoints=websecure
+Label=traefik.http.routers.foxws.tls=true
+Label=traefik.http.routers.foxws.service="foxws"
+Label=traefik.http.services.foxws.loadbalancer.server.port="8080"
+
+[Install]
+WantedBy=multi-user.target

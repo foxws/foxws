@@ -1,45 +1,31 @@
 @setup
     $repository = 'git@github.com:foxws/foxws.git';
     $branch = 'main';
-    $baseDir = '/home/foxws/foxws';
+    $remote = 'foxws';
+    $remotePath = '/home/foxws/foxws';
 @endsetup
 
-@servers(['remote' => 'foxws'])
+@servers(['remote' => $remote])
 
 @story('deploy')
     maintenance-mode
     update-repository
-    build-containers
-    restart-containers
     install-dependencies
-    clear-caches
+    generate-assets
     update-application
-    build-assets
-    restart-services
+    optimize-application
+    finish-deploy
 @endstory
 
-@task('setup-environment', ['on' => 'remote'])
-    mkdir -p {{ $baseDir }}
-    git clone --depth 1 {{ $repository }} {{ $baseDir }}
-@endtask
+@story('deploy-build')
+    maintenance-mode
+    update-repository
+    build-containers
+    finish-deploy
+@endstory
 
 @task('maintenance-mode', ['on' => 'remote'])
     podman exec -it systemd-foxws-app php artisan down --with-secret
-@endtask
-
-@task('update-repository', ['on' => 'remote'])
-    cd {{ $baseDir }}
-    git pull origin {{ $branch }}
-@endtask
-
-@task('build-containers', ['on' => 'remote'])
-    cd {{ $baseDir }}/podman
-    ./make
-@endtask
-
-@task('restart-containers', ['on' => 'remote'])
-    systemctl --user daemon-reload
-    systemctl --user restart foxws-app foxws
 @endtask
 
 @task('install-dependencies', ['on' => 'remote'])
@@ -49,26 +35,46 @@
     ";
 @endtask
 
-@task('clear-caches', ['on' => 'remote'])
-    podman exec -it systemd-foxws-app sh -c "
-        php artisan optimize:clear;
-    ";
-@endtask
-
-@task('update-application', ['on' => 'remote'])
-    podman exec -it systemd-foxws-app sh -c "
-        php artisan app:update --force;
-    ";
-@endtask
-
-@task('build-assets', ['on' => 'remote'])
+@task('generate-assets', ['on' => 'remote'])
     podman exec -it systemd-foxws-app sh -c "
         yarn run build;
     ";
 @endtask
 
-@task('restart-services', ['on' => 'remote'])
+@task('finish-deploy', ['on' => 'remote'])
     podman exec -it systemd-foxws-app sh -c "
         php artisan up;
     ";
+@endtask
+
+@task('update-application', ['on' => 'remote'])
+    podman exec -it systemd-foxws-app sh -c "
+        php artisan app:update;
+    ";
+@endtask
+
+@task('optimize-application', ['on' => 'remote'])
+    podman exec -it systemd-foxws-app sh -c "
+        php artisan app:optimize;
+    ";
+@endtask
+
+@task('setup-environment', ['on' => 'remote'])
+    mkdir -p {{ $remotePath }}
+    git clone --depth 1 {{ $repository }} {{ $remotePath }}
+@endtask
+
+@task('update-repository', ['on' => 'remote'])
+    cd {{ $remotePath }}
+    git pull origin {{ $branch }}
+@endtask
+
+@task('build-containers', ['on' => 'remote'])
+    cd {{ $remotePath }}
+    ./docs/podman/make
+@endtask
+
+@task('restart-containers', ['on' => 'remote'])
+    systemctl --user daemon-reload
+    systemctl --user restart foxws-app foxws
 @endtask

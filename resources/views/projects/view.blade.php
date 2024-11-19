@@ -1,41 +1,42 @@
-<x-wireuse::layout.container>
-    <main class="flex flex-col py-6 gap-y-6 prose prose-invert max-w-none prose-headings:mb-0 prose-h1:font-semibold prose-h1:text-3xl prose-h2:first:mt-0 prose-p:my-1 prose-thead:text-left prose-a:text-primary-300 prose-table:text-base prose-pre:bg-primary-600/30">
-        <section>
-            <h1>{{ $this->getTitle() }}</h1>
-            <p>{{ $this->getDescription() }}</p>
-            @if ($project->github)
-                <p>
-                    {{ __('Source code is available at') }} <a href="{{ $project->github }}" target="_blank">GitHub</a>.
-                </p>
-            @endif
+{{ html()->div()->class('page')->open() }}
+    {{ html()->div()->class('page-content')->open() }}
+        {{ html()->div()->class('prose-h1:mb-0 prose-h1:text-3xl')->children([
+            html()->element('h1')->text($project->name),
+            html()->element('dl')->class('not-prose divider text-secondary-400')
+                ->childrenIf($project->type, [
+                    html()->element('dt')->text('Type')->class('sr-only'),
+                    html()->element('dd')->text($project->type?->label()),
+                ])
+                ->childrenIf($project->github, [
+                    html()->element('dt')->text('Github')->class('sr-only'),
+                    html()->element('dd')->child(html()->a()->href($project->github)->text('Source')),
+                ])
+        ]) }}
 
-            @includeIf("projects.{$project->getKey()}.notice")
+        <x-markdown>{!! $project->content !!}</x-markdown>
 
-            @if ($this->posts->isNotEmpty())
-            <table class="table-auto">
-                <thead>
-                    <tr>
-                        <th class="text-transparent">{{ __('Name') }}</th>
-                        <th>{{ __('Last updated') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach ($this->posts as $post)
-                    <tr>
-                        <td>
-                            <a
-                                href="{{ $post->route_view }}"
-                                wire:navigate
-                            >
-                                {{ $post->name }}
-                            </a>
-                        </td>
-                        <td>{{ $post->date_updated }}
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-            @endif
-        </section>
-    </main>
-</x-wireuse::layout.container>
+        @if ($this->items->isNotEmpty())
+            {{ html()->element('h4')->text('Documentation') }}
+
+            {{ html()->element('table')->class('table-auto')->children([
+                html()->element('thead')->child(
+                    html()->element('tr')->children([
+                        html()->element('th')->text('Subject'),
+                        html()->element('th')->text('Last Updated'),
+                    ]),
+                ),
+
+                html()->element('tbody')->children($this->items, fn ($item) => html()
+                    ->element('tr')
+                    ->children([
+                        html()->element('td')->child(
+                            html()->a()->link('posts.view', $item)->text($item->name),
+                        ),
+
+                        html()->element('td')->text($item->date_updated),
+                    ]),
+                ),
+            ]) }}
+        @endif
+    {{ html()->div()->close() }}
+{{ html()->div()->close() }}

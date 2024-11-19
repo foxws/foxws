@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -10,7 +12,7 @@ class AppInstall extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'app:install {--force}';
+    protected $signature = 'app:install';
 
     /**
      * @var string
@@ -19,19 +21,18 @@ class AppInstall extends Command implements Isolatable
 
     public function handle(): void
     {
-        throw_if(! $this->option('force') && ! $this->confirm('Are you sure to install the application?'));
+        throw_unless($this->confirm('Are you sure to install the application?'));
 
         // Clear cache
-        $this->call('cache:clear');
         $this->call('optimize:clear');
 
         // Create symlinks
         $this->call('storage:link');
 
-        // Delete indexes
-        $this->call('scout:delete-all-indexes');
+        // Create site-index
+        $this->call('site-search:create-index');
 
         // Perform update
-        $this->call('app:update', ['--force' => 'yes']);
+        $this->call('app:update', ['--assets' => true]);
     }
 }

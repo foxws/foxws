@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Support\Sitemap\Commands;
 
 use Illuminate\Console\Command;

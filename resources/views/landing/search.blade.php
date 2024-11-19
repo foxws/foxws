@@ -1,58 +1,48 @@
-<x-wireuse::layout.container>
-    <main class="flex flex-col py-6 gap-y-6 prose prose-invert max-w-none prose-headings:my-0 prose-h1:mb-2 prose-h1:font-semibold prose-h1:text-3xl prose-p:my-1 prose-thead:text-left prose-a:text-primary-300">
-        <section>
-            <h1>{{ __('Search') }}</h1>
+@php
+    $cleanHighlight = fn (?string $value) => str($value ?? '')->markdown()->stripTags()->limit(180)->toString();
+@endphp
 
-            <form class:layout="flex flex-col py-2 gap-y-2">
-                <x-wireuse::layout.join class="flex-nowrap gap-x-4 rounded bg-primary-700/40 px-3">
-                    <x-wireuse::forms.input
-                        class="border-0 bg-transparent px-0 py-2.5"
-                        type="search"
-                        placeholder="{{ __('Search on article, term or creator') }}"
-                        autocomplete
-                        autofocus
-                        wire:model.live.debounce.300ms="form.search"
-                    />
+@use('Spatie\SiteSearch\SearchResults\Hit')
 
-                    @if ($this->form->filled('search'))
-                        <a wire:click.prevent="$set('form.search', '')">
-                            <x-heroicon-o-x-mark class="size-5" />
-                        </a>
-                    @endif
-                </x-wireuse::layout.join>
-            </form>
-        </section>
+{{ html()->div()->class('page')->open() }}
+    {{ html()->div()->class('page-content prose-h1:mb-0 prose-h2:text-base prose-p:text-sm')->open() }}
+        {{ html()->div()->children([
+            html()->element('h1')->text('Search'),
 
-        @if ($this->form->filled('search'))
-        <section
-            wire:poll.keep-alive.2400s
-            class="flex flex-col gap-y-8 pt-4"
-        >
-            <div class="grid grow grid-cols-1 gap-3.5">
-                @forelse ($this->results->hits as $item)
-                    <a
-                        href="{{ $item->url }}"
-                        wire:navigate
-                        class="flex flex-nowrap gap-2.5 justify-between bg-primary-600/50 hover:bg-primary-600/70 py-2 px-4 rounded w-full no-underline"
-                    >
-                        <div class="flex flex-col">
-                            <h4>{{ $item->title() }}</h4>
-                            <p class="not-prose">
-                                {{ strip_tags($item->highlightedSnippet()) }}
-                            </p>
-                        </div>
+            html()->wireForm($form, 'submit')->class('flex flex-col gap-y-3')->children([
+                html()->div()
+                    ->classIf(flash()->message, ['alert mt-6', flash()->class])
+                    ->textIf(flash()->message, flash()->message),
 
-                        <div class="flex items-center">
-                            <x-heroicon-o-chevron-right class="size-5" />
-                        </div>
-                    </a>
-                @empty
-                    <div class="flex items-center justify-center p-2 text-primary-400">
-                        {{ __('No results found') }}
-                    </div>
-                @endforelse
-            </div>
-        </section>
+                html()->div()->class('form-control')->children([
+                    html()->text()->wireModel('form.query', 'live.debounce.300ms')->placeholder('Search for posts, projects or term')->class('input'),
+                    html()->error('form.query'),
+                ]),
+            ]),
+        ]) }}
+
+        @if ($form->getQuery() && $this->items->hits->isNotEmpty())
+            {{ html()
+                ->element('main')
+                ->attribute('wire:poll.900s')
+                ->class('grid grid-cols-1 py-3 gap-4 max-w-none')
+                ->children($this->items->hits, fn (Hit $item) => html()
+                    ->a()
+                    ->href($item->url)
+                    ->class('flex flex-nowrap gap-3 justify-between bg-primary-600/50 hover:bg-primary-600/70 px-4 rounded-sm w-full no-underline')
+                    ->children([
+                        html()->div()->children([
+                            html()->element('h2')->text($item->title()),
+                            html()->element('p')->text($cleanHighlight($item->highlightedSnippet())),
+                        ]),
+                    ])
+                )
+            }}
+        @elseif ($form->getQuery())
+            {{ html()->div()->class('flex flex-col mt-3 bg-primary-600/50 hover:bg-primary-600/70 px-4 rounded-sm w-full no-underline')->children([
+                html()->element('h2')->text('No results found'),
+                html()->element('p')->text('Please try another search term.'),
+            ]) }}
         @endif
-    </main>
-</x-wireuse::layout.container>
+    {{ html()->div()->close() }}
+{{ html()->div()->close() }}

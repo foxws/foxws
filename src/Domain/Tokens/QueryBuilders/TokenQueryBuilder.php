@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Tokens\QueryBuilders;
 
 use ArrayAccess;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Carbon;
 
 class TokenQueryBuilder extends Builder
 {
@@ -14,7 +15,7 @@ class TokenQueryBuilder extends Builder
             ->withWhereHas('tokens', fn (Builder $query) => $query
                 ->whereIn('name', $name)
                 ->whereNull('expires_at')
-                ->orWhere('expires_at', '<=', Carbon::today())
+                ->orWhere('expires_at', '<=', now())
             );
     }
 }

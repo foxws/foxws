@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Support\Scout\Commands;
 
 use Illuminate\Console\Command;
@@ -20,21 +22,30 @@ class SyncIndexes extends Command implements Isolatable
     public function handle(): void
     {
         if ($this->option('delete')) {
-            $this->call('scout:delete-all-index');
+            $this->call('scout:delete-all-indexes');
         }
 
+        // Sync index settings
         $this->call('scout:sync-index-settings');
 
-        $driver = config('scout.driver');
-
-        $indexes = (array) config('scout.'.$driver.'.index-settings', []);
+        // Sync index models
+        $indexes = $this->getIndexes();
 
         if (count($indexes)) {
-            foreach ($indexes as $name => $settings) {
-                if (class_exists($name)) {
-                    $this->call('scout:import', ['model' => $name]);
+            foreach ($indexes as $model => $settings) {
+                if (class_exists($model)) {
+                    $this->call('scout:import', compact('model'));
                 }
             }
         }
+
+        $this->components->info('Indexes have been synced successfully.');
+    }
+
+    protected function getIndexes(): array
+    {
+        $driver = config('scout.driver');
+
+        return (array) config('scout.'.$driver.'.index-settings', []);
     }
 }

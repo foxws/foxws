@@ -1,12 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Projects\Models;
 
 use Domain\Posts\Models\Post;
+use Domain\Projects\Actions\GetMarkdownDocuments;
+use Domain\Projects\Enums\ProjectType;
+use Domain\Projects\QueryBuilders\ProjectQueryBuilder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
+use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
+use League\CommonMark\Output\RenderedContent;
 use Sushi\Sushi;
 
 class Project extends Model
@@ -23,33 +32,37 @@ class Project extends Model
      */
     protected $keyType = 'string';
 
-    public function getRows(): array
+    protected function casts(): array
     {
         return [
-            [
-                'id' => 'wireuse',
-                'name' => __('WireUse'),
-                'summary' => __('A collection of essential Livewire utilities.'),
-                'description' => __('Offers a collection of useful Livewire utilities and components.'),
-                'github' => 'https://github.com/foxws/wireuse',
-                'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-04-04 18:30'),
-            ],
-            [
-                'id' => 'hub',
-                'name' => __('Hub'),
-                'summary' => __('A personal project that offers a video-on-demand (VOD) platform.'),
-                'description' => __('A personal project that offers a video-on-demand (VOD) platform.'),
-                'github' => 'https://github.com/francoism90/hub',
-                'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-04-04 18:30'),
-            ],
+            'id' => 'string',
+            'name' => 'string',
+            'content' => 'string',
+            'summary' => 'string',
+            'github' => 'string',
+            'starts' => 'integer',
+            'order' => 'integer',
+            'type' => ProjectType::class,
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
         ];
+    }
+
+    public function newEloquentBuilder($query): ProjectQueryBuilder
+    {
+        return new ProjectQueryBuilder($query);
     }
 
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function getRows(): mixed
+    {
+        return Cache::remember('projects', config('settings.cache_duration', 60 * 60),
+            fn () => $this->getDocuments()->toArray()
+        );
     }
 
     public function dateCreated(): Attribute
@@ -66,8 +79,50 @@ class Project extends Model
         )->shouldCache();
     }
 
-    protected function sushiShouldCache(): bool
+    public function diffCreated(): Attribute
     {
-        return true;
+        return Attribute::make(
+            get: fn () => Carbon::make($this->created_at)->diffForHumans()
+        )->shouldCache();
+    }
+
+    public function diffUpdated(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Carbon::make($this->updated_at)->diffForHumans()
+        )->shouldCache();
+    }
+
+    protected function generateSlug(RenderedContent $html): string
+    {
+        /** @var RenderedContentWithFrontMatter $html */
+        $meta = $html->getFrontMatter();
+
+        $value = fn (string $key) => data_get($meta, $key, '');
+
+        return str($value('name') ?: $value('title'))->slug()->value();
+    }
+
+    protected function getDocuments(): Collection
+    {
+        $collect = app(GetMarkdownDocuments::class)->execute();
+
+        return $collect->map(function (RenderedContentWithFrontMatter $item) {
+            $document = $item->getDocument();
+            $meta = $item->getFrontMatter();
+
+            return [
+                'id' => $this->generateSlug($item),
+                'name' => data_get($meta, 'title'),
+                'summary' => data_get($meta, 'summary'),
+                'content' => $item->getContent(),
+                'github' => data_get($meta, 'github'),
+                'type' => data_get($meta, 'type'),
+                'starts' => $document->getStartLine(),
+                'order' => data_get($meta, 'order', 0),
+                'created_at' => data_get($meta, 'created', now()),
+                'updated_at' => data_get($meta, 'updated', now()),
+            ];
+        })->values();
     }
 }

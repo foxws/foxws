@@ -1,14 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Users\Actions;
 
-use Domain\Shared\Concerns\InteractsWithProgress;
 use Domain\Users\Models\User;
 
 class RegenerateUser
 {
-    use InteractsWithProgress;
-
     public array $actions = [
         //
     ];
@@ -17,8 +16,6 @@ class RegenerateUser
     {
         foreach ($this->actions as $action) {
             app($action)->execute($model);
-
-            $this->callOnProgressHook("Ran {$action}.");
         }
     }
 }

@@ -1,38 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Providers;
 
-use Artesaos\SEOTools\Facades\SEOMeta;
-use Foxws\WireUse\Facades\WireUse;
-use Illuminate\Pagination\Paginator;
+use Foxws\WireUse\Scout\ComponentScout;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Flash\Flash;
 
 class ViewServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->configureComponents();
-        $this->configurePaginators();
-        $this->configureSeo();
+        $this->registerComponents();
+        $this->configureMessages();
     }
 
-    protected function configureSeo(): void
+    protected function configureMessages(): void
     {
-        SEOMeta::setTitleDefault(config('app.name'));
-        SEOMeta::setRobots('index,follow');
+        Flash::levels([
+            'success' => 'alert-success',
+            'warning' => 'alert-warning',
+            'error' => 'alert-error',
+        ]);
     }
 
-    protected function configureComponents(): void
+    protected function registerComponents(): static
     {
-        WireUse::registerComponents(
-            path: app_path(),
-            prefix: 'app'
-        );
-    }
+        ComponentScout::create(app_path('Web'), 'App\\')->register();
 
-    protected function configurePaginators(): void
-    {
-        Paginator::defaultView('pagination.default');
-        Paginator::defaultSimpleView('pagination.simple');
+        return $this;
     }
 }

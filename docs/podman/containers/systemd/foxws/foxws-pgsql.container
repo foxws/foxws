@@ -1,0 +1,21 @@
+[Unit]
+Description=PostgreSQL container
+
+[Service]
+EnvironmentFile=%h/.config/containers/systemd/foxws/config/app.env
+TimeoutStartSec=300
+Restart=always
+
+[Container]
+Image=docker.io/library/postgres:latest
+AutoUpdate=registry
+EnvironmentFile=%h/.config/containers/systemd/foxws/config/postgres.env
+LogDriver=none
+ShmSize=100m
+Volume=foxws-pgsql:/var/lib/postgresql/data:rw,Z,U
+Volume=${DUMP_PATH}:/dump:rw,Z,U
+Network=foxws.network
+PublishPort=5432:5432
+
+[Install]
+WantedBy=multi-user.target

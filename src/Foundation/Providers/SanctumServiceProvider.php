@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Providers;
 
 use Domain\Tokens\Models\Token;
@@ -8,11 +10,6 @@ use Laravel\Sanctum\Sanctum;
 
 class SanctumServiceProvider extends ServiceProvider
 {
-    public function register(): void
-    {
-        //
-    }
-
     public function boot(): void
     {
         Sanctum::usePersonalAccessTokenModel(Token::class);

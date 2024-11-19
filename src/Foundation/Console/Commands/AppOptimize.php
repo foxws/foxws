@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -10,7 +12,7 @@ class AppOptimize extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'app:optimize {--force}';
+    protected $signature = 'app:optimize';
 
     /**
      * @var string
@@ -19,24 +21,25 @@ class AppOptimize extends Command implements Isolatable
 
     public function handle(): void
     {
-        throw_if(! $this->option('force') && ! $this->confirm('Are you sure to optimize the application?'));
-
-        // Clear caches
-        $this->call('optimize:clear');
-        $this->call('permission:cache-reset');
-        $this->call('structure-scouts:clear');
-
-        // Optimize assets
-        $this->call('structure-scouts:cache');
-        $this->call('icons:cache');
-
         // Optimize caches
         $this->call('config:cache');
         $this->call('route:cache');
         $this->call('view:cache');
         $this->call('event:cache');
 
-        // Terminate services
+        // Optimize packages
+        $this->call('structures:cache');
+        $this->call('icons:cache');
+
+        // Reload octane
+        $this->call('octane:reload');
+
+        // Restart services
+        $this->call('reverb:restart');
+        $this->call('pulse:restart');
         $this->call('horizon:terminate');
+
+        // Reset pulse
+        $this->call('pulse:clear', ['--force' => true]);
     }
 }

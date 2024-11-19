@@ -3,7 +3,6 @@
     class="scroll-smooth"
     lang="{{ str_replace('_', '-', app()->getLocale()) }}"
 >
-
 <head>
     <meta charset="utf-8" />
     <meta
@@ -51,6 +50,7 @@
     <script
         id="vite-plugin-pwa:register-sw"
         src="{{ asset('build/registerSW.js') }}"
+        data-navigate-track
     ></script>
     <style>
         [x-cloak] {
@@ -63,17 +63,18 @@
     @googlefonts('code')
 </head>
 
-<body class="relative h-screen min-h-screen bg-zinc-900 text-white antialiased">
+<body class="h-screen min-h-screen relative flex flex-col bg-secondary-900 text-secondary-50 antialiased">
 
-    <x-app.header />
+    <x-app.ui.header />
 
-    {{ $slot }}
+    <div class="flex-1">
+        {{ $slot }}
+    </div>
 
-    <x-app.footer />
+    <x-app.ui.footer />
 
     @vite('resources/js/app.js')
     @stack('scripts')
 
 </body>
-
 </html>

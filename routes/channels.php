@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Foundation\Broadcasting\PostChannel;
 use Foundation\Broadcasting\ProjectChannel;
 use Foundation\Broadcasting\UserChannel;

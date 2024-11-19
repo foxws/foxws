@@ -1,0 +1,13 @@
+@layer components {
+    dd {
+        @apply flex appearance-none items-center;
+    }
+
+    .divider {
+        @apply flex flex-wrap items-center *:after:mx-1.5 *:after:content-["-"];
+
+        :last-child {
+            @apply after:hidden;
+        }
+    }
+}

@@ -1,12 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Posts\Models;
 
+use Domain\Posts\Actions\GetMarkdownDocuments;
+use Domain\Posts\QueryBuilders\PostQueryBuilder;
 use Domain\Projects\Models\Project;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
+use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
+use League\CommonMark\Output\RenderedContent;
 use Sushi\Sushi;
 
 class Post extends Model
@@ -23,102 +31,31 @@ class Post extends Model
      */
     protected $keyType = 'string';
 
-    public function getRows(): array
+    /**
+     * @var array<int, string>
+     */
+    protected $with = [
+        'project',
+    ];
+
+    protected function casts(): array
     {
         return [
-            // WireUse
-            [
-                'id' => 'introduction-to-wireuse',
-                'project_id' => 'wireuse',
-                'name' => __('Introduction to WireUse'),
-                'category' => __('Getting Started'),
-                'order_column' => 1,
-                'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-07-12 18:30'),
-            ],
-            [
-                'id' => 'installing-wireuse',
-                'project_id' => 'wireuse',
-                'name' => __('Installing WireUse'),
-                'category' => __('Getting Started'),
-                'order_column' => 2,
-                'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-07-12 18:30'),
-            ],
-            [
-                'id' => 'property-synthesizers',
-                'project_id' => 'wireuse',
-                'name' => __('Property Synthesizers'),
-                'category' => __('Properties'),
-                'order_column' => 3,
-                'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-07-12 18:30'),
-            ],
-            [
-                'id' => 'structure-scout',
-                'project_id' => 'wireuse',
-                'name' => __('Structure Scout'),
-                'category' => __('Advanced'),
-                'order_column' => 4,
-                'created_at' => Carbon::make('2024-07-29 17:30'),
-                'updated_at' => Carbon::make('2024-07-29 18:30'),
-            ],
-            [
-                'id' => 'components',
-                'project_id' => 'wireuse',
-                'name' => __('Using Components'),
-                'category' => __('Components'),
-                'order_column' => 5,
-                'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-07-12 18:30'),
-            ],
-            [
-                'id' => 'laravel-html',
-                'project_id' => 'wireuse',
-                'name' => __('Views - Laravel HTML'),
-                'category' => __('Views'),
-                'order_column' => 6,
-                'created_at' => Carbon::make('2024-07-12 18:30'),
-                'updated_at' => Carbon::make('2024-07-12 18:30'),
-            ],
-            [
-                'id' => 'forms',
-                'project_id' => 'wireuse',
-                'name' => __('Livewire Forms'),
-                'category' => __('Forms'),
-                'order_column' => 7,
-                'created_at' => Carbon::make('2024-04-15 18:30'),
-                'updated_at' => Carbon::make('2024-07-12 18:30'),
-            ],
-            [
-                'id' => 'state-objects',
-                'project_id' => 'wireuse',
-                'name' => __('State Objects'),
-                'category' => __('Livewire'),
-                'order_column' => 8,
-                'created_at' => Carbon::make('2024-04-16 17:30'),
-                'updated_at' => Carbon::make('2024-05-04 11:30'),
-            ],
-            [
-                'id' => 'blade-macros',
-                'project_id' => 'wireuse',
-                'name' => __('Blade Macros'),
-                'category' => __('Components'),
-                'order_column' => 9,
-                'created_at' => Carbon::make('2024-04-04 18:30'),
-                'updated_at' => Carbon::make('2024-07-12 18:30'),
-            ],
-            // Hub
-            [
-                'id' => 'introduction-to-hub',
-                'project_id' => 'hub',
-                'name' => __('Introduction to Hub'),
-                'category' => __('Getting Started'),
-                'order_column' => 1,
-                'created_at' => Carbon::make('2024-07-12 18:30'),
-                'updated_at' => Carbon::make('2024-07-12 18:30'),
-            ],
+            'id' => 'string',
+            'project_id' => 'string',
+            'name' => 'string',
+            'content' => 'string',
+            'summary' => 'string',
+            'starts' => 'integer',
+            'order' => 'integer',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
         ];
+    }
+
+    public function newEloquentBuilder($query): PostQueryBuilder
+    {
+        return new PostQueryBuilder($query);
     }
 
     public function project(): BelongsTo
@@ -126,17 +63,24 @@ class Post extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function routeView(): Attribute
+    public function getRows(): mixed
+    {
+        return Cache::remember('posts', config('settings.cache_duration', 60 * 60),
+            fn () => $this->getDocuments()->toArray()
+        );
+    }
+
+    public function next(): Attribute
     {
         return Attribute::make(
-            get: fn () => route('posts.view', ['project' => $this->project_id, 'post' => $this->id])
+            get: fn () => static::firstWhere('order', $this->order + 1)
         )->shouldCache();
     }
 
-    public function bladeView(): Attribute
+    public function previous(): Attribute
     {
         return Attribute::make(
-            get: fn () => implode('.', ['posts', $this->project_id, $this->id])
+            get: fn () => static::firstWhere('order', $this->order - 1)
         )->shouldCache();
     }
 
@@ -154,8 +98,50 @@ class Post extends Model
         )->shouldCache();
     }
 
-    protected function sushiShouldCache(): bool
+    public function diffCreated(): Attribute
     {
-        return true;
+        return Attribute::make(
+            get: fn () => Carbon::make($this->created_at)->diffForHumans()
+        )->shouldCache();
+    }
+
+    public function diffUpdated(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Carbon::make($this->updated_at)->diffForHumans()
+        )->shouldCache();
+    }
+
+    protected function generateSlug(RenderedContent $html): string
+    {
+        /** @var RenderedContentWithFrontMatter $html */
+        $meta = $html->getFrontMatter();
+
+        $value = fn (string $key) => data_get($meta, $key, '');
+
+        return str("{$value('project')} {$value('title')}")->slug()->value();
+    }
+
+    protected function getDocuments(): Collection
+    {
+        $collect = app(GetMarkdownDocuments::class)->execute();
+
+        return $collect->map(function (RenderedContentWithFrontMatter $item) {
+            $document = $item->getDocument();
+            $meta = $item->getFrontMatter();
+
+            return [
+                'id' => $this->generateSlug($item),
+                'project_id' => data_get($meta, 'project'),
+                'name' => data_get($meta, 'title'),
+                'summary' => data_get($meta, 'summary'),
+                'content' => $item->getContent(),
+                'type' => data_get($meta, 'type'),
+                'order' => data_get($meta, 'order', 0),
+                'starts' => $document->getStartLine(),
+                'created_at' => data_get($meta, 'created', now()),
+                'updated_at' => data_get($meta, 'updated', now()),
+            ];
+        })->values();
     }
 }

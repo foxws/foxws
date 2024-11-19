@@ -1,15 +1,15 @@
 <?php
 
-use App\Landing\Controllers\AboutController;
-use App\Landing\Controllers\HomeController;
-use App\Landing\Controllers\SearchController;
-use App\Posts\Controllers\PostViewController;
-use App\Projects\Controllers\ProjectViewController;
+declare(strict_types=1);
+
+use App\Web\Landing\Controllers\HomeController;
+use App\Web\Landing\Controllers\SearchController;
+use App\Web\Posts\Controllers\PostViewController;
+use App\Web\Projects\Controllers\ProjectViewController;
 use Illuminate\Support\Facades\Route;
 
 // Landing
 Route::get('/', HomeController::class)->name('home');
-Route::get('/about', AboutController::class)->name('about');
 Route::get('/search', SearchController::class)->name('search');
 
 // Projects
@@ -19,5 +19,5 @@ Route::name('projects.')->prefix('projects')->group(function () {
 
 // Posts
 Route::name('posts.')->prefix('posts')->group(function () {
-    Route::get('/{project}/{post}', PostViewController::class)->scopeBindings()->name('view');
+    Route::get('/{post}', PostViewController::class)->name('view');
 });

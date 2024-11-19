@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Providers;
 
-use Foxws\WireUse\Facades\WireUse;
+use Foxws\WireUse\Scout\LivewireScout;
 use Foxws\WireUse\Support\Livewire\LegacyModels\EloquentCollectionSynth;
 use Foxws\WireUse\Support\Livewire\LegacyModels\EloquentModelSynth;
 use Foxws\WireUse\Support\Livewire\Models\CollectionSynth;
@@ -11,18 +13,13 @@ use Illuminate\Support\ServiceProvider;
 
 class LivewireServiceProvider extends ServiceProvider
 {
-    public function register(): void
-    {
-        //
-    }
-
     public function boot(): void
     {
-        $this->configureSynthesizers();
-        $this->configureComponents();
+        $this->registerSynthesizers();
+        $this->registerLivewire();
     }
 
-    protected function configureSynthesizers(): void
+    protected function registerSynthesizers(): void
     {
         app('livewire')->propertySynthesizer([
             ModelSynth::class,
@@ -32,11 +29,10 @@ class LivewireServiceProvider extends ServiceProvider
         ]);
     }
 
-    protected function configureComponents(): void
+    protected function registerLivewire(): static
     {
-        WireUse::registerLivewireComponents(
-            path: app_path(),
-            prefix: 'app'
-        );
+        LivewireScout::create(app_path('Web'), 'App\\')->register();
+
+        return $this;
     }
 }

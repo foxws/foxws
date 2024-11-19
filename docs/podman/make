@@ -1,0 +1,4 @@
+#!/bin/sh
+
+podman build -t foxws-app:latest -f ./docs/podman/images/app/Dockerfile "$@"
+podman build -t foxws-nginx:latest -f ./docs/podman/images/nginx/Dockerfile "$@"

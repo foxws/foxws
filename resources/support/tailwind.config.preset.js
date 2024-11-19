@@ -1,21 +1,34 @@
-import colors from 'tailwindcss/colors';
+import { fontFamily } from "tailwindcss/defaultTheme";
+import colors from "tailwindcss/colors";
+import forms from "@tailwindcss/forms";
+import typography from "@tailwindcss/typography";
 
+/** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'selector',
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Jost, ui-sans-serif, system-ui, sans-serif'],
-        serif: ['Montserrat', 'ui-serif', 'serif'],
-        mono: ['IBM Plex Mono', 'ui-monospace', 'monospace'],
+        sans: ["Jost", fontFamily.sans],
+        serif: ["Montserrat", fontFamily.serif],
+        mono: ["IBM Plex Mono", fontFamily.mono],
       },
       colors: {
         primary: colors.slate,
+        secondary: colors.zinc,
+        info: colors.blue,
+        success: colors.gray,
+        error: colors.red,
+        warning: colors.yellow,
       },
       container: {
         center: true,
-        padding: '2rem',
+        padding: "1.5rem",
+      },
+      brightness: {
+        80: ".8",
+        85: ".85",
       },
     },
   },
+  plugins: [forms, typography],
 };

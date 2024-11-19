@@ -1,0 +1,29 @@
+[Unit]
+Description=App container
+Requires=traefik.service foxws-redis.service foxws-pgsql.service foxws-meilisearch.service foxws-mailpit.service foxws-minio.service
+After=traefik.service foxws-redis.service foxws-pgsql.service foxws-meilisearch.service foxws-mailpit.service foxws-minio.service
+
+[Service]
+EnvironmentFile=%h/.config/containers/systemd/foxws/config/app.env
+TimeoutStartSec=900
+Restart=always
+
+[Container]
+Image=localhost/foxws-app:latest
+AutoUpdate=local
+# Environment=SUPERVISOR_PHP_COMMAND="php -d variables_order=EGPCS /app/artisan octane:start --server=swoole --host=0.0.0.0 --port=8000 --watch"
+LogDriver=none
+Volume=${APP_PATH}:/app:rw,z
+Secret=tlscert,target=/run/secrets/cert.pem,uid=${UID},gid=${GID}
+Secret=tlskey,target=/run/secrets/key.pem,uid=${UID},gid=${GID}
+User=${UID}
+Group=${UID}
+UserNS=keep-id:uid=${UID},gid=${GID}
+Network=foxws.network
+ExposeHostPort=6001
+ExposeHostPort=8000
+ExposeHostPort=9000
+PublishPort=5174:5174
+
+[Install]
+WantedBy=multi-user.target

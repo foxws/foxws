@@ -13,7 +13,6 @@
     install-dependencies
     generate-assets
     update-application
-    optimize-application
     finish-deploy
 @endstory
 

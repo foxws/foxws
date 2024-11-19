@@ -61,6 +61,12 @@ podman secret create tlscert ~/.config/containers/systemd/traefik/certs/cert.pem
 podman secret create tlskey ~/.config/containers/systemd/traefik/certs/key.pem
 ```
 
+To import auth tokens for DNS-challenges:
+
+```bash
+printf "dop_v1_TOKENSTRING" | podman secret create do_auth_token
+```
+
 To passport protect the Traefik dashboard, generate an [user:password pair](https://doc.traefik.io/traefik/middlewares/http/basicauth/#usersfile):
 
 ```bash

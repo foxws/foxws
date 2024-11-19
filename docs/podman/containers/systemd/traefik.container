@@ -16,22 +16,31 @@ Volume=%h/.config/containers/systemd/traefik/acme:/etc/traefik/acme:rw,Z,U
 Volume=%h/.config/containers/systemd/traefik/config/traefik.yml:/etc/traefik/traefik.yml:ro,Z
 Volume=%h/.config/containers/systemd/traefik/config/dynamic.yml:/etc/traefik/dynamic.yml:ro,Z
 SecurityLabelType=container_runtime_t
-Secret=tlscert,target=/run/secrets/cert.pem
-Secret=tlskey,target=/run/secrets/key.pem
+Secret=do_auth_token,type=env,target=DO_AUTH_TOKEN
 Secret=usersfile,target=/run/secrets/usersfile
+# Secret=tlscert,target=/run/secrets/cert.pem
+# Secret=tlskey,target=/run/secrets/key.pem
 Environment=TRAEFIK_TZ=${TRAEFIK_TZ}
 LogDriver=none
 Network=traefik.network
 PublishPort=80:80
 PublishPort=443:443
 Label=traefik.enable=true
-Label=traefik.http.routers.mydashboard.entrypoints=websecure
 Label=traefik.http.routers.mydashboard.rule="Host(`router.foxws.nl`)"
+Label=traefik.http.routers.mydashboard.entrypoints=websecure
 Label=traefik.http.routers.mydashboard.tls=true
 Label=traefik.http.routers.mydashboard.tls.certresolver=myresolver
+Label=traefik.http.routers.mydashboard.tls.domains[0].main=foxws.nl
+Label=traefik.http.routers.mydashboard.tls.domains[0].sans=*.foxws.nl
 Label=traefik.http.routers.mydashboard.service=api@internal
 Label=traefik.http.routers.mydashboard.middlewares=myauth
-Label=traefik.http.middlewares.myauth.basicauth.users=test:$$apr1$$H6uskkkW$$IgXLP6ewTrSuBkTrqE8wj/
+Label=traefik.http.routers.cockpit.rule="Host(`cockpit.foxws.nl`)"
+Label=traefik.http.routers.cockpit.entrypoints=websecure
+Label=traefik.http.routers.cockpit.tls=true
+Label=traefik.http.routers.cockpit.tls.certresolver=myresolver
+Label=traefik.http.routers.cockpit.priority=1000
+Label=traefik.http.routers.cockpit.service=cockpit@file
+Label=traefik.http.middlewares.myauth.basicauth.usersfile=/run/secrets/usersfile
 
 [Install]
 WantedBy=multi-user.target

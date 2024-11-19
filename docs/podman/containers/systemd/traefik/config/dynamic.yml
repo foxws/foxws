@@ -1,3 +1,9 @@
+http:
+  services:
+    cockpit:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:9090"
 # tls:
 #   stores:
 #     default:

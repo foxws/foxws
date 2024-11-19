@@ -2,6 +2,8 @@ global:
   sendAnonymousUsage: false
 
 api:
+  insecure: false
+  debug: false
   dashboard: true
 
 providers:
@@ -12,7 +14,7 @@ providers:
     filename: /etc/traefik/dynamic.yml
 
 log:
-  level: INFO
+  level: WARN
   format: common
 
 entryPoints:
@@ -34,4 +36,6 @@ certificatesResolvers:
     acme:
       email: email@example.com
       storage: /etc/traefik/acme/acme.json
-      tlsChallenge: {}
+      dnsChallenge:
+        provider: digitalocean
+        delayBeforeCheck: "0"

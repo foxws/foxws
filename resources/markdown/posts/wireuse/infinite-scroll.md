@@ -20,7 +20,7 @@ This should decrease database load, and make fetching with merging items a lot m
 
 > Tip: Optionally you may want to include `Livewire\WithoutUrlPagination` to hide `?page=` args.
 
-To implement infinite scrolling, implement the `WithPaginateScroll` trait on a Livewire component:
+To use infinite scrolling, implement the `WithPaginateScroll` trait on a Livewire component:
 
 ```php
 use Domain\Tags\Models\Tag;

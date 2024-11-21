@@ -7,6 +7,10 @@
                     html()->element('dt')->text('Project')->class('sr-only'),
                     html()->element('dd')->child(html()->a()->link('projects.view', $post->project)->text($post->project->name)),
                 ])
+                ->childrenIf($post->tags, [
+                    html()->element('dt')->text('Tags')->class('hidden'),
+                    html()->element('dd')->text($post->tags)->class('hidden'),
+                ])
                 ->children([
                     html()->element('dt')->text('Updated')->class('sr-only'),
                     html()->element('dd')->text("Last updated {$post->diff_updated}"),

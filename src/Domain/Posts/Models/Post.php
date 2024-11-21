@@ -44,6 +44,7 @@ class Post extends Model
             'content' => 'string',
             'summary' => 'string',
             'starts' => 'integer',
+            'tags' => 'string',
             'order' => 'integer',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
@@ -62,7 +63,7 @@ class Post extends Model
 
     public function getRows(): mixed
     {
-        return Cache::remember('posts', config('settings.cache_duration', 60 * 60),
+        return Cache::remember('posts', config('settings.cache_duration', 60 * 60 * 24 * 7),
             fn () => app(GetMarkdownDocuments::class)->execute()->toArray()
         );
     }

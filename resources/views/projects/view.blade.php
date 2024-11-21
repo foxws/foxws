@@ -7,6 +7,10 @@
                     html()->element('dt')->text('Type')->class('sr-only'),
                     html()->element('dd')->text($project->type?->label()),
                 ])
+                ->childrenIf($project->tags, [
+                    html()->element('dt')->text('Tags')->class('hidden'),
+                    html()->element('dd')->text($project->tags)->class('hidden'),
+                ])
                 ->childrenIf($project->github, [
                     html()->element('dt')->text('Github')->class('sr-only'),
                     html()->element('dd')->child(html()->a()->href($project->github)->text('Source')),

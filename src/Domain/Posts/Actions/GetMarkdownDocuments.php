@@ -25,6 +25,7 @@ class GetMarkdownDocuments
                 'summary' => data_get($meta, 'summary'),
                 'content' => $item->getContent(),
                 'type' => data_get($meta, 'type'),
+                'tags' => implode(', ', data_get($meta, 'tags', [])),
                 'order' => data_get($meta, 'order', 0),
                 'starts' => $document->getStartLine(),
                 'created_at' => data_get($meta, 'created', now()),

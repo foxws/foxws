@@ -39,6 +39,7 @@ class Project extends Model
             'github' => 'string',
             'starts' => 'integer',
             'order' => 'integer',
+            'tags' => 'string',
             'type' => ProjectType::class,
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
@@ -57,7 +58,7 @@ class Project extends Model
 
     public function getRows(): mixed
     {
-        return Cache::remember('projects', config('settings.cache_duration', 60 * 60),
+        return Cache::remember('projects', config('settings.cache_duration', 60 * 60 * 24 * 7),
             fn () => app(GetMarkdownDocuments::class)->execute()->toArray()
         );
     }

@@ -1,7 +1,7 @@
 ---
 title: Laravel HTML (Spatie)
 project: wireuse
-order: 6
+order: 7
 tags:
   - html
   - blade

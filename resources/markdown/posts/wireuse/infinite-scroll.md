@@ -25,6 +25,7 @@ To use infinite scrolling, implement the `WithPaginateScroll` trait on a Livewir
 ```php
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Models\Concerns\WithPaginateScroll;
+use Illuminate\Pagination\Paginator;
 use Livewire\Component;
 
 class Section extends Component

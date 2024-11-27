@@ -48,7 +48,7 @@ The `Page` class  and includes the following traits:
 - `WithAuthentication` - Can be used to retrieve the current user.
 - `WithAuthorization` - Can be used to authorize the current user.
 - `WithHash` - Can be used to generate a hash for the given component.
-- `WithSeo` - Can be used to generate SEO using [https://github.com/artesaos/seotools](artesaos/seotools).
+- `WithSeo` - Can be used to generate SEO using [artesaos/seotools](https://github.com/artesaos/seotools).
 
 ## Blade Component
 

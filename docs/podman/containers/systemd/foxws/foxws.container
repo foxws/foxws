@@ -19,14 +19,14 @@ Group=${GID}
 UserNS=keep-id:uid=${UID},gid=${GID}
 Network=foxws.network
 Network=traefik.network
-ExposeHostPort=4443
+ExposeHostPort=8080
 ExposeHostPort=8443
 Label=traefik.enable=true
 Label=traefik.http.routers.foxws.rule=Host(`foxws.nl`)
 Label=traefik.http.routers.foxws.entrypoints=websecure
 Label=traefik.http.routers.foxws.tls=true
 Label=traefik.http.routers.foxws.service=foxws
-Label=traefik.http.services.foxws.loadbalancer.server.port=8443
+Label=traefik.http.services.foxws.loadbalancer.server.port=8080
 Label=traefik.http.routers.foxws-ws.rule=Host(`ws.foxws.nl`)
 Label=traefik.http.routers.foxws-ws.entrypoints=websecure
 Label=traefik.http.routers.foxws-ws.tls=true

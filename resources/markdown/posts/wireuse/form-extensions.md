@@ -58,6 +58,9 @@ class LoginForm extends Form
             return;
         }
 
+        // $this->request(); // return as FormRequest
+        // $this->fluent(); // return as Fluent
+
         session()->regenerate();
     }
 
@@ -88,9 +91,7 @@ The following is a selection of traits that are available to be used on a Livewi
 
 #### WithAttributes
 
-The `Foxws\WireUse\Forms\Concerns\WithAttributes` trait can be used to retrieve given form attributes using `$form->get(..)`, `$form->has(..)`, `form->contains(..)`, etc.
-
-This is similar to Laravel Form Requests retrieving methods.
+The `Foxws\WireUse\Forms\Concerns\WithAttributes` trait can be used to retrieve given form attributes using `$form->get(..)`, `$form->has(..)`, `form->contains(..)`, `$form->request()`, `$form->collect()`, `$form->fluent()`, etc.
 
 #### WithSession
 

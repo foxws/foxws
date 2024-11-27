@@ -40,6 +40,7 @@ Label=traefik.http.routers.cockpit.tls=true
 Label=traefik.http.routers.cockpit.tls.certresolver=myresolver
 Label=traefik.http.routers.cockpit.priority=1000
 Label=traefik.http.routers.cockpit.service=cockpit@file
+Label=traefik.http.routers.cockpit.middlewares=myauth
 Label=traefik.http.middlewares.myauth.basicauth.usersfile=/run/secrets/usersfile
 
 [Install]

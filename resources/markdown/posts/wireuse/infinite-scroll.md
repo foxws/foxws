@@ -14,7 +14,7 @@ Infinite scrolling is an approach which loads content continuously as the user s
 
 While many tutorials increase the query limit (`->take()`), this trait focuses on fetching as paginate.
 
-This should decrease database load, and make fetching with merging items a lot more efficient.
+This should decrease database load, and make fetching while merging items a lot more efficient.
 
 ## Usage
 

@@ -1,4 +1,5 @@
-resolver ${NGINX_LOCAL_RESOLVERS} valid=30s;
+resolver ${NGINX_LOCAL_RESOLVERS} valid=60s;
+resolver_timeout 5s;
 
 upstream octane {
     server systemd-foxws-app:8000 weight=5 max_fails=3 fail_timeout=30s;
@@ -13,7 +14,7 @@ server {
     listen [::]:8080;
     http2 on;
 
-    server_name ${NGINX_HOST};
+    server_name localhost;
     set $base /app;
     root $base/public;
 
@@ -71,20 +72,4 @@ server {
 
     # additional config
     include /etc/nginx/config/general.conf;
-}
-
-# websocket
-server {
-    listen 8080;
-    listen [::]:8080;
-    http2 on;
-
-    server_name ${NGINX_WS_HOST};
-
-    # root
-    location / {
-        proxy_pass http://reverb;
-        proxy_set_header Host $http_host;
-        include /etc/nginx/config/proxy.conf;
-    }
 }

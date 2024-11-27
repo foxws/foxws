@@ -1,6 +1,10 @@
 global:
   sendAnonymousUsage: false
 
+log:
+  level: WARN
+  format: common
+
 api:
   insecure: false
   debug: false
@@ -8,14 +12,11 @@ api:
 
 providers:
   docker:
-    network: systemd-foxws
+    watch: true
+    network: traefik
     exposedByDefault: false
   file:
     filename: /etc/traefik/dynamic.yml
-
-log:
-  level: WARN
-  format: common
 
 entryPoints:
   web:
@@ -25,6 +26,7 @@ entryPoints:
         entryPoint:
           to: websecure
           scheme: https
+          permanent: true
   websecure:
     address: ":443"
     http:

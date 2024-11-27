@@ -68,8 +68,8 @@ COPY --chown=$UID:$GID runtimes/. /etc/nginx
 
 STOPSIGNAL SIGQUIT
 
-EXPOSE 8080
 EXPOSE 4443
+EXPOSE 8443
 
 USER $UID
 

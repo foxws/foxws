@@ -41,8 +41,6 @@ export default defineConfig(({ mode }) => {
         refresh: [...refreshPaths, "resources/**", "src/**"],
       }),
       VitePWA({
-        outDir: "public/build",
-        base: "public",
         buildBase: "/build/",
         scope: "/",
         registerType: "autoUpdate",
@@ -58,7 +56,7 @@ export default defineConfig(({ mode }) => {
         manifest: {
           name: "Foxws",
           short_name: "Foxws",
-          description: "A personal blog",
+          description: "A personal blog of my Laravel adventures.",
           categories: ["laravel", "development", "packages"],
           theme_color: "#334155",
           background_color: "#334155",

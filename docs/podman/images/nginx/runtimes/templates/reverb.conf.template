@@ -1,0 +1,24 @@
+server {
+    listen 4443;
+    listen [::]:4443;
+    http2 on;
+
+    server_name localhost;
+    root /usr/share/nginx/html;
+
+    # security
+    include /etc/nginx/config/security.conf;
+
+    # index
+    index index.html;
+
+    # error
+    error_page 404 /index.html;
+
+    # root
+    location / {
+        proxy_pass http://reverb;
+        proxy_set_header Host $host;
+        include /etc/nginx/config/proxy.conf;
+    }
+}

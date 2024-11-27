@@ -86,11 +86,11 @@ RUN install-php-extensions \
     intl \
     msgpack \
     opcache \
-    openswoole \
     pcntl \
     pcov \
     pdo_pgsql \
     redis \
+    swoole \
     uv \
     zip
 

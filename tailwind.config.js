@@ -1,9 +1,8 @@
-import preset from "./vendor/foxws/wireuse/resources/css/presets/tailwind.config.preset";
 import theme from "./resources/support/tailwind.config.preset";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  presets: [preset, theme],
+  presets: [theme],
   relative: true,
   content: [
     "./resources/**/*.{blade.php,js}",

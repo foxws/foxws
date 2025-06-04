@@ -20,7 +20,7 @@
         "cssnano": "^7.0.7",
         "eslint": "^9.28",
         "globals": "^16.2.0",
-        "laravel-echo": "^2.1.4",
+        "laravel-echo": "^2.1.5",
         "laravel-vite-plugin": "^1.2.0",
         "postcss": "^8.5.4",
         "postcss-import": "^16.1.0",

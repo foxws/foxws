@@ -2156,16 +2156,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v2.9.5",
+            "version": "v2.9.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "2fe0473a3a31bf47ec115724c203d1e2ca822d79"
+                "reference": "45a2dc4922c8633c9b0ca25c6da74686f0a36899"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/2fe0473a3a31bf47ec115724c203d1e2ca822d79",
-                "reference": "2fe0473a3a31bf47ec115724c203d1e2ca822d79",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/45a2dc4922c8633c9b0ca25c6da74686f0a36899",
+                "reference": "45a2dc4922c8633c9b0ca25c6da74686f0a36899",
                 "shasum": ""
             },
             "require": {
@@ -2235,7 +2235,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v2.9.5"
+                "source": "https://github.com/foxws/wireuse/tree/v2.9.8"
             },
             "funding": [
                 {
@@ -2243,7 +2243,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-21T13:04:47+00:00"
+            "time": "2025-06-04T12:07:37+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -2995,16 +2995,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.45.0",
+            "version": "v11.45.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d0730deb427632004d24801be7ca1ed2c10fbc4e"
+                "reference": "b09ba32795b8e71df10856a2694706663984a239"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d0730deb427632004d24801be7ca1ed2c10fbc4e",
-                "reference": "d0730deb427632004d24801be7ca1ed2c10fbc4e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b09ba32795b8e71df10856a2694706663984a239",
+                "reference": "b09ba32795b8e71df10856a2694706663984a239",
                 "shasum": ""
             },
             "require": {
@@ -3206,7 +3206,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-05-20T15:15:58+00:00"
+            "time": "2025-06-03T14:01:40+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -5227,16 +5227,16 @@
         },
         {
             "name": "nette/utils",
-            "version": "v4.0.6",
+            "version": "v4.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "ce708655043c7050eb050df361c5e313cf708309"
+                "reference": "e67c4061eb40b9c113b218214e42cb5a0dda28f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/ce708655043c7050eb050df361c5e313cf708309",
-                "reference": "ce708655043c7050eb050df361c5e313cf708309",
+                "url": "https://api.github.com/repos/nette/utils/zipball/e67c4061eb40b9c113b218214e42cb5a0dda28f2",
+                "reference": "e67c4061eb40b9c113b218214e42cb5a0dda28f2",
                 "shasum": ""
             },
             "require": {
@@ -5307,9 +5307,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/utils/issues",
-                "source": "https://github.com/nette/utils/tree/v4.0.6"
+                "source": "https://github.com/nette/utils/tree/v4.0.7"
             },
-            "time": "2025-03-30T21:06:30+00:00"
+            "time": "2025-06-03T04:55:08+00:00"
         },
         {
             "name": "nicmart/tree",
@@ -15179,12 +15179,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }

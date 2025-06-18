@@ -3356,10 +3356,10 @@ known-css-properties@^0.36.0:
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.36.0.tgz#5c4365f3c9549ca2e813d2e729e6c47ef6a6cb60"
   integrity sha512-A+9jP+IUmuQsNdsLdcg6Yt7voiMF/D4K83ew0OpJtpu+l34ef7LaohWV0Rc6KNvzw6ZDizkqfyB5JznZnzuKQA==
 
-laravel-echo@^2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/laravel-echo/-/laravel-echo-2.1.4.tgz#eaa8ee83c45efd7d77dd7e68f74e90eac072503c"
-  integrity sha512-+xkI04C7mqPSsp/610i2/6g5wnfnY0BbO4+UvQ55Ryn6H7TPDYloFMg3KF+EfYhtPhHLrTSTbnM/wj8REgMvTw==
+laravel-echo@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/laravel-echo/-/laravel-echo-2.1.6.tgz#99e39f54865377133ff5dff29a86bd661e9187de"
+  integrity sha512-X7tdIDhG/o8AenMvY83Hcjtw/TN/eKT+zA5WEENHIbY8tq12NQbdxtVePw1yImxXwKC/yZoVWNukFlG+gWqKCA==
 
 laravel-vite-plugin@^1.2.0:
   version "1.2.0"
